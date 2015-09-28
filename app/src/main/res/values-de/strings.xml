@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">SystemInfoWidget</string>
+    <string name="menu_settings">Settings</string>
+    <string name="image_content_discription">imagedisc</string>
+<!-- General-View -->
+    <string name="general_manufacturer">Hersteller</string>
+    <string name="general_modell">Modell</string>
+    <string name="general_product">Produkt</string>
+    <string name="general_brand">Brand</string>
+    <string name="general_serialnumber">Seriennummer</string>
+    <string name="general_device_id">Build-Nummer</string>
+    <string name="general_timezone">Zeitzone</string>
+    <string name="general_unknow">Unbekannt</string>
+<!-- More-View -->
+    <string name="more_android_id">Android ID</string>
+    <string name="more_os_sdk_version">OS/SDK Version</string>
+    <string name="more_board">Board</string>
+    <string name="more_bootloader">Bootloader</string>
+    <string name="more_cpu_i">CPU-ABI I</string>
+    <string name="more_cpu_ii">CPU-ABI II.</string>
+    <string name="more_hardware">Hardware</string>
+<!-- Display-View -->
+    <string name="display_height">Höhe</string>
+    <string name="display_width">Breite</string>
+    <string name="display_dps">Dichte (DPI)</string>
+    <string name="display_dps_ldpi">LDPI (120)</string>
+    <string name="display_dps_mdpi">MDPI (160)</string>
+    <string name="display_dps_hdpi">HDPI (240)</string>
+    <string name="display_dps_xhdpi">XHDPI (320)</string>
+    <string name="display_dps_xxhdpi">XXHDPI (480)</string>
+    <string name="display_dps_tv">TV (213)</string>
+    <string name="display_dps_default">Voreingestellt (160)</string>
+    <string name="display_fps">Aktualisierungsrate (FPS)</string>
+    <string name="display_display_skala">Display Skalierung</string>
+    <string name="display_display_size">Display Größe</string>
+    <string name="display_display_size_summary">inches</string>
+    <string name="display_orientation">Natürliche Ausrichtung</string>
+    <string name="display_orientation_landscape">Landscape</string>
+    <string name="display_orientation_portrait">Portrait</string>
+<!-- Camera-View -->
+    <string name="camera_manufacturer">Bildformat</string>
+    <string name="camera_modell">Vorschauformat</string>
+    <string name="camera_product">Bildgröße</string>
+    <string name="camera_brand">Vorschaugröße</string>
+    <string name="camera_serialnumber">Unterst. Bildgröße(n)</string>
+    <string name="camera_supportet_formats">Unterst. Bildformate</string>
+    <string name="camera_timezone">Front Kamera</string>
+    <string name="camera_facecam_available">Verfügbar</string>
+    <string name="camera_facecam_not_available">Nicht Verfügbar</string>
+    <string name="camera_picture_format_jpeg">JPEG</string>
+    <string name="camera_picture_format_nv">NV16</string>
+    <string name="camera_picture_format_nvsecond">NV21</string>
+    <string name="camera_picture_format_rgb">RGB_565</string>
+    <string name="camera_picture_format_yuy">YUY2</string>
+    <string name="camera_picture_format_yv">YV12</string>
+<!-- Memory-View -->
+    <string name="memory_header_memory">Speicher-Medium</string>
+    <string name="memory_header_values">Gesamt/Verfügbar/Benutzt</string>
+    <string name="memory_ram">Ram</string>
+    <string name="memory_devicememory">Gerätespeicher</string>
+    <string name="memory_usb_sd_memory">USB/SD-Speicher</string>
+    <string name="memory_used">Benutzt:</string>
+    <string name="memory_not_available">Nicht Verfügbar</string>
+<!-- Akku-View -->
+    <string name="akku_capacitance">Kapazität</string>
+    <string name="akku_state">Status</string>
+    <string name="akku_state_charging">Wird geladen</string>
+    <string name="akku_state_dis_charging">Entladen</string>
+    <string name="akku_state_full">Geladen</string>
+    <string name="akku_state_not_charging">Lädt nicht</string>
+    <string name="akku_technology">Bauart</string>
+    <string name="akku_voltage">Spannung</string>
+    <string name="akku_temp">Temperatur</string>
+    <string name="akku_akku_health">Akku Zustand</string>
+    <string name="akku_akku_health_cold">Kalt</string>
+    <string name="akku_akku_health_dead">Tot</string>
+    <string name="akku_akku_health_good">Gut</string>
+    <string name="akku_akku_health_overheat">Übertemperatur</string>
+    <string name="akku_akku_health_over_voltage">Überspannung</string>
+    <string name="akku_akku_health_unspecified_failure">nicht spezifizierter Defekt</string>
+    <string name="akku_connected">Verbunden</string>
+    <string name="akku_connected_usb">USB</string>
+    <string name="akku_connected_akku">Akku</string>
+    <string name="akku_connected_ac">AC</string>
+    <string name="akku_technology_summ">Li-ion</string>
+<!-- Config-View -->
+    <string name="config_general_app_config">APP-EINSTELLUNGEN</string>
+    <string name="config_temp_title">Temperatur</string>
+    <string name="config_temp_summary">Temperatur Anzeige</string>
+    <string name="config_temp_celcius">Grad Celsius (°C)</string>
+    <string name="config_temp_fahrenheit">Fahrenheit (°F)</string>
+    <string name="config_temp_dialog_ok">OK</string>
+    <string name="config_temp_dialog_cancel">Abbrechen</string>
+    <string name="config_colorstyle">Farb-Schema</string>
+    <string name="config_colorstyle_blue">Blau</string>
+    <string name="config_colorstyle_green">Grün</string>
+    <string name="config_colorstyle_red">Rot</string>
+    <string name="config_colorstyle_orange">Orange</string>
+    <string name="config_colorstyle_lila">Lila</string>
+    <string name="config_colorstyle_black">Schwarz</string>
+    <string name="config_entrys_about_title">ÜBER</string>
+    <string name="config_entrys_about">Aktuelle SystemInfo Widget-Version</string>
+    <string name="config_entrys_about_app_summary">Version: %s</string>
+    <string name="config_entrys_about_app_summary_fail">Version: Nicht Verfügbar</string>
+    <string name="config_entrys_start_up">Start-Up-Guide</string>
+    <string name="config_entrys_start_up_summary">Einleitung</string>
+    <string name="config_general_rate">SystemInfo Widget Bewerten</string>
+    <string name="config_general_rate_summary">Bewerten Sie uns im Store</string>
+    <string name="config_general_friend">Weiterempfehlen</string>
+    <string name="config_general_friend_summary">Empfehlen Sie uns weiter</string>
+    <string name="config_general_send_feedback">Feedback senden</string>
+    <string name="config_general_send_feedback_summary">Geben Sie uns Feedback</string>
+    <string name="config_general_send_feedback_mail_title">Feedback/Report</string>
+    <string name="config_general_moreapps">Android Market</string>
+    <string name="config_general_moreapps_summary">Weitere Apps</string>
+    <string name="config_entrys_rights_title">RECHTLICHE HINWEISE</string>
+    <string name="config_entrys_rights_legal_title">Zuwendungen</string>
+    <string name="config_entrys_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
+    <string name="config_send_mail_title">E-Mail senden</string>
+    <string name="config_config_click">\"Klick\" für Einstellungen</string>
+    <string name="config_save_changes">Widget aktualisiert</string>
+<!-- Feedback-View -->
+	<string name="feedback_app_version">SystemInfo Version:</string>
+	<string name="feedback_os_version">Android Version:</string>
+	<string name="feedback_device_name">Gerätname:</string>
+	<string name="feedback_problem_disc">Problembeschreibung:</string>
+	<string name="feedback_mail_subject">Entwickler kontaktieren</string>
+<!-- Support-View -->
+	<string name="support_subject">Schau dir das SystemInfo-Widget an</string>
+	<string name="support_text">Hey, versuch das SystemInfo-Widget aus:</string>
+<!-- Rate-Dialog -->
+	<string name="rate_dialog_remind_later">Später</string>
+	<string name="rate_dialog_no_thanks">Nein, Danke</string>
+	<string name="rate_dialog_text">Wenn Ihnen das SystemInfo-Widget gefällt, nehmen Sie sich bitte einen Moment Zeit um es zu bewerten. Danke für Ihre Unterstützung</string>
+</resources>
