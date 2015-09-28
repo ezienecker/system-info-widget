@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="" />
     <mapping directory="$PROJECT_DIR$/app/src/main/java/com/manuzid/systeminfowidget" vcs="" />
   </component>
 </project>
