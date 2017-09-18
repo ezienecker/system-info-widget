@@ -448,7 +448,6 @@ public class SystemInfoLib
 
     public static String getFreeMemory(final boolean deviceMemory)
     {
-        String freeExternalMemory = "0 MB/";
         StatFs statFs;
         if (deviceMemory)
         {
@@ -471,18 +470,16 @@ public class SystemInfoLib
         {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
             double totalFree = free / (double) 1024.0;
-            freeExternalMemory = decimalFormat.format(totalFree) + " GB/";
+            return decimalFormat.format(totalFree) + " GB/";
         }
         else
         {
-            freeExternalMemory = String.valueOf(free) + " MB/";
+            return String.valueOf(free) + " MB/";
         }
-        return freeExternalMemory;
     }
 
     public static String getBusyMemory(final boolean deviceMemory)
     {
-        String freeExternalMemory = "0 MB/";
         StatFs statFs;
         if (deviceMemory)
         {
@@ -507,13 +504,12 @@ public class SystemInfoLib
         {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
             double totalFree = busy / (double) 1024.0;
-            freeExternalMemory = decimalFormat.format(totalFree) + " GB";
+            return decimalFormat.format(totalFree) + " GB";
         }
         else
         {
-            freeExternalMemory = String.valueOf(busy) + " MB";
+            return String.valueOf(busy) + " MB";
         }
-        return freeExternalMemory;
     }
 
     public static int getPercentForUi(final boolean deviceMemory)
@@ -558,7 +554,7 @@ public class SystemInfoLib
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
 
             deviceSize = decimalFormat.format(FloatMath.sqrt(height * height + width * width));
-            deviceSize.replace(",", ".");
+            deviceSize = deviceSize.replace(",", ".");
 
             deviceSize = deviceSize + " " + resources.getString(R.string.display_display_size_summary);
 

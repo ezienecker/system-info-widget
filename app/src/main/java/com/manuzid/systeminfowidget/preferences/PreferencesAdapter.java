@@ -1,7 +1,5 @@
 package com.manuzid.systeminfowidget.preferences;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,51 +9,45 @@ import android.widget.TextView;
 
 import com.manuzid.systeminfowidget.R;
 
+import java.util.List;
+
 /**
  * Created by Emanuel Zienecker on 02.05.13. Copyright (c) 2013 Emanuel
  * Zienecker. All rights reserved.
  */
-public class PreferencesAdapter extends BaseAdapter
-{
+class PreferencesAdapter extends BaseAdapter {
     private Context context;
     private List<Preferences> data;
 
-    public PreferencesAdapter(final Context context, final List<Preferences> data)
-    {
+    PreferencesAdapter(final Context context, final List<Preferences> data) {
         this.context = context;
         this.data = data;
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return data.size();
     }
 
     @Override
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return data.get(position);
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View result = convertView;
-        if(result == null)
-        {
-            final LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (result == null) {
+            final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             final Preferences pref = data.get(position);
 
-            if (pref.header)
-            {
+            if (pref.header) {
                 result = inflater.inflate(R.layout.sysinfo_preferences_adapter_header, null);
                 final TextView txtHeader = (TextView) result.findViewById(R.id.adap_header);
                 txtHeader.setText(pref.title);
