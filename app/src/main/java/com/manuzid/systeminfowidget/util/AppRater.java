@@ -47,10 +47,10 @@ public class AppRater
             }
         }
 
-        editor.commit();
+        editor.apply();
     }
 
-    public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
+    private static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setTitle(mContext.getResources().getString(com.manuzid.systeminfowidget.R.string.config_general_rate));
 

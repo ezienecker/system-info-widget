@@ -1,9 +1,5 @@
 package com.manuzid.systeminfowidget;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.*;
-
-import java.util.TimeZone;
-
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -28,39 +24,61 @@ import android.widget.RemoteViews;
 
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
+import java.util.TimeZone;
+
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.AKKU;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.CAMERA;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.DISPLAY;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.GENERAL;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.MEMORY;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.MORE;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getBatteryHealthForUi;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getBatteryStatusForUi;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getBatteryTemp;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getBusyMemory;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getConnectedState;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getDeviceSize;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getFaceCamAvailable;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getFreeMemory;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getPercentForUi;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getPictureFormatForUI;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getPictureSizeForUI;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getPreviewFormats;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getPreviewSizes;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getScreenDps;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getScreenOrientation;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.getTotalMemory;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.preparePendingIntent;
+import static com.manuzid.systeminfowidget.util.SystemInfoLib.restoreViewInfo;
+
 /**
  * Created by Emanuel Zienecker on 22.05.13. Copyright (c) 2013 Emanuel
  * Zienecker. All rights reserved.
  */
-public class SysInfoMainProvider extends AppWidgetProvider
-{
-    private static boolean isAkkuViewActive = false;
+public class SysInfoMainProvider extends AppWidgetProvider {
+    private static boolean isBatteryViewActive = false;
     private static boolean isGeneralViewActive = false;
     private static boolean isMoreViewActive = false;
     private static boolean isDisplayViewActive = false;
     private static boolean isCameraViewActive = false;
     private static boolean isMemoryViewActive = false;
     private SharedPreferences prefs;
-    private String colorSheme;
 
     @Override
-    public void onEnabled(Context context)
-    {
+    public void onEnabled(Context context) {
         super.onEnabled(context);
     }
 
     @Override
-    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
-    {
-        for (int i = appWidgetIds.length; --i >= 0;)
-        {
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        for (int i = appWidgetIds.length; --i >= 0; ) {
             int appWidgetID = appWidgetIds[i];
             PendingIntent pendingDisplay = preparePendingIntent(context, DISPLAY, appWidgetID, 100, PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent pendingCamera = preparePendingIntent(context, CAMERA, appWidgetID, 101, PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent pendingGeneral = preparePendingIntent(context, GENERAL, appWidgetID, 102, PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent pendingMore = preparePendingIntent(context, MORE, appWidgetID, 103, PendingIntent.FLAG_UPDATE_CURRENT);
             PendingIntent pendingMemory = preparePendingIntent(context, MEMORY, appWidgetID, 104, PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent pendingAkku = preparePendingIntent(context, AKKU, appWidgetID, 105, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingBattery = preparePendingIntent(context, AKKU, appWidgetID, 105, PendingIntent.FLAG_UPDATE_CURRENT);
 
             Intent intent = new Intent(context, ConfigPreferencesActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -68,9 +86,9 @@ public class SysInfoMainProvider extends AppWidgetProvider
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
             PendingIntent pendingConfig = PendingIntent.getActivity(context, 106, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            String colorSheme;
+            String colorScheme;
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            colorSheme = prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
+            colorScheme = prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
 
             RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
             remoteView.setOnClickPendingIntent(R.id.btnDisplay, pendingDisplay);
@@ -78,32 +96,21 @@ public class SysInfoMainProvider extends AppWidgetProvider
             remoteView.setOnClickPendingIntent(R.id.btnGeneral, pendingGeneral);
             remoteView.setOnClickPendingIntent(R.id.btnMore, pendingMore);
             remoteView.setOnClickPendingIntent(R.id.btnMemory, pendingMemory);
-            remoteView.setOnClickPendingIntent(R.id.btnAkku, pendingAkku);
+            remoteView.setOnClickPendingIntent(R.id.btnAkku, pendingBattery);
             remoteView.setOnClickPendingIntent(R.id.relaGeneral, pendingConfig);
             remoteView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorSheme))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorSheme))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorSheme))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorSheme))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorSheme))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorSheme))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorScheme)) {
                 remoteView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
             }
 
@@ -121,85 +128,58 @@ public class SysInfoMainProvider extends AppWidgetProvider
     }
 
     @Override
-    public void onReceive(Context context, Intent intent)
-    {
+    public void onReceive(Context context, Intent intent) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        colorSheme = prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
+        String colorScheme = prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
         int appWidId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
-        if (DISPLAY.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleDisplayInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        if (DISPLAY.equals(intent.getAction())) {
+            RemoteViews remoteView = handleDisplayInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (CAMERA.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleCameraInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        } else if (CAMERA.equals(intent.getAction())) {
+            RemoteViews remoteView = handleCameraInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (GENERAL.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleGeneralInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        } else if (GENERAL.equals(intent.getAction())) {
+            RemoteViews remoteView = handleGeneralInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (MORE.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleMoreInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        } else if (MORE.equals(intent.getAction())) {
+            RemoteViews remoteView = handleMoreInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (MEMORY.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleMemoryInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        } else if (MEMORY.equals(intent.getAction())) {
+            RemoteViews remoteView = handleMemoryInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (AKKU.equals(intent.getAction()))
-        {
-            RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 1, colorSheme, appWidId);
+        } else if (AKKU.equals(intent.getAction())) {
+            RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 1, colorScheme, appWidId);
             updateAppWidget(context, remoteView);
-        }
-        else if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction()) || Intent.ACTION_POWER_DISCONNECTED.equals(intent.getAction()))
-        {
-            if (isAkkuViewActive)
-            {
-                RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 2, colorSheme, appWidId);
+        } else if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction()) || Intent.ACTION_POWER_DISCONNECTED.equals(intent.getAction())) {
+            if (isBatteryViewActive) {
+                RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 2, colorScheme, appWidId);
                 updateAppWidget(context, remoteView);
             }
-        }
-        else if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction()) || Intent.ACTION_BATTERY_OKAY.equals(intent.getAction())
-                || Intent.ACTION_BATTERY_LOW.equals(intent.getAction()))
-        {
-            if (isAkkuViewActive)
-            {
-                RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 0, colorSheme, appWidId);
+        } else if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction()) || Intent.ACTION_BATTERY_OKAY.equals(intent.getAction())
+                || Intent.ACTION_BATTERY_LOW.equals(intent.getAction())) {
+            if (isBatteryViewActive) {
+                RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 0, colorScheme, appWidId);
                 updateAppWidget(context, remoteView);
             }
-        }
-        else if (!intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED))
-        {
-            if (isDisplayViewActive)
-            {
-                RemoteViews remoteView = handleDisplayInfo(context, R.layout.sysinfo_main, colorSheme, appWidId);
+        } else if (!intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED)) {
+            if (isDisplayViewActive) {
+                RemoteViews remoteView = handleDisplayInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
                 updateAppWidget(context, remoteView);
-            }
-            else
-            {
+            } else {
                 super.onReceive(context, intent);
             }
         }
     }
 
-    private RemoteViews handleGeneralInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId)
-    {
-        RemoteViews generalView = new RemoteViews(context.getPackageName(), sysinfoMain);
+    private RemoteViews handleGeneralInfo(final Context context, final int sysInfoMain, final String colorScheme, final int appWidId) {
+        RemoteViews generalView = new RemoteViews(context.getPackageName(), sysInfoMain);
 
-        if (isGeneralViewActive)
-        {
+        if (isGeneralViewActive) {
             generalView = restoreViewDefault(generalView, context, appWidId);
             generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn);
             isGeneralViewActive = false;
-        }
-        else
-        {
+        } else {
             generalView = restoreViewInfo(generalView, context, appWidId);
             final Resources resources = context.getResources();
             generalView.setTextViewText(R.id.lblManufacturer, resources.getString(R.string.general_manufacturer));
@@ -224,38 +204,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             TimeZone timeZone = TimeZone.getDefault();
             generalView.setTextViewText(R.id.txtTimeZone, timeZone.getDisplayName(false, TimeZone.SHORT));
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_blue);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_red);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_purple);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_orange);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_green);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorScheme)) {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_black);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 generalView.setInt(R.id.btnGeneral, "setBackgroundResource", R.drawable.general_btn_pressed_blue);
                 generalView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -271,17 +238,13 @@ public class SysInfoMainProvider extends AppWidgetProvider
         return generalView;
     }
 
-    private RemoteViews handleMoreInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId)
-    {
+    private RemoteViews handleMoreInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
         RemoteViews moreView = new RemoteViews(context.getPackageName(), sysinfoMain);
-        if (isMoreViewActive)
-        {
+        if (isMoreViewActive) {
             moreView = restoreViewDefault(moreView, context, appWidId);
             moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn);
             isMoreViewActive = false;
-        }
-        else
-        {
+        } else {
             final Resources resources = context.getResources();
             String androidid = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
             moreView = restoreViewInfo(moreView, context, appWidId);
@@ -306,38 +269,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             moreView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
             moreView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_blue);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_red);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_purple);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_orange);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_green);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_black);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 moreView.setInt(R.id.btnMore, "setBackgroundResource", R.drawable.more_btn_pressed_blue);
                 moreView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -355,30 +305,23 @@ public class SysInfoMainProvider extends AppWidgetProvider
 
     @TargetApi(13)
     @SuppressWarnings("deprecation")
-    private RemoteViews handleDisplayInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId)
-    {
+    private RemoteViews handleDisplayInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
         RemoteViews displayView = new RemoteViews(context.getPackageName(), sysinfoMain);
-        if (isDisplayViewActive)
-        {
+        if (isDisplayViewActive) {
             displayView = restoreViewDefault(displayView, context, appWidId);
             displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn);
             isDisplayViewActive = false;
-        }
-        else
-        {
+        } else {
             final Resources resources = context.getResources();
             int disHeight = 0;
             int disWidth = 0;
             Display display = ((WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-            {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 Point size = new Point();
                 display.getSize(size);
                 disWidth = size.x;
                 disHeight = size.y;
-            }
-            else
-            {
+            } else {
                 disHeight = display.getHeight();
                 disWidth = display.getWidth();
             }
@@ -404,38 +347,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             displayView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
             displayView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_blue);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_red);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_purple);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_orange);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_green);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_black);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 displayView.setInt(R.id.btnDisplay, "setBackgroundResource", R.drawable.display_btn_pressed_black);
                 displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -451,17 +381,13 @@ public class SysInfoMainProvider extends AppWidgetProvider
         return displayView;
     }
 
-    private RemoteViews handleCameraInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId)
-    {
+    private RemoteViews handleCameraInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
         RemoteViews cameraView = new RemoteViews(context.getPackageName(), sysinfoMain);
-        if (isCameraViewActive)
-        {
+        if (isCameraViewActive) {
             cameraView = restoreViewDefault(cameraView, context, appWidId);
             cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn);
             isCameraViewActive = false;
-        }
-        else
-        {
+        } else {
             PackageManager packageMan = context.getPackageManager();
             final Resources resources = context.getResources();
             Camera cam = Camera.open();
@@ -472,22 +398,17 @@ public class SysInfoMainProvider extends AppWidgetProvider
             String supportedPictureSizes = resources.getString(R.string.general_unknow);
             String supportedPictureFormats = resources.getString(R.string.general_unknow);
             String facecamString = resources.getString(R.string.general_unknow);
-            if (cam != null)
-            {
+            if (cam != null) {
                 Parameters cameraParameters = cam.getParameters();
-                if (cameraParameters != null)
-                {
-                    try
-                    {
+                if (cameraParameters != null) {
+                    try {
                         pictureFormat = getPictureFormatForUI(cameraParameters.getPictureFormat(), resources);
                         pictureSize = getPictureSizeForUI(cameraParameters.getPictureSize());
                         previewFormat = getPictureFormatForUI(cameraParameters.getPreviewFormat(), resources);
                         previewPictureSize = getPictureSizeForUI(cameraParameters.getPreviewSize());
                         supportedPictureSizes = getPreviewSizes(cameraParameters.getSupportedPictureSizes());
                         supportedPictureFormats = getPreviewFormats(cameraParameters.getSupportedPreviewFormats(), resources);
-                    }
-                    catch (NullPointerException e)
-                    {
+                    } catch (NullPointerException e) {
                         pictureFormat = resources.getString(R.string.general_unknow);
                         previewFormat = resources.getString(R.string.general_unknow);
                         pictureSize = resources.getString(R.string.general_unknow);
@@ -499,13 +420,10 @@ public class SysInfoMainProvider extends AppWidgetProvider
 
                 cam.release();
             }
-            try
-            {
+            try {
                 facecamString = getFaceCamAvailable(packageMan, resources);
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 facecamString = resources.getString(R.string.general_unknow);
             }
             cameraView = restoreViewInfo(cameraView, context, appWidId);
@@ -518,13 +436,10 @@ public class SysInfoMainProvider extends AppWidgetProvider
             cameraView.setTextViewText(R.id.lblBrand, resources.getString(R.string.camera_brand));
             cameraView.setTextViewText(R.id.txtBrand, previewPictureSize);
             cameraView.setTextViewText(R.id.lblSerialNumber, resources.getString(R.string.camera_serialnumber));
-            if (supportedPictureSizes.equals(resources.getString(R.string.general_unknow)))
-            {
+            if (supportedPictureSizes.equals(resources.getString(R.string.general_unknow))) {
                 cameraView.setTextViewText(R.id.txtSerialnumber, supportedPictureSizes);
                 cameraView.setTextViewText(R.id.txtSupportedPictureSizes, "");
-            }
-            else
-            {
+            } else {
                 cameraView.setTextViewText(R.id.txtSerialnumber, "");
                 cameraView.setTextViewText(R.id.txtSupportedPictureSizes, supportedPictureSizes);
             }
@@ -538,38 +453,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             cameraView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
             cameraView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_blue);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_red);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_purple);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_orange);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_green);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_black);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 cameraView.setInt(R.id.btnCamera, "setBackgroundResource", R.drawable.camera_btn_pressed_blue);
                 cameraView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -585,17 +487,13 @@ public class SysInfoMainProvider extends AppWidgetProvider
         return cameraView;
     }
 
-    private RemoteViews handleMemoryInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId)
-    {
+    private RemoteViews handleMemoryInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
         RemoteViews memoryView = new RemoteViews(context.getPackageName(), sysinfoMain);
-        if (isMemoryViewActive)
-        {
+        if (isMemoryViewActive) {
             memoryView = restoreViewDefault(memoryView, context, appWidId);
             memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn);
             isMemoryViewActive = false;
-        }
-        else
-        {
+        } else {
             final Resources resources = context.getResources();
             int deviceMem = getPercentForUi(true);
             int usbMem = getPercentForUi(false);
@@ -621,8 +519,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
             String usedMem = getBusyMemory(false);
 
             if ((totalMem.equals("") && freeMem.equals("") && usedMem.equals(""))
-                    || (totalMem.equals(totalDeviceMem) && freeMem.equals(freeDeviceMem) && usedMem.equals(usedDeviceMem)))
-            {
+                    || (totalMem.equals(totalDeviceMem) && freeMem.equals(freeDeviceMem) && usedMem.equals(usedDeviceMem))) {
                 memoryView.setTextViewText(R.id.lblSerialNumber, resources.getString(R.string.memory_usb_sd_memory));
                 memoryView.setTextViewText(R.id.txtSerialnumber, "");
                 memoryView.setTextViewText(R.id.txtSupportedPictureSizes, "");
@@ -633,9 +530,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 memoryView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
                 memoryView.setViewVisibility(R.id.usbmemory_percent, View.VISIBLE);
                 memoryView.setTextViewText(R.id.usbmemory_percent, resources.getString(R.string.memory_not_available));
-            }
-            else
-            {
+            } else {
                 memoryView.setTextViewText(R.id.lblSerialNumber, resources.getString(R.string.memory_usb_sd_memory));
                 memoryView.setTextViewText(R.id.txtSerialnumber, getTotalMemory(false) + getFreeMemory(false) + getBusyMemory(false));
                 memoryView.setTextViewText(R.id.txtSupportedPictureSizes, "");
@@ -653,38 +548,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             memoryView.setInt(R.id.devicememory_progressBar, "setProgress", deviceMem);
             memoryView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_blue);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_red);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_purple);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_orange);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_green);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_black);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 memoryView.setInt(R.id.btnMemory, "setBackgroundResource", R.drawable.memory_btn_pressed_blue);
                 memoryView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -701,21 +583,16 @@ public class SysInfoMainProvider extends AppWidgetProvider
     }
 
     private RemoteViews handleAkkuInfo(final Context context, final int sysinfoMain, Intent intent, final int fromButton,
-                                       final String colorShemeForMeth, final int appWidId)
-    {
+                                       final String colorShemeForMeth, final int appWidId) {
         RemoteViews akkuView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
 
-        if (isAkkuViewActive && fromButton == 1)
-        {
+        if (isBatteryViewActive && fromButton == 1) {
             akkuView = restoreViewDefault(akkuView, context, appWidId);
             akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn);
-            isAkkuViewActive = false;
-        }
-        else
-        {
+            isBatteryViewActive = false;
+        } else {
             final Resources resources = context.getResources();
-            if (fromButton == 1 || fromButton == 2)
-            {
+            if (fromButton == 1 || fromButton == 2) {
                 intent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
             }
 
@@ -736,13 +613,10 @@ public class SysInfoMainProvider extends AppWidgetProvider
             akkuView.setTextViewText(R.id.lblModell, resources.getString(R.string.akku_state));
             akkuView.setTextViewText(R.id.txtModell, batteryStatus);
             akkuView.setTextViewText(R.id.lblProduct, resources.getString(R.string.akku_technology));
-            try
-            {
+            try {
                 akkuView.setTextViewText(R.id.txtProduct, intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY));
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 akkuView.setTextViewText(R.id.txtProduct, resources.getString(R.string.akku_technology_summ));
             }
             akkuView.setTextViewText(R.id.lblBrand, resources.getString(R.string.akku_voltage));
@@ -759,38 +633,25 @@ public class SysInfoMainProvider extends AppWidgetProvider
             akkuView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
             akkuView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
 
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth))
-            {
+            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_blue);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-            else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_red);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            }
-            else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_purple);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            }
-            else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_orange);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            }
-            else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_green);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            }
-            else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth))
-            {
+            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_black);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            }
-            else
-            {
+            } else {
                 akkuView.setInt(R.id.btnAkku, "setBackgroundResource", R.drawable.akku_btn_pressed_blue);
                 akkuView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
             }
@@ -805,24 +666,21 @@ public class SysInfoMainProvider extends AppWidgetProvider
         return akkuView;
     }
 
-    private void updateAppWidget(final Context context, final RemoteViews remotView)
-    {
+    private void updateAppWidget(final Context context, final RemoteViews remoteView) {
         ComponentName myComponentName = new ComponentName(context, SysInfoMainProvider.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
-        manager.updateAppWidget(myComponentName, remotView);
+        manager.updateAppWidget(myComponentName, remoteView);
     }
 
-    private void restoreActiveViews(final int view)
-    {
-        switch (view)
-        {
+    private void restoreActiveViews(final int view) {
+        switch (view) {
             case 1:
                 isGeneralViewActive = true;
                 isMoreViewActive = false;
                 isDisplayViewActive = false;
                 isCameraViewActive = false;
                 isMemoryViewActive = false;
-                isAkkuViewActive = false;
+                isBatteryViewActive = false;
                 break;
             case 2:
                 isGeneralViewActive = false;
@@ -830,7 +688,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 isDisplayViewActive = false;
                 isCameraViewActive = false;
                 isMemoryViewActive = false;
-                isAkkuViewActive = false;
+                isBatteryViewActive = false;
                 break;
             case 3:
                 isGeneralViewActive = false;
@@ -838,7 +696,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 isDisplayViewActive = true;
                 isCameraViewActive = false;
                 isMemoryViewActive = false;
-                isAkkuViewActive = false;
+                isBatteryViewActive = false;
                 break;
             case 4:
                 isGeneralViewActive = false;
@@ -846,7 +704,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 isDisplayViewActive = false;
                 isCameraViewActive = true;
                 isMemoryViewActive = false;
-                isAkkuViewActive = false;
+                isBatteryViewActive = false;
                 break;
             case 5:
                 isGeneralViewActive = false;
@@ -854,7 +712,7 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 isDisplayViewActive = false;
                 isCameraViewActive = false;
                 isMemoryViewActive = true;
-                isAkkuViewActive = false;
+                isBatteryViewActive = false;
                 break;
             case 6:
                 isGeneralViewActive = false;
@@ -862,13 +720,12 @@ public class SysInfoMainProvider extends AppWidgetProvider
                 isDisplayViewActive = false;
                 isCameraViewActive = false;
                 isMemoryViewActive = false;
-                isAkkuViewActive = true;
+                isBatteryViewActive = true;
                 break;
         }
     }
 
-    private RemoteViews restoreViewDefault(RemoteViews rV, final Context context, final int appWidgetID)
-    {
+    private RemoteViews restoreViewDefault(RemoteViews rV, final Context context, final int appWidgetID) {
         rV.setViewVisibility(R.id.lblManufacturer, View.GONE);
         rV.setViewVisibility(R.id.txtManufacturer, View.GONE);
         rV.setViewVisibility(R.id.lblModell, View.GONE);
@@ -915,20 +772,17 @@ public class SysInfoMainProvider extends AppWidgetProvider
         return rV;
     }
 
-    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView)
-    {
+    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView) {
         appWidgetManager.updateAppWidget(appWidgetId, remoteView);
     }
 
     @Override
-    public void onDeleted(Context context, int[] appWidgetIds)
-    {
+    public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
     }
 
     @Override
-    public void onDisabled(Context context)
-    {
+    public void onDisabled(Context context) {
         super.onDisabled(context);
     }
 
