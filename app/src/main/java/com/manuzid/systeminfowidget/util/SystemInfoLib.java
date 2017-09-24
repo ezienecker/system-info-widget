@@ -36,60 +36,13 @@ import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
 public class SystemInfoLib
 {
+    public static final String NONE = "com.manuzid.systeminfowidget.NONE";
     public static final String DISPLAY = "com.manuzid.systeminfowidget.DISPLAY_WIDGET";
     public static final String CAMERA = "com.manuzid.systeminfowidget.CAMERA_WIDGET";
     public static final String GENERAL = "com.manuzid.systeminfowidget.GENRAL_WIDGET";
     public static final String MORE = "com.manuzid.systeminfowidget.MORE_WIDGET";
     public static final String MEMORY = "com.manuzid.systeminfowidget.MEMORY_WIDGET";
-    public static final String AKKU = "com.manuzid.systeminfowidget.AKKU_WIDGET";
-
-    public static RemoteViews restoreViewInfo(final RemoteViews rV, final Context context, final int appWidgetID)
-    {
-        rV.setViewVisibility(R.id.lblManufacturer, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtManufacturer, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblModell, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtModell, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblProduct, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtProduct, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblBrand, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtBrand, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblSerialNumber, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtSerialnumber, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtSupportedPictureSizes, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblDeviceId, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtDeviceId, View.VISIBLE);
-        rV.setViewVisibility(R.id.lblTimeZone, View.VISIBLE);
-        rV.setViewVisibility(R.id.txtTimeZone, View.VISIBLE);
-        rV.setViewVisibility(R.id.devicememory_percent, View.VISIBLE);
-        rV.setViewVisibility(R.id.usbmemory_percent, View.VISIBLE);
-        rV.setViewVisibility(R.id.devicememory_progressBar, View.VISIBLE);
-        rV.setViewVisibility(R.id.usbmemory_progressBar, View.VISIBLE);
-        rV.setViewVisibility(R.id.imgRestore, View.GONE);
-        rV.setViewVisibility(R.id.txtConfigClick, View.GONE);
-
-        PendingIntent pendingDisplay = preparePendingIntent(context, DISPLAY, appWidgetID, 100, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingCamera = preparePendingIntent(context, CAMERA, appWidgetID, 101, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingGeneral = preparePendingIntent(context, GENERAL, appWidgetID, 102, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingMore = preparePendingIntent(context, MORE, appWidgetID, 103, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingMemory = preparePendingIntent(context, MEMORY, appWidgetID, 104, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingAkku = preparePendingIntent(context, AKKU, appWidgetID, 105, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent intent = new Intent(context, ConfigPreferencesActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(ConfigPreferencesActivity.class.getName());
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetID);
-        PendingIntent pendingConfig = PendingIntent.getActivity(context, 106, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        rV.setOnClickPendingIntent(R.id.btnDisplay, pendingDisplay);
-        rV.setOnClickPendingIntent(R.id.btnCamera, pendingCamera);
-        rV.setOnClickPendingIntent(R.id.btnGeneral, pendingGeneral);
-        rV.setOnClickPendingIntent(R.id.btnMore, pendingMore);
-        rV.setOnClickPendingIntent(R.id.btnMemory, pendingMemory);
-        rV.setOnClickPendingIntent(R.id.btnAkku, pendingAkku);
-        rV.setOnClickPendingIntent(R.id.relaGeneral, pendingConfig);
-
-        return rV;
-    }
+    public static final String BATTERY = "com.manuzid.systeminfowidget.AKKU_WIDGET";
 
     public static PendingIntent preparePendingIntent(Context context, String reqAction, int appWidgetId, int reqCode, int flag)
     {
@@ -196,82 +149,6 @@ public class SystemInfoLib
         return connectedString;
     }
 
-    public static String getPictureFormatForUI(final int pictureInt, final Resources contextResources)
-    {
-        String preparePictureFormat = contextResources.getString(R.string.general_unknow);
-        if (pictureInt == ImageFormat.JPEG)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_jpeg);
-        }
-        else if (pictureInt == ImageFormat.NV16)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_nv);
-        }
-        else if (pictureInt == ImageFormat.NV21)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_nvsecond);
-        }
-        else if (pictureInt == ImageFormat.RGB_565)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_rgb);
-        }
-        else if (pictureInt == ImageFormat.YUY2)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_yuy);
-        }
-        else if (pictureInt == ImageFormat.YV12)
-        {
-            preparePictureFormat = contextResources.getString(R.string.camera_picture_format_yv);
-        }
-
-        return preparePictureFormat;
-    }
-
-    public static String getPreviewFormats(final List<Integer> supportedPictureForList, final Resources contextResources)
-    {
-        StringBuilder sb = new StringBuilder();
-        if (supportedPictureForList != null)
-        {
-            for (Integer formats : supportedPictureForList)
-            {
-                sb.append(getPictureFormatForUI(formats, contextResources));
-                sb.append(", ");
-            }
-            sb.replace(sb.length() - 2, sb.length(), "");
-        }
-        return sb.toString();
-    }
-
-    public static String getPictureSizeForUI(final Size size)
-    {
-        return size.height + " x " + size.width;
-    }
-
-    public static String getPreviewSizes(final List<Size> supportedPictureSizes)
-    {
-        StringBuilder sb = new StringBuilder();
-        for (Size size : supportedPictureSizes)
-        {
-            sb.append(getPictureSizeForUI(size));
-            sb.append(", ");
-        }
-        sb.replace(sb.length() - 2, sb.length(), "");
-        return sb.toString();
-    }
-
-    public static String getFaceCamAvailable(final PackageManager packageMan, final Resources resources)
-    {
-        String facecamString;
-        if (packageMan.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT))
-        {
-            facecamString = resources.getString(R.string.camera_facecam_available);
-        }
-        else
-        {
-            facecamString = resources.getString(R.string.camera_facecam_not_available);
-        }
-        return facecamString;
-    }
 
     public static String getScreenDps(final DisplayMetrics displayMetrics, final Resources resources)
     {

@@ -13,42 +13,42 @@
         android:weightSum="6.0" >
 
         <Button
-            android:id="@+id/btnGeneral"
+            android:id="@+id/btnThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/general_btn" />
 
         <Button
-            android:id="@+id/btnMore"
+            android:id="@+id/btnFour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/more_btn" />
 
         <Button
-            android:id="@+id/btnDisplay"
+            android:id="@+id/btnOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/display_btn" />
 
         <Button
-            android:id="@+id/btnCamera"
+            android:id="@+id/btnTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/camera_btn" />
 
         <Button
-            android:id="@+id/btnMemory"
+            android:id="@+id/btnFive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/memory_btn" />
 
         <Button
-            android:id="@+id/btnAkku"
+            android:id="@+id/btnSix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
@@ -63,44 +63,44 @@
         android:visibility="visible" >
 
         <TextView
-            android:id="@+id/lblManufacturer"
+            android:id="@+id/lblFirstInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:text="@string/general_manufacturer"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtManufacturer"
+            android:id="@+id/txtFirstInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/lblModell"
+            android:id="@+id/lblSecondInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblManufacturer"
+            android:layout_below="@+id/lblFirstInfo"
             android:layout_marginLeft="3dp"
-            android:text="@string/general_modell"
+            android:text="@string/general_model"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtModell"
+            android:id="@+id/txtSecondInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtManufacturer"
+            android:layout_below="@+id/txtFirstInfo"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <ProgressBar
             android:id="@+id/devicememory_progressBar"
@@ -108,12 +108,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtModell"
+            android:layout_below="@+id/txtSecondInfo"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_marginTop="3dp"
             android:visibility="gone" />
-        
+
         <TextView
             android:id="@+id/devicememory_percent"
             android:layout_width="wrap_content"
@@ -125,67 +125,67 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/lblProduct"
+            android:id="@+id/lblThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblModell"
+            android:layout_below="@+id/lblSecondInfo"
             android:layout_marginLeft="3dp"
             android:text="@string/general_product"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtProduct"
+            android:id="@+id/txtThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtModell"
+            android:layout_below="@+id/txtSecondInfo"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/lblBrand"
+            android:id="@+id/lblFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblProduct"
+            android:layout_below="@+id/lblThird"
             android:layout_marginLeft="3dp"
             android:text="@string/general_brand"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtBrand"
+            android:id="@+id/txtFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtProduct"
+            android:layout_below="@+id/txtThird"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/lblSerialNumber"
+            android:id="@+id/lblFifth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblBrand"
+            android:layout_below="@+id/lblFourth"
             android:layout_marginLeft="3dp"
             android:text="@string/general_serialnumber"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtSerialnumber"
+            android:id="@+id/txtFifth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtBrand"
+            android:layout_below="@+id/txtFourth"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
         
         <ProgressBar
             android:id="@+id/usbmemory_progressBar"
@@ -193,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtSerialnumber"
+            android:layout_below="@+id/txtFifth"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_marginTop="3dp"
@@ -214,7 +214,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtBrand"
+            android:layout_below="@+id/txtFourth"
             android:layout_marginRight="3dp"
             android:duplicateParentState="true"
             android:ellipsize="marquee"
@@ -225,7 +225,7 @@
             android:singleLine="true"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" >
+            android:visibility="visible">
 
             <requestFocus
                 android:duplicateParentState="true"
@@ -234,46 +234,46 @@
         </TextView>
 
         <TextView
-            android:id="@+id/lblDeviceId"
+            android:id="@+id/lblSixth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblSerialNumber"
+            android:layout_below="@+id/lblFifth"
             android:layout_marginLeft="3dp"
             android:text="@string/general_device_id"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtDeviceId"
+            android:id="@+id/txtSixth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtSerialnumber"
+            android:layout_below="@+id/txtFifth"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/lblTimeZone"
+            android:id="@+id/lblSeventh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblDeviceId"
+            android:layout_below="@+id/lblSixth"
             android:layout_marginLeft="3dp"
             android:text="@string/general_timezone"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
-            android:id="@+id/txtTimeZone"
+            android:id="@+id/txtSeventh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtDeviceId"
+            android:layout_below="@+id/txtSixth"
             android:layout_marginRight="3dp"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/imgRestore"
@@ -289,10 +289,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgRestore"
-            android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
             android:text="@string/config_config_click"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
