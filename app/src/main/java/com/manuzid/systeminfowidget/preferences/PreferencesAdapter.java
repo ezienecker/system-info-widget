@@ -17,9 +17,9 @@ import java.util.List;
  */
 class PreferencesAdapter extends BaseAdapter {
     private Context context;
-    private List<Preferences> data;
+    private List<SystemInfoPreference> data;
 
-    PreferencesAdapter(final Context context, final List<Preferences> data) {
+    PreferencesAdapter(final Context context, final List<SystemInfoPreference> data) {
         this.context = context;
         this.data = data;
     }
@@ -45,7 +45,7 @@ class PreferencesAdapter extends BaseAdapter {
         if (result == null) {
             final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            final Preferences pref = data.get(position);
+            final SystemInfoPreference pref = data.get(position);
 
             if (pref.header) {
                 result = inflater.inflate(R.layout.sysinfo_preferences_adapter_header, null);

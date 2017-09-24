@@ -4,7 +4,7 @@
     <string name="image_content_discription">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">Hersteller</string>
-    <string name="general_modell">Modell</string>
+    <string name="general_model">Modell</string>
     <string name="general_product">Produkt</string>
     <string name="general_brand">Brand</string>
     <string name="general_serialnumber">Seriennummer</string>
@@ -12,7 +12,7 @@
     <string name="general_timezone">Zeitzone</string>
     <string name="general_unknow">Unbekannt</string>
 <!-- More-View -->
-    <string name="more_android_id">Android ID</string>
+    <string name="more_os_sdk_codename">Android OS</string>
     <string name="more_os_sdk_version">OS/SDK Version</string>
     <string name="more_board">Board</string>
     <string name="more_bootloader">Bootloader</string>
@@ -44,7 +44,7 @@
     <string name="camera_brand">Vorschaugröße</string>
     <string name="camera_serialnumber">Unterst. Bildgröße(n)</string>
     <string name="camera_supportet_formats">Unterst. Bildformate</string>
-    <string name="camera_timezone">Front Kamera</string>
+    <string name="camera_front_camera">Front Kamera</string>
     <string name="camera_facecam_available">Verfügbar</string>
     <string name="camera_facecam_not_available">Nicht Verfügbar</string>
     <string name="camera_picture_format_jpeg">JPEG</string>
