@@ -211,8 +211,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             remoteViews = restoreInformationView(remoteViews);
 
             // 2 Informationen-View vorbereiten.
-            final Resources resources = context.getResources();
-            remoteViews = lCategory.prepareRemoteView(remoteViews, resources);
+            remoteViews = lCategory.prepareRemoteView(remoteViews, context);
 
             // 3 Default-Status der Buttons setzen.
             restoreAllButtonBackgroundResource(remoteViews);
@@ -236,86 +235,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
 
-    @TargetApi(13)
-    @SuppressWarnings("deprecation")
-    private RemoteViews handleDisplayInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
-        RemoteViews displayView = new RemoteViews(context.getPackageName(), sysinfoMain);
-        if (isDisplayViewActive) {
-            displayView = restoreViewDefault(displayView, context, appWidId);
-            displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn);
-            isDisplayViewActive = false;
-        } else {
-
-            final Resources resources = context.getResources();
-            int disHeight = 0;
-            int disWidth = 0;
-            Display display = ((WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                Point size = new Point();
-                display.getSize(size);
-                disWidth = size.x;
-                disHeight = size.y;
-            } else {
-                disHeight = display.getHeight();
-                disWidth = display.getWidth();
-            }
-            displayView = restoreViewInfo(displayView, context, appWidId);
-
-            displayView.setTextViewText(R.id.lblFirstInfo, resources.getString(R.string.display_display_size));
-            displayView.setTextViewText(R.id.txtFirstInfo, getDeviceSize(resources, display));
-            displayView.setTextViewText(R.id.lblSecondInfo, resources.getString(R.string.display_height));
-            displayView.setTextViewText(R.id.txtSecondInfo, "" + disHeight);
-            displayView.setTextViewText(R.id.lblThird, resources.getString(R.string.display_width));
-            displayView.setTextViewText(R.id.txtThird, "" + disWidth);
-            displayView.setTextViewText(R.id.lblFourth, resources.getString(R.string.display_dps));
-            displayView.setTextViewText(R.id.txtFourth, getScreenDps(context.getResources().getDisplayMetrics(), resources));
-            displayView.setTextViewText(R.id.lblFifth, resources.getString(R.string.display_fps));
-            displayView.setTextViewText(R.id.txtFifth, "" + display.getRefreshRate());
-            displayView.setTextViewText(R.id.txtSupportedPictureSizes, "");
-            displayView.setTextViewText(R.id.lblSixth, resources.getString(R.string.display_display_skala));
-            displayView.setTextViewText(R.id.txtSixth, "" + context.getResources().getDisplayMetrics().scaledDensity);
-            displayView.setTextViewText(R.id.lblSeventh, resources.getString(R.string.display_orientation));
-            displayView.setTextViewText(R.id.txtSeventh, getScreenOrientation(resources.getConfiguration().orientation, resources));
-
-            displayView.setViewVisibility(R.id.devicememory_percent, View.GONE);
-            displayView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
-            displayView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
-            displayView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
-            displayView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
-
-            if (ConfigPreferencesActivity.COLOR_BLUE.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_blue);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            } else if (ConfigPreferencesActivity.COLOR_RED.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_red);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_red);
-            } else if (ConfigPreferencesActivity.COLOR_LILA.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_purple);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_purple);
-            } else if (ConfigPreferencesActivity.COLOR_ORANGE.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_orange);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_orange);
-            } else if (ConfigPreferencesActivity.COLOR_GREEN.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_green);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_green);
-            } else if (ConfigPreferencesActivity.COLOR_BLACK.equals(colorShemeForMeth)) {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_black);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_black);
-            } else {
-                displayView.setInt(R.id.btnOne, "setBackgroundResource", R.drawable.display_btn_pressed_black);
-                displayView.setInt(R.id.relaGeneral, "setBackgroundResource", R.drawable.rela_background_blue);
-            }
-
-            displayView.setInt(R.id.btnThree, "setBackgroundResource", R.drawable.general_btn);
-            displayView.setInt(R.id.btnFour, "setBackgroundResource", R.drawable.more_btn);
-            displayView.setInt(R.id.btnTwo, "setBackgroundResource", R.drawable.camera_btn);
-            displayView.setInt(R.id.btnFive, "setBackgroundResource", R.drawable.memory_btn);
-            displayView.setInt(R.id.btnSix, "setBackgroundResource", R.drawable.akku_btn);
-            restoreActiveViews(3);
-            isDisplayViewActive = true;
-        }
-        return displayView;
-    }
 
     private RemoteViews handleMemoryInfo(final Context context, final int sysinfoMain, final String colorShemeForMeth, final int appWidId) {
         RemoteViews memoryView = new RemoteViews(context.getPackageName(), sysinfoMain);

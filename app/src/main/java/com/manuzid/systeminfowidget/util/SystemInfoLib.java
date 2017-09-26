@@ -150,57 +150,9 @@ public class SystemInfoLib
     }
 
 
-    public static String getScreenDps(final DisplayMetrics displayMetrics, final Resources resources)
-    {
-        String screenSize = resources.getString(R.string.general_unknow);
 
-        if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_HIGH)
-        {
-            screenSize = resources.getString(R.string.display_dps_hdpi);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_MEDIUM)
-        {
-            screenSize = resources.getString(R.string.display_dps_mdpi);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_LOW)
-        {
-            screenSize = resources.getString(R.string.display_dps_ldpi);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_XHIGH)
-        {
-            screenSize = resources.getString(R.string.display_dps_xhdpi);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_TV)
-        {
-            screenSize = resources.getString(R.string.display_dps_tv);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_XXHIGH)
-        {
-            screenSize = resources.getString(R.string.display_dps_xxhdpi);
-        }
-        else if (displayMetrics.densityDpi == DisplayMetrics.DENSITY_DEFAULT)
-        {
-            screenSize = resources.getString(R.string.display_dps_default);
-        }
 
-        return screenSize;
-    }
 
-    public static String getScreenOrientation(final int orientation, final Resources resources)
-    {
-        String orientString = resources.getString(R.string.general_unknow);
-
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE)
-        {
-            orientString = resources.getString(R.string.display_orientation_landscape);
-        }
-        else if (orientation == Configuration.ORIENTATION_PORTRAIT)
-        {
-            orientString = resources.getString(R.string.display_orientation_portrait);
-        }
-
-        return orientString;
-    }
 
     public static File getExternalSDCardDirectory()
     {
@@ -415,33 +367,5 @@ public class SystemInfoLib
         return (int) a;
     }
 
-    @SuppressLint("FloatMath")
-    public static String getDeviceSize(final Resources resources, final Display display)
-    {
-        String deviceSize;
-        try
-        {
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            display.getMetrics(metrics);
-
-            float height = metrics.heightPixels / metrics.xdpi;
-            float width = metrics.widthPixels / metrics.ydpi;
-
-            DecimalFormat decimalFormat = new DecimalFormat("#0.0");
-
-            deviceSize = decimalFormat.format(FloatMath.sqrt(height * height + width * width));
-            deviceSize = deviceSize.replace(",", ".");
-
-            deviceSize = deviceSize + " " + resources.getString(R.string.display_display_size_summary);
-
-        }
-        catch (Throwable t)
-        {
-            deviceSize = resources.getString(R.string.general_unknow);
-        }
-
-        return deviceSize;
-
-    }
 }

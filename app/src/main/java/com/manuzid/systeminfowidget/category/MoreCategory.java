@@ -79,39 +79,4 @@ public class MoreCategory extends AbstractCategory {
 
         return informationen;
     }
-
-    @Override
-    public RemoteViews prepareRemoteView(RemoteViews remoteView, Context context) {
-        final Informationen informationen = getInformationen(context);
-        remoteView.setTextViewText(R.id.lblFirstInfo, informationen.firstLabel);
-        remoteView.setTextViewText(R.id.txtFirstInfo, informationen.firstValue);
-
-        remoteView.setTextViewText(R.id.lblSecondInfo, informationen.secondLabel);
-        remoteView.setTextViewText(R.id.txtSecondInfo, informationen.secondValue);
-
-        remoteView.setTextViewText(R.id.lblThird, informationen.thirdLabel);
-        remoteView.setTextViewText(R.id.txtThird, informationen.thirdValue);
-
-        remoteView.setTextViewText(R.id.lblFourth, informationen.fourthLabel);
-        remoteView.setTextViewText(R.id.txtFourth, informationen.fourthValue);
-
-        remoteView.setTextViewText(R.id.lblFifth, informationen.fifthLabel);
-        remoteView.setTextViewText(R.id.txtFifth, informationen.fifthValue);
-
-        remoteView.setTextViewText(R.id.lblSixth, informationen.sixthLabel);
-        remoteView.setTextViewText(R.id.txtSixth, informationen.sixthValue);
-
-        remoteView.setTextViewText(R.id.lblSeventh, informationen.seventhLabel);
-        remoteView.setTextViewText(R.id.txtSeventh, informationen.seventhValue);
-
-        remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
-
-        remoteView.setViewVisibility(R.id.devicememory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
-        remoteView.setViewVisibility(R.id.imgRestore, View.GONE);
-
-        return remoteView;
-    }
 }
