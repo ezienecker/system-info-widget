@@ -2,8 +2,10 @@ package com.manuzid.systeminfowidget.category;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
+import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.StringUtils;
 
 import java.util.LinkedHashMap;
@@ -105,7 +107,39 @@ public abstract class AbstractCategory {
      * @param context  - Application resources
      * @return {@link RemoteViews}
      */
-    public abstract RemoteViews prepareRemoteView(RemoteViews remoteView, Context context);
+    public RemoteViews prepareRemoteView(RemoteViews remoteView, Context context) {
+        final Informationen informationen = getInformationen(context);
+        remoteView.setTextViewText(R.id.lblFirstInfo, informationen.firstLabel);
+        remoteView.setTextViewText(R.id.txtFirstInfo, informationen.firstValue);
+
+        remoteView.setTextViewText(R.id.lblSecondInfo, informationen.secondLabel);
+        remoteView.setTextViewText(R.id.txtSecondInfo, informationen.secondValue);
+
+        remoteView.setTextViewText(R.id.lblThird, informationen.thirdLabel);
+        remoteView.setTextViewText(R.id.txtThird, informationen.thirdValue);
+
+        remoteView.setTextViewText(R.id.lblFourth, informationen.fourthLabel);
+        remoteView.setTextViewText(R.id.txtFourth, informationen.fourthValue);
+
+        remoteView.setTextViewText(R.id.lblFifth, informationen.fifthLabel);
+        remoteView.setTextViewText(R.id.txtFifth, informationen.fifthValue);
+
+        remoteView.setTextViewText(R.id.lblSixth, informationen.sixthLabel);
+        remoteView.setTextViewText(R.id.txtSixth, informationen.sixthValue);
+
+        remoteView.setTextViewText(R.id.lblSeventh, informationen.seventhLabel);
+        remoteView.setTextViewText(R.id.txtSeventh, informationen.seventhValue);
+
+        remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
+
+        remoteView.setViewVisibility(R.id.devicememory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
+        remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
+        remoteView.setViewVisibility(R.id.imgRestore, View.GONE);
+
+        return remoteView;
+    }
 
     /**
      * Setzt das Aktiv-Bild abhängig vom Farbschema für die Kategorie.
