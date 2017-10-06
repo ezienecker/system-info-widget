@@ -34,6 +34,8 @@ import com.manuzid.systeminfowidget.util.AppRater;
  */
 public class ConfigPreferencesActivity extends Activity
 {
+    public static final String CATEGORY_SELECTION = "manuzid-category-selection";
+
     public static final String TEMP_FORMAT = "temp_format";
     public static final String TEMP_CELSIUS = "celsius";
     public static final String TEMP_FAHRENHEIT = "fahrenheit";
@@ -403,12 +405,12 @@ public class ConfigPreferencesActivity extends Activity
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
         RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
-        remoteView.setInt(R.id.btnThree, SET_BACKGROUND_RES, R.drawable.general_btn);
-        remoteView.setInt(R.id.btnFour, SET_BACKGROUND_RES, R.drawable.more_btn);
-        remoteView.setInt(R.id.btnOne, SET_BACKGROUND_RES, R.drawable.display_btn);
-        remoteView.setInt(R.id.btnTwo, SET_BACKGROUND_RES, R.drawable.camera_btn);
-        remoteView.setInt(R.id.btnFive, SET_BACKGROUND_RES, R.drawable.memory_btn);
-        remoteView.setInt(R.id.btnSix, SET_BACKGROUND_RES, R.drawable.akku_btn);
+        remoteView.setInt(R.id.btnThird, SET_BACKGROUND_RES, R.drawable.general_btn);
+        remoteView.setInt(R.id.btnFourth, SET_BACKGROUND_RES, R.drawable.more_btn);
+        remoteView.setInt(R.id.btnFirst, SET_BACKGROUND_RES, R.drawable.display_btn);
+        remoteView.setInt(R.id.btnSecond, SET_BACKGROUND_RES, R.drawable.camera_btn);
+        remoteView.setInt(R.id.btnFifth, SET_BACKGROUND_RES, R.drawable.memory_btn);
+        remoteView.setInt(R.id.btnSixth, SET_BACKGROUND_RES, R.drawable.akku_btn);
         remoteView.setViewVisibility(R.id.lblFirstInfo, View.GONE);
         remoteView.setViewVisibility(R.id.txtFirstInfo, View.GONE);
         remoteView.setViewVisibility(R.id.lblSecondInfo, View.GONE);

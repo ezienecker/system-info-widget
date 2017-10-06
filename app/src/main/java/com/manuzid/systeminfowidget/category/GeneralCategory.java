@@ -2,8 +2,6 @@ package com.manuzid.systeminfowidget.category;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.View;
-import android.widget.RemoteViews;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
@@ -46,12 +44,6 @@ public class GeneralCategory extends AbstractCategory {
     @Override
     String initRequestAction() {
         return GENERAL;
-    }
-
-    @Override
-    public int getButtonId() {
-        // TODO
-        return R.id.btnThree;
     }
 
     @Override
