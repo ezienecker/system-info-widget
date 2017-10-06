@@ -410,7 +410,7 @@ public class ConfigPreferencesActivity extends Activity
         remoteView.setInt(R.id.btnFirst, SET_BACKGROUND_RES, R.drawable.display_btn);
         remoteView.setInt(R.id.btnSecond, SET_BACKGROUND_RES, R.drawable.camera_btn);
         remoteView.setInt(R.id.btnFifth, SET_BACKGROUND_RES, R.drawable.memory_btn);
-        remoteView.setInt(R.id.btnSixth, SET_BACKGROUND_RES, R.drawable.akku_btn);
+        remoteView.setInt(R.id.btnSixth, SET_BACKGROUND_RES, R.drawable.battery_btn);
         remoteView.setViewVisibility(R.id.lblFirstInfo, View.GONE);
         remoteView.setViewVisibility(R.id.txtFirstInfo, View.GONE);
         remoteView.setViewVisibility(R.id.lblSecondInfo, View.GONE);
@@ -426,10 +426,10 @@ public class ConfigPreferencesActivity extends Activity
         remoteView.setViewVisibility(R.id.txtSixth, View.GONE);
         remoteView.setViewVisibility(R.id.lblSeventh, View.GONE);
         remoteView.setViewVisibility(R.id.txtSeventh, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
         remoteView.setViewVisibility(R.id.imgRestore, View.VISIBLE);
         remoteView.setViewVisibility(R.id.txtConfigClick, View.VISIBLE);
 
@@ -440,22 +440,22 @@ public class ConfigPreferencesActivity extends Activity
         switch (colorScheme)
         {
             case ConfigPreferencesActivity.COLOR_BLUE:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_blue);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.relative_background_blue);
                 break;
             case ConfigPreferencesActivity.COLOR_RED:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_red);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_red);
                 break;
             case ConfigPreferencesActivity.COLOR_ORANGE:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_orange);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_orange);
                 break;
             case ConfigPreferencesActivity.COLOR_LILA:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_purple);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_purple);
                 break;
             case ConfigPreferencesActivity.COLOR_GREEN:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_green);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_green);
                 break;
             case ConfigPreferencesActivity.COLOR_BLACK:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_black);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_black);
                 break;
         }
 

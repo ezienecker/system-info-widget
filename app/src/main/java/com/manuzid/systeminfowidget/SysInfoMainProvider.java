@@ -155,7 +155,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             PendingIntent pendingConfig = PendingIntent.getActivity(context, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             // 2.1 An dieser Stelle werden der RemoteView der Einstellungs-PendingIntent zugewiesen.
-            remoteView.setOnClickPendingIntent(R.id.relaGeneral, pendingConfig);
+            remoteView.setOnClickPendingIntent(R.id.relative_general, pendingConfig);
 
             // 3 Prüfen ob sich die Batterie-Kategorie mit unter der Auswahl befindet um den IntentFilter
             // zu registrieren oder eben abzumelden.
@@ -304,10 +304,10 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteViews.setViewVisibility(R.id.txtSixth, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.lblSeventh, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.txtSeventh, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.devicememory_percent, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.usbmemory_percent, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.devicememory_progressBar, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.usbmemory_progressBar, infoElementVisibility);
+        remoteViews.setViewVisibility(R.id.device_memory_percent, infoElementVisibility);
+        remoteViews.setViewVisibility(R.id.usb_memory_percent, infoElementVisibility);
+        remoteViews.setViewVisibility(R.id.device_memory_progress_bar, infoElementVisibility);
+        remoteViews.setViewVisibility(R.id.usb_memory_progress_bar, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.imgRestore, standardElementVisibility);
         remoteViews.setViewVisibility(R.id.txtConfigClick, standardElementVisibility);
         return remoteViews;
@@ -324,7 +324,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
         switch (colorScheme) {
             case ConfigPreferencesActivity.COLOR_BLUE:
-                relativeBackgroundDrawable = R.drawable.rela_background_blue;
+                relativeBackgroundDrawable = R.drawable.relative_background_blue;
                 break;
             case ConfigPreferencesActivity.COLOR_RED:
                 relativeBackgroundDrawable = R.drawable.rela_background_red;
@@ -343,8 +343,8 @@ public class SysInfoMainProvider extends AppWidgetProvider {
                 break;
         }
 
-        remoteView.setViewVisibility(R.id.relaGeneral, View.VISIBLE);
-        remoteView.setInt(R.id.relaGeneral, BACKGROUND_RESOURCE_METHOD_NAME, relativeBackgroundDrawable);
+        remoteView.setViewVisibility(R.id.relative_general, View.VISIBLE);
+        remoteView.setInt(R.id.relative_general, BACKGROUND_RESOURCE_METHOD_NAME, relativeBackgroundDrawable);
     }
 
     @NonNull
