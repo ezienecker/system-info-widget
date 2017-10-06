@@ -48,12 +48,6 @@ public class MoreCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        // TODO
-        return 0;
-    }
-
-    @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.more_btn;
     }

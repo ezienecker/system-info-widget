@@ -23,6 +23,7 @@ import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
 public abstract class AbstractCategory {
     private int requestCode;
     private String requestAction;
+    private int buttonId;
 
     AbstractCategory() {
         this.requestCode = initRequestCode();
@@ -48,7 +49,17 @@ public abstract class AbstractCategory {
      *
      * @return Id des Buttons
      */
-    public abstract int getButtonId();
+    private int getButtonId() {
+        return buttonId;
+    }
+
+    /**
+     * Setzt die Id des Button der zur Kategorie gehört.
+     *
+     */
+    public void setButtonId(int buttonId) {
+        this.buttonId = buttonId;
+    }
 
     /**
      * Liefert die Standard-Grafik der Kategorie.

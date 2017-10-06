@@ -49,7 +49,7 @@ public class CameraCategory extends AbstractCategory {
         if (Build.VERSION.SDK_INT < 21) {
             cameraSupport = new CameraInformationenUnderSdk21();
         } else {
-            // TODO Camera2 implementieren und benutzen
+            // TODO: Camera2 implementieren und benutzen
             cameraSupport = new CameraInformationenUnderSdk21();
         }
     }
@@ -62,12 +62,6 @@ public class CameraCategory extends AbstractCategory {
     @Override
     String initRequestAction() {
         return CAMERA;
-    }
-
-    @Override
-    public int getButtonId() {
-        // TODO
-        return 0;
     }
 
     @Override

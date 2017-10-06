@@ -13,42 +13,42 @@
         android:weightSum="6.0" >
 
         <Button
-            android:id="@+id/btnThree"
+            android:id="@+id/btnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/general_btn" />
 
         <Button
-            android:id="@+id/btnFour"
+            android:id="@+id/btnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/more_btn" />
 
         <Button
-            android:id="@+id/btnOne"
+            android:id="@+id/btnFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/display_btn" />
 
         <Button
-            android:id="@+id/btnTwo"
+            android:id="@+id/btnSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/camera_btn" />
 
         <Button
-            android:id="@+id/btnFive"
+            android:id="@+id/btnFifth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/memory_btn" />
 
         <Button
-            android:id="@+id/btnSix"
+            android:id="@+id/btnSixth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
