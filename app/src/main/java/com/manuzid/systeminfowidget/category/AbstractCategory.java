@@ -143,10 +143,10 @@ public abstract class AbstractCategory {
 
         remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
 
-        remoteView.setViewVisibility(R.id.devicememory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
         remoteView.setViewVisibility(R.id.imgRestore, View.GONE);
 
         return remoteView;

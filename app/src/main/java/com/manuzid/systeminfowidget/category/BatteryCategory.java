@@ -52,7 +52,7 @@ public class BatteryCategory extends AbstractCategory {
 
     @Override
     public int getDefaultButtonDrawable() {
-        return R.drawable.akku_btn;
+        return R.drawable.battery_btn;
     }
 
     @Override

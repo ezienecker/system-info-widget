@@ -91,22 +91,22 @@ public class MemoryCategory extends AbstractCategory {
         remoteView.setTextViewText(R.id.lblFourth, "");
         remoteView.setTextViewText(R.id.txtFourth, "");
 
-        remoteView.setViewVisibility(R.id.devicememory_percent, View.VISIBLE);
-        remoteView.setTextViewText(R.id.devicememory_percent, context.getString(R.string.memory_used) + " " + deviceMemory + "%");
+        remoteView.setViewVisibility(R.id.device_memory_percent, View.VISIBLE);
+        remoteView.setTextViewText(R.id.device_memory_percent, context.getString(R.string.memory_used) + " " + deviceMemory + "%");
 
         remoteView.setTextViewText(R.id.lblFifth, context.getString(R.string.memory_usb_sd_memory));
 
         if (isUsbMemoryEmptyOrSameAsDeviceMemory(totalDeviceMemory, freeDeviceMemory, usedDeviceMemory,
                 totalUsbMemory, freeUsbMemory, usedUsbMemory)) {
-            remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
-            remoteView.setViewVisibility(R.id.usbmemory_percent, View.VISIBLE);
-            remoteView.setTextViewText(R.id.usbmemory_percent, context.getString(R.string.memory_not_available));
+            remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
+            remoteView.setViewVisibility(R.id.usb_memory_percent, View.VISIBLE);
+            remoteView.setTextViewText(R.id.usb_memory_percent, context.getString(R.string.memory_not_available));
         } else {
             remoteView.setTextViewText(R.id.txtFifth, totalUsbMemory + freeUsbMemory + usedUsbMemory);
-            remoteView.setViewVisibility(R.id.usbmemory_percent, View.VISIBLE);
-            remoteView.setTextViewText(R.id.usbmemory_percent, context.getString(R.string.memory_used) + " " + usbMemory + "%");
-            remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.VISIBLE);
-            remoteView.setInt(R.id.usbmemory_progressBar, "setProgress", usbMemory);
+            remoteView.setViewVisibility(R.id.usb_memory_percent, View.VISIBLE);
+            remoteView.setTextViewText(R.id.usb_memory_percent, context.getString(R.string.memory_used) + " " + usbMemory + "%");
+            remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.VISIBLE);
+            remoteView.setInt(R.id.usb_memory_progress_bar, "setProgress", usbMemory);
         }
 
         remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
@@ -117,8 +117,8 @@ public class MemoryCategory extends AbstractCategory {
         remoteView.setTextViewText(R.id.lblSeventh, "");
         remoteView.setTextViewText(R.id.txtSeventh, "");
 
-        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.VISIBLE);
-        remoteView.setInt(R.id.devicememory_progressBar, "setProgress", deviceMemory);
+        remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.VISIBLE);
+        remoteView.setInt(R.id.device_memory_progress_bar, "setProgress", deviceMemory);
 
         remoteView.setViewVisibility(R.id.imgRestore, View.GONE);
 
