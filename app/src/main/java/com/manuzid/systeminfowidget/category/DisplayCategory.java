@@ -46,13 +46,18 @@ public class DisplayCategory extends AbstractCategory {
     private Informationen informationen;
 
     @Override
-    int initRequestCode() {
-        return 106;
+    public int getRequestCode() {
+        return 102;
     }
 
     @Override
-    String initRequestAction() {
+    public String getRequestAction() {
         return DISPLAY;
+    }
+
+    @Override
+    public int getButtonId() {
+        return R.id.btnThird;
     }
 
     @Override

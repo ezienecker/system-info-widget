@@ -2,40 +2,13 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/Documents/android-sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/.android/build-cache/e39bc8b52b7cd1646b45ef6bd0e4b96b8c261cac/output/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_25f8c4d10e617f8833a2f5b12ac378c4f39c9736.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/.android/build-cache/6e46be2dbeb8aad903c0151b4749cc27142657cb/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/classes_321fe754c049bc5386ab764dcfb2a82f426d9f1a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/.android/build-cache/e39bc8b52b7cd1646b45ef6bd0e4b96b8c261cac/output/jars/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_545dddc1803d5272faeecabb1e2bcdd15477a07a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations-java5/15.0/7011b4551a8451906759b05814c58b9eb829ea9b/annotations-java5-15.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7011b4551a8451906759b05814c58b9eb829ea9b">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/annotations-java5-15.0_dbed14de870e4619b9b4d40e631832aa5d2a63d2.jar" />
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_13e7a2030c8007ba0bb700c72f67870ca6796506/classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -47,6 +20,51 @@
         <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/classes_13e7a2030c8007ba0bb700c72f67870ca6796506.jar" />
     </item>
     <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_47ca28b2fa4c8da26e52498800ef13d1ac9fcc91/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.android/build-cache/6e46be2dbeb8aad903c0151b4749cc27142657cb/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/classes_321fe754c049bc5386ab764dcfb2a82f426d9f1a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.javatuples/javatuples/1.2/507312ac4b601204a72a83380badbca82683dd36/javatuples-1.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="507312ac4b601204a72a83380badbca82683dd36">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/javatuples-1.2_5cfb660db7dd9118d2d1aee49ef53dd87e7b5158/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="266ee5d15f19434ea7e81f63bd28e7dee3adf091">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b2837f4f2041c0ba81e405d6fb2a301ffd33d649/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/.android/build-cache/6e46be2dbeb8aad903c0151b4749cc27142657cb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_321fe754c049bc5386ab764dcfb2a82f426d9f1a/classes.dex" />
+    </item>
+    <item
         is-multidex="false"
         jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.javatuples/javatuples/1.2/507312ac4b601204a72a83380badbca82683dd36/javatuples-1.2.jar"
         jumboMode="false"
@@ -54,6 +72,60 @@
         revision="25.0.0"
         sha1="507312ac4b601204a72a83380badbca82683dd36">
         <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/javatuples-1.2_5cfb660db7dd9118d2d1aee49ef53dd87e7b5158.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/.android/build-cache/e39bc8b52b7cd1646b45ef6bd0e4b96b8c261cac/output/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-21.0.3_545dddc1803d5272faeecabb1e2bcdd15477a07a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/Documents/android-sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3_25f8c4d10e617f8833a2f5b12ac378c4f39c9736.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.android/build-cache/e39bc8b52b7cd1646b45ef6bd0e4b96b8c261cac/output/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3_545dddc1803d5272faeecabb1e2bcdd15477a07a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/Documents/android-sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-21.0.3_25f8c4d10e617f8833a2f5b12ac378c4f39c9736/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations-java5/15.0/7011b4551a8451906759b05814c58b9eb829ea9b/annotations-java5-15.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7011b4551a8451906759b05814c58b9eb829ea9b">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-java5-15.0_dbed14de870e4619b9b4d40e631832aa5d2a63d2/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations-java5/15.0/7011b4551a8451906759b05814c58b9eb829ea9b/annotations-java5-15.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7011b4551a8451906759b05814c58b9eb829ea9b">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/pre-dexed/debug/annotations-java5-15.0_dbed14de870e4619b9b4d40e631832aa5d2a63d2.jar" />
     </item>
 
 </items>

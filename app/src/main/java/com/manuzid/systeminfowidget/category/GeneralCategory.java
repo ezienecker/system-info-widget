@@ -37,13 +37,18 @@ public class GeneralCategory extends AbstractCategory {
     private Informationen informationen;
 
     @Override
-    int initRequestCode() {
-        return 102;
+    public int getRequestCode() {
+        return 100;
     }
 
     @Override
-    String initRequestAction() {
+    public String getRequestAction() {
         return GENERAL;
+    }
+
+    @Override
+    public int getButtonId() {
+        return R.id.btnFirst;
     }
 
     @Override
@@ -59,7 +64,6 @@ public class GeneralCategory extends AbstractCategory {
     @SuppressLint("HardwareIds")
     @Override
     Informationen getInformationen(Context context) {
-        // TODO: Am besten auch bei der erzeugung der Klasse erzeugen und dann nur noch auslesen? Wie bei Akku?
         if (informationen == null) {
             informationen = new Informationen.Builder()
                     .first(context.getString(R.string.general_manufacturer), android.os.Build.MANUFACTURER)
