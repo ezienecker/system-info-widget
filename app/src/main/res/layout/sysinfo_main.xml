@@ -13,28 +13,28 @@
         android:weightSum="6.0" >
 
         <Button
-            android:id="@+id/btnThird"
+            android:id="@+id/btnFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/general_btn" />
 
         <Button
-            android:id="@+id/btnFourth"
+            android:id="@+id/btnSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/more_btn" />
 
         <Button
-            android:id="@+id/btnFirst"
+            android:id="@+id/btnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:background="@drawable/display_btn" />
 
         <Button
-            android:id="@+id/btnSecond"
+            android:id="@+id/btnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"

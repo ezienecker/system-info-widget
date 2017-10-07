@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -24,16 +23,12 @@ import com.manuzid.systeminfowidget.category.MoreCategory;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.TreeMap;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
-import static com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity.CATEGORY_SELECTION;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.BATTERY;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.CAMERA;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.DISPLAY;
@@ -41,7 +36,6 @@ import static com.manuzid.systeminfowidget.util.SystemInfoLib.GENERAL;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.MEMORY;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.MORE;
 import static com.manuzid.systeminfowidget.util.SystemInfoLib.NONE;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.preparePendingIntent;
 
 /**
  * Created by Emanuel Zienecker on 22.05.13. Copyright (c) 2013 Emanuel
@@ -52,7 +46,16 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     /**
      * Liste der Beobachter
      */
-    private Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
+    private static Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
+
+    static {
+        observerMap.put(GENERAL, new GeneralCategory());
+        observerMap.put(MORE, new MoreCategory());
+        observerMap.put(DISPLAY, new DisplayCategory());
+        observerMap.put(CAMERA, new CameraCategory());
+        observerMap.put(MEMORY, new MemoryCategory());
+        observerMap.put(BATTERY, new BatteryCategory());
+    }
 
     /**
      * IntentFilter um auf Änderungen die von der Batterie kommen reagieren zu können
@@ -68,44 +71,13 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     /**
-     * Alle zur Auswahl Verfügbaren Kategorien
-     */
-    private static final Map<String, AbstractCategory> availableCategories;
-
-    static {
-        HashMap<String, AbstractCategory> mActiveColoredButtons = new HashMap<>();
-        mActiveColoredButtons.put(GENERAL, new GeneralCategory());
-        mActiveColoredButtons.put(MORE, new MoreCategory());
-        mActiveColoredButtons.put(DISPLAY, new DisplayCategory());
-        mActiveColoredButtons.put(CAMERA, new CameraCategory());
-        mActiveColoredButtons.put(MEMORY, new MemoryCategory());
-        mActiveColoredButtons.put(BATTERY, new BatteryCategory());
-        availableCategories = Collections.unmodifiableMap(mActiveColoredButtons);
-    }
-
-    /**
-     * Alle Widget-Buttons die belegt werden können
-     */
-    private static final SparseIntArray availableButtons = new SparseIntArray();
-
-    static {
-        availableButtons.append(1, R.id.btnFirst);
-        availableButtons.append(2, R.id.btnSecond);
-        availableButtons.append(3, R.id.btnThird);
-        availableButtons.append(4, R.id.btnFourth);
-        availableButtons.append(5, R.id.btnFifth);
-        availableButtons.append(6, R.id.btnSixth);
-    }
-
-    /**
      * Die zuletzt aktivierte Kategorie
      */
-    private static String category;
+    private static String category = NONE;
 
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
-        initObserverMap(context);
     }
 
     @Override
@@ -116,7 +88,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
-        destroyObserverMap();
     }
 
     @Override
@@ -127,44 +98,13 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
 
             // 1 PendingIntent damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
-            List<Integer> buttonIds = Arrays.asList(R.id.btnFirst, R.id.btnSecond,
-                    R.id.btnThird, R.id.btnFourth, R.id.btnFifth, R.id.btnSixth);
-            int buttonCounter = 0;
-
-            for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
-                if (buttonCounter < buttonIds.size()) {
-                    final AbstractCategory category = entry.getValue();
-                    // 1.1 Den Button das entsprechende PendingIntent zuweisen
-                    remoteView.setOnClickPendingIntent(buttonIds.get(buttonCounter),
-                            preparePendingIntent(context, category.getRequestAction(), appWidgetId, category.getRequestCode(),
-                                    PendingIntent.FLAG_UPDATE_CURRENT));
-
-                    // 1.2 Kategorie-Drawable für den Button setzen
-                    remoteView.setInt(buttonIds.get(buttonCounter), BACKGROUND_RESOURCE_METHOD_NAME,
-                            category.getDefaultButtonDrawable());
-
-                    buttonCounter++;
-                }
-            }
+            registerOnClickPendingIntentForCategories(context, remoteView, appWidgetId);
 
             // 2 Registrieren der Einstellungs-Activity (Wird aktiviert wenn der Benutzer auf das Widget klickt).
-            Intent intent = new Intent(context, ConfigPreferencesActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setAction(ConfigPreferencesActivity.class.getName());
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            PendingIntent pendingConfig = PendingIntent.getActivity(context, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            registerOnClickPendingIntentForSettingsActivity(context, remoteView, appWidgetId);
 
-            // 2.1 An dieser Stelle werden der RemoteView der Einstellungs-PendingIntent zugewiesen.
-            remoteView.setOnClickPendingIntent(R.id.relative_general, pendingConfig);
-
-            // 3 Prüfen ob sich die Batterie-Kategorie mit unter der Auswahl befindet um den IntentFilter
-            // zu registrieren oder eben abzumelden.
-            if (observerMap.get(BATTERY) != null) {
-                // 3.1 Registrieren des IntentFilter um auf Änderungen die die Batterie betreffen reagieren zu können.
-                context.getApplicationContext().registerReceiver(this, intentFilter);
-            } else {
-                context.getApplicationContext().unregisterReceiver(this);
-            }
+            // 3 Registrieren des IntentFilter um auf Änderungen die die Batterie betreffen reagieren zu können.
+            context.getApplicationContext().registerReceiver(this, intentFilter);
 
             // 4 Wiederherstellen der Standard-Ansicht
             restoreRemoteViewBackground(context, remoteView);
@@ -177,23 +117,29 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         final String colorScheme = getStringColorSchemeFromConfiguration(context);
-        final int appWidId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
         final String intentAction = intent.getAction();
         final AbstractCategory category = observerMap.get(intentAction);
 
         if (category != null) {
-            updateAppWidget(context, handleRemoteViews(context, colorScheme, category));
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, category, appWidgetId));
+        } else if (isIntentActionFromWidgetThatNeedAction(intentAction)) {
+            super.onReceive(context, intent);
         } else {
             // TODO: Wie kann man das verbessern? Was ist mit den boolschen Werten?
+            // Beim platzieren des Widget kommt folgende IntentAction: android.appwidget.action.APPWIDGET_ENABLED
+            // Danach kommt folgende IntentAction: android.appwidget.action.APPWIDGET_UPDATE
             /*
-            if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction()) || Intent.ACTION_POWER_DISCONNECTED.equals(intent.getAction())) {
+            if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction()) ||
+            Intent.ACTION_POWER_DISCONNECTED.equals(intent.getAction())) {
                 if (BATTERY.equals(category))
                 if (isBatteryViewActive) {
                     RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 2, colorScheme, appWidId);
                     updateAppWidget(context, remoteView);
                 }
-            } else if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction()) || Intent.ACTION_BATTERY_OKAY.equals(intent.getAction())
+            } else if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction()) ||
+            Intent.ACTION_BATTERY_OKAY.equals(intent.getAction())
                     || Intent.ACTION_BATTERY_LOW.equals(intent.getAction())) {
                 if (BATTERY.equals(category))
                 if (isBatteryViewActive) {
@@ -213,8 +159,52 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         }
     }
 
+    private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
+        List<Integer> buttonIds = Arrays.asList(R.id.btnFirst, R.id.btnSecond,
+                R.id.btnThird, R.id.btnFourth, R.id.btnFifth, R.id.btnSixth);
+        int buttonCounter = 0;
 
-    private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory) {
+        // Warum ist die Observer Map durcheinander
+        for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
+            if (buttonCounter < buttonIds.size()) {
+                final AbstractCategory category = entry.getValue();
+
+                if (category == null) {
+                    System.out.println("Warum?");
+                }
+
+                // 1 Den Button das entsprechende PendingIntent zuweisen
+                remoteView.setOnClickPendingIntent(category.getButtonId(),
+                        preparePendingIntent(context, category.getRequestAction(), appWidgetId, category.getRequestCode()));
+
+                // 2 Kategorie-Drawable für den Button setzen
+                remoteView.setInt(category.getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME,
+                        category.getDefaultButtonDrawable());
+
+                buttonCounter++;
+            }
+        }
+    }
+
+    private void registerOnClickPendingIntentForSettingsActivity(Context context, RemoteViews remoteView, int appWidgetId) {
+        Intent intent = new Intent(context, ConfigPreferencesActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(ConfigPreferencesActivity.class.getName());
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        PendingIntent pendingConfig = PendingIntent.getActivity(context, 106, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        remoteView.setOnClickPendingIntent(R.id.relative_general, pendingConfig);
+    }
+
+    private PendingIntent preparePendingIntent(Context context, String reqAction, int appWidgetId, int reqCode) {
+        Intent preparedIntent = new Intent();
+        preparedIntent.setAction(reqAction);
+        preparedIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        return PendingIntent.getBroadcast(context, reqCode, preparedIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+
+    private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory, int appWidgetId) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
         if (category.equals(lCategory.getRequestAction())) {
             // 1 Keine Kategorie wird angezeigt, die Standard-View wird angezeigt.
@@ -224,10 +214,10 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             restoreAllButtonBackgroundResource(remoteViews);
 
             // 3 Zurücksetzen und Zurückgeben der Standard-View.
-            return restoreStandardView(remoteViews);
+            return restoreStandardView(context, remoteViews, appWidgetId);
         } else {
             // 1 View wiederherstellen damit die Informationen sichtbar werden.
-            remoteViews = restoreInformationView(remoteViews);
+            remoteViews = restoreInformationView(context, remoteViews, appWidgetId);
 
             // 2 Informationen-View vorbereiten.
             remoteViews = lCategory.prepareRemoteView(remoteViews, context);
@@ -262,33 +252,40 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     /**
      * Stellt die Informations-Ansicht wieder her. Labels und Text-Felder werden sichtbar.
      *
+     * @param context     {@link Context}
      * @param remoteViews {@link RemoteViews} die Wiederhergestellt wird.
+     * @param appWidgetId id des Widget welches aktualisiert werden soll
      * @return Wiederhergestellte {@link RemoteViews}
      */
-    private RemoteViews restoreInformationView(RemoteViews remoteViews) {
-        return resetViewElements(remoteViews, View.VISIBLE, View.GONE);
+    private RemoteViews restoreInformationView(Context context, RemoteViews remoteViews, int appWidgetId) {
+        return resetViewElements(context, remoteViews, View.VISIBLE, View.GONE, appWidgetId);
     }
 
     /**
      * Stellt die Standard-View wieder her. Alle Labels und Text-Felder werden "versteckt" und
      * das App-Logo wird angezeigt.
      *
+     * @param context     {@link Context}
      * @param remoteViews {@link RemoteViews} die Wiederhergestellt wird.
+     * @param appWidgetId id des Widget welches aktualisiert werden soll
      * @return Wiederhergestellte {@link RemoteViews}
      */
-    private RemoteViews restoreStandardView(RemoteViews remoteViews) {
-        return resetViewElements(remoteViews, View.GONE, View.VISIBLE);
+    private RemoteViews restoreStandardView(Context context, RemoteViews remoteViews, int appWidgetId) {
+        return resetViewElements(context, remoteViews, View.GONE, View.VISIBLE, appWidgetId);
     }
 
     /**
      * Wiederherstellen des entsprechenden View-Zustands.
      *
+     * @param context                   {@link Context}
      * @param remoteViews               {@link RemoteViews}
      * @param infoElementVisibility     entweder {@link View#GONE} oder {@link View#VISIBLE}
      * @param standardElementVisibility entweder {@link View#GONE} oder {@link View#VISIBLE}
+     * @param appWidgetId               id des Widget welches aktualisiert werden soll
      * @return {@link RemoteViews}
      */
-    private RemoteViews resetViewElements(RemoteViews remoteViews, int infoElementVisibility, int standardElementVisibility) {
+    private RemoteViews resetViewElements(Context context, RemoteViews remoteViews, int infoElementVisibility, int standardElementVisibility, int appWidgetId) {
+        // 1 Wiederherstellen der View-Elemente
         remoteViews.setViewVisibility(R.id.lblFirstInfo, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.txtFirstInfo, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.lblSecondInfo, infoElementVisibility);
@@ -310,12 +307,14 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteViews.setViewVisibility(R.id.usb_memory_progress_bar, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.imgRestore, standardElementVisibility);
         remoteViews.setViewVisibility(R.id.txtConfigClick, standardElementVisibility);
-        return remoteViews;
-    }
 
-    // TODO: Schauen ob man hierauf verzichten kann
-    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView) {
-        appWidgetManager.updateAppWidget(appWidgetId, remoteView);
+        // 2 PendingIntent damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
+        registerOnClickPendingIntentForCategories(context, remoteViews, appWidgetId);
+
+        // 3 Registrieren der Einstellungs-Activity (Wird aktiviert wenn der Benutzer auf das Widget klickt).
+        registerOnClickPendingIntentForSettingsActivity(context, remoteViews, appWidgetId);
+
+        return remoteViews;
     }
 
     private void restoreRemoteViewBackground(Context context, RemoteViews remoteView) {
@@ -353,45 +352,20 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         return prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
     }
 
-    /**
-     * Fügt der Liste der Beobachter einen Observer hinzu
-     *
-     * @param beobachter - Der Beobachter, der der Liste hinzugefügt werden soll
-     */
-    public void addObserver(AbstractCategory beobachter) {
-        observerMap.put(beobachter.getRequestAction(), beobachter);
+    private boolean isIntentActionFromWidgetThatNeedAction(String intentAction) {
+        return AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(intentAction) ||
+                AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction);
     }
 
     /**
-     * Initialisierung der Map, wird zu Beginn aufgerufen und wenn der Benutzer
-     * in den Einstellungen war.
+     * Damit aus den Einstellungen heraus die Änderungen auch wirksam werden (Triggern von den LifeCycle-Methods).
      *
-     * @param context {@link Context}
+     * @param appWidgetManager {@link AppWidgetManager}
+     * @param appWidgetId      id des entsprechenden Widgets welches aktualisiert werden soll
+     * @param remoteView       {@link RemoteViews}
      */
-    private void initObserverMap(Context context) {
-        // 1. Welche Observer sind in den Preferences gesetzt?
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, null);
-
-        if (categorySelection == null) {
-            categorySelection = new HashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY));
-        }
-
-        // 2. Diese registrieren
-        int i = 0;
-        for (String category : categorySelection) {
-            i++;
-            AbstractCategory lCategory = availableCategories.get(category);
-            lCategory.setButtonId(availableButtons.get(i));
-            addObserver(lCategory);
-        }
-    }
-
-    /**
-     * Wird aufgerufen wenn das Widget gelöscht wird oder der Benutzer von den Einstellungen kommt.
-     */
-    private void destroyObserverMap() {
-        observerMap.clear();
+    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView) {
+        appWidgetManager.updateAppWidget(appWidgetId, remoteView);
     }
 
 }

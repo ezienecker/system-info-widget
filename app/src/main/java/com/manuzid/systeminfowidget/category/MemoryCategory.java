@@ -43,18 +43,23 @@ public class MemoryCategory extends AbstractCategory {
     }
 
     @Override
-    int initRequestCode() {
+    public int getRequestCode() {
         return 104;
     }
 
     @Override
-    String initRequestAction() {
+    public String getRequestAction() {
         return MEMORY;
     }
 
     @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.memory_btn;
+    }
+
+    @Override
+    public int getButtonId() {
+        return R.id.btnFifth;
     }
 
     @Override

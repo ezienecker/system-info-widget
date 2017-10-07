@@ -41,13 +41,18 @@ public class BatteryCategory extends AbstractCategory {
     private Informationen informationen;
 
     @Override
-    int initRequestCode() {
+    public int getRequestCode() {
         return 105;
     }
 
     @Override
-    String initRequestAction() {
+    public String getRequestAction() {
         return BATTERY;
+    }
+
+    @Override
+    public int getButtonId() {
+        return R.id.btnSixth;
     }
 
     @Override

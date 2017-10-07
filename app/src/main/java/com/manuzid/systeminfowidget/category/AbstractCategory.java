@@ -21,45 +21,29 @@ import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public abstract class AbstractCategory {
-    private int requestCode;
-    private String requestAction;
-    private int buttonId;
-
-    AbstractCategory() {
-        this.requestCode = initRequestCode();
-        this.requestAction = initRequestAction();
-    }
 
     /**
+     * Liefert den Request-Code der von der SubClass gesetzt werden muss.
      * Für den PendingIntent wird eine entsprechende Code gebraucht.
      *
      * @return Request-Code
      */
-    abstract int initRequestCode();
+    public abstract int getRequestCode();
 
     /**
+     * Liefert die Request-Action die von der SubClass gesetzt werden muss.
      * Für den PendingIntent wird eine entsprechende Action gebraucht.
      *
      * @return Request-Action
      */
-    abstract String initRequestAction();
+    public abstract String getRequestAction();
 
     /**
      * Liefert die Id des Button der zur Kategorie gehört.
      *
      * @return Id des Buttons
      */
-    private int getButtonId() {
-        return buttonId;
-    }
-
-    /**
-     * Setzt die Id des Button der zur Kategorie gehört.
-     *
-     */
-    public void setButtonId(int buttonId) {
-        this.buttonId = buttonId;
-    }
+    public abstract int getButtonId();
 
     /**
      * Liefert die Standard-Grafik der Kategorie.
@@ -169,29 +153,4 @@ public abstract class AbstractCategory {
         remoteViews.setInt(getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME, getDefaultButtonDrawable());
     }
 
-    /**
-     * Liefert den Request-Code der von der SubClass gesetzt werden muss.
-     *
-     * @return den Request-Code
-     */
-    public int getRequestCode() {
-        if (requestCode == 0) {
-            throw new IllegalStateException("RequestCode muss von der SubClass implementiert werden.");
-        }
-
-        return requestCode;
-    }
-
-    /**
-     * Liefert die Request-Action die von der SubClass gesetzt werden muss.
-     *
-     * @return die Request-Action
-     */
-    public String getRequestAction() {
-        if (StringUtils.isBlank(requestAction)) {
-            throw new IllegalStateException("RequestAction muss von der SubClass implementiert werden.");
-        }
-
-        return requestAction;
-    }
 }

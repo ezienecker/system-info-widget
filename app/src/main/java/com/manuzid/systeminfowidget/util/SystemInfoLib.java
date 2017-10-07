@@ -15,12 +15,4 @@ public class SystemInfoLib {
 
     public static final String NONE = "com.manuzid.systeminfowidget.NONE";
 
-    public static PendingIntent preparePendingIntent(Context context, String reqAction, int appWidgetId, int reqCode, int flag) {
-        Intent preparedIntent = new Intent();
-        preparedIntent.setAction(reqAction);
-        preparedIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        return PendingIntent.getBroadcast(context, reqCode, preparedIntent, flag);
-    }
-
-
 }
