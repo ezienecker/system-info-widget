@@ -119,43 +119,50 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
         final String intentAction = intent.getAction();
-        final AbstractCategory category = observerMap.get(intentAction);
+        final AbstractCategory mCategory = observerMap.get(intentAction);
 
-        if (category != null) {
-            updateAppWidget(context, handleRemoteViews(context, colorScheme, category, appWidgetId));
+        if (mCategory != null) {
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mCategory, appWidgetId));
         } else if (isIntentActionFromWidgetThatNeedAction(intentAction)) {
-            super.onReceive(context, intent);
-        } else {
-            // TODO: Wie kann man das verbessern? Was ist mit den boolschen Werten?
-            // Beim platzieren des Widget kommt folgende IntentAction: android.appwidget.action.APPWIDGET_ENABLED
-            // Danach kommt folgende IntentAction: android.appwidget.action.APPWIDGET_UPDATE
             /*
-            if (Intent.ACTION_POWER_CONNECTED.equals(intent.getAction()) ||
-            Intent.ACTION_POWER_DISCONNECTED.equals(intent.getAction())) {
-                if (BATTERY.equals(category))
-                if (isBatteryViewActive) {
-                    RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 2, colorScheme, appWidId);
-                    updateAppWidget(context, remoteView);
-                }
-            } else if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction()) ||
-            Intent.ACTION_BATTERY_OKAY.equals(intent.getAction())
-                    || Intent.ACTION_BATTERY_LOW.equals(intent.getAction())) {
-                if (BATTERY.equals(category))
-                if (isBatteryViewActive) {
-                    RemoteViews remoteView = handleAkkuInfo(context, R.layout.sysinfo_main, intent, 0, colorScheme, appWidId);
-                    updateAppWidget(context, remoteView);
-                }
-            } else if (!intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_OPTIONS_CHANGED)) {
-                if (DISPLAY.equals(category))
-                if (isDisplayViewActive) {
-                    RemoteViews remoteView = handleDisplayInfo(context, R.layout.sysinfo_main, colorScheme, appWidId);
-                    updateAppWidget(context, remoteView);
-                } else {
-                    super.onReceive(context, intent);
-                }
-            }
-            */
+             * Beim platzieren des Widget kommt folgende IntentAction: android.appwidget.action.APPWIDGET_ENABLE.
+             * Danach kommt folgende IntentAction: android.appwidget.action.APPWIDGET_UPDATE
+             */
+            super.onReceive(context, intent);
+        } else if (hasPowerPluginChangedAndBatteryViewIsActive(intentAction)) {
+            // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
+            resetCategory();
+            final AbstractCategory mFakeCategory = observerMap.get(BATTERY);
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
+        } else if (hasBatteryStatusChangedAndBatteryViewIsActive(intentAction)) {
+            // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
+            resetCategory();
+            final AbstractCategory mFakeCategory = observerMap.get(BATTERY);
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
+        } else if (hasScreenChangedAndDisplayViewIsActive(intentAction)) {
+            // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
+            resetCategory();
+            final AbstractCategory mFakeCategory = observerMap.get(DISPLAY);
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
         }
+    }
+
+    private void resetCategory() { category = NONE; }
+
+    private boolean hasPowerPluginChangedAndBatteryViewIsActive(String intentAction) {
+        return (Intent.ACTION_POWER_CONNECTED.equals(intentAction) ||
+                Intent.ACTION_POWER_DISCONNECTED.equals(intentAction)) && category.equals(BATTERY);
+    }
+
+    private boolean hasBatteryStatusChangedAndBatteryViewIsActive(String intentAction) {
+        return (Intent.ACTION_BATTERY_CHANGED.equals(intentAction) ||
+                Intent.ACTION_BATTERY_OKAY.equals(intentAction) ||
+                Intent.ACTION_BATTERY_LOW.equals(intentAction)) && category.equals(BATTERY);
+    }
+
+    private boolean hasScreenChangedAndDisplayViewIsActive(String intentAction) {
+        return AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction) &&
+                category.equals(DISPLAY);
     }
 
     private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
@@ -196,7 +203,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         preparedIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         return PendingIntent.getBroadcast(context, reqCode, preparedIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
-
 
     private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory, int appWidgetId) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
@@ -245,6 +251,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     /**
      * Stellt die Informations-Ansicht wieder her. Labels und Text-Felder werden sichtbar.
+     * Das App-Logo wird versteckt.
      *
      * @param context     {@link Context}
      * @param remoteViews {@link RemoteViews} die Wiederhergestellt wird.
