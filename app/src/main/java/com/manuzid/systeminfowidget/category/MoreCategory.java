@@ -2,8 +2,6 @@ package com.manuzid.systeminfowidget.category;
 
 import android.content.Context;
 import android.os.Build;
-import android.view.View;
-import android.widget.RemoteViews;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
@@ -12,15 +10,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.MORE;
-
 /**
  * Zeigt erweiterte Allgemeine Informationen über das Gerät an.
- *
+ * <p>
  * Created by Emanuel Zienecker on 22.09.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class MoreCategory extends AbstractCategory {
+    public static final String MORE = INTENT_FILTER_PREFIX + "MORE_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

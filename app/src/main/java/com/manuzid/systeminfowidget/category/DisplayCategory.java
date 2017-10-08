@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.DISPLAY;
 
 /**
  * Zeigt Informationen über das Display des Geräts an.
@@ -29,6 +28,7 @@ import static com.manuzid.systeminfowidget.util.SystemInfoLib.DISPLAY;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class DisplayCategory extends AbstractCategory {
+    public static final String DISPLAY = INTENT_FILTER_PREFIX + "DISPLAY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

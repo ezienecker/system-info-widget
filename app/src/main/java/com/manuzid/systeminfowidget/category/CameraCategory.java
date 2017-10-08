@@ -14,15 +14,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.CAMERA;
-
 /**
  * Zeigt Informationen über die Kamera das Geräts an.
- *
+ * <p>
  * Created by Emanuel Zienecker on 22.09.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class CameraCategory extends AbstractCategory {
+    public static final String CAMERA = INTENT_FILTER_PREFIX + "CAMERA_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -109,8 +108,7 @@ public class CameraCategory extends AbstractCategory {
         if (informationen.fifthValue.equals(context.getString(R.string.general_unknow))) {
             remoteView.setTextViewText(R.id.txtFifth, informationen.fifthValue);
             remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
-        }
-        else {
+        } else {
             remoteView.setTextViewText(R.id.txtFifth, "");
             remoteView.setTextViewText(R.id.txtSupportedPictureSizes, informationen.fifthValue);
         }

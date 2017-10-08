@@ -21,6 +21,8 @@ import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public abstract class AbstractCategory {
+    static final String INTENT_FILTER_PREFIX = "com.manuzid.systeminfowidget.";
+    public static final String NONE = INTENT_FILTER_PREFIX + "NONE";
 
     /**
      * Liefert den Request-Code der von der SubClass gesetzt werden muss.
