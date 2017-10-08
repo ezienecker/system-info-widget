@@ -37,8 +37,6 @@ public class BatteryCategory extends AbstractCategory {
         activeColoredButtons = Collections.unmodifiableMap(mActiveColoredButtons);
     }
 
-    private Informationen informationen;
-
     @Override
     public int getRequestCode() {
         return 105;
@@ -68,30 +66,41 @@ public class BatteryCategory extends AbstractCategory {
     Informationen getInformationen(Context context) {
         Intent mIntent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
-        int status = mIntent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
-        int extra = mIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
-        int health = mIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);
-        int temp = mIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+        if (mIntent == null) {
+            return new Informationen.Builder()
+                    .first(context.getString(R.string.battery_capacitance), context.getString(R.string.general_unknow))
+                    .second(context.getString(R.string.battery_state), context.getString(R.string.general_unknow))
+                    .third(context.getString(R.string.akku_technology), context.getString(R.string.general_unknow))
+                    .fourth(context.getString(R.string.akku_voltage), context.getString(R.string.general_unknow))
+                    .fifth(context.getString(R.string.akku_temp), context.getString(R.string.general_unknow))
+                    .sixth(context.getString(R.string.akku_connected), context.getString(R.string.general_unknow))
+                    .seventh(context.getString(R.string.akku_akku_health), context.getString(R.string.general_unknow))
+                    .build();
+        } else {
 
-        String technology;
-        try {
-            technology = mIntent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
+            int status = mIntent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
+            int extra = mIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
+            int health = mIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);
+            int temp = mIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
 
-        } catch (Exception e) {
-            technology = context.getString(R.string.akku_technology_summ);
+            String technology;
+            try {
+                technology = mIntent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
+
+            } catch (Exception e) {
+                technology = context.getString(R.string.akku_technology_summ);
+            }
+
+            return new Informationen.Builder()
+                    .first(context.getString(R.string.battery_capacitance), mIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) + "%")
+                    .second(context.getString(R.string.battery_state), getBatteryStatusForUi(status, context))
+                    .third(context.getString(R.string.akku_technology), technology)
+                    .fourth(context.getString(R.string.akku_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
+                    .fifth(context.getString(R.string.akku_temp), getBatteryTemp(temp, context))
+                    .sixth(context.getString(R.string.akku_connected), getConnectedState(context, extra))
+                    .seventh(context.getString(R.string.akku_akku_health), getBatteryHealthForUi(health, context))
+                    .build();
         }
-
-        informationen = new Informationen.Builder()
-                .first(context.getString(R.string.battery_capacitance), mIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) + "%")
-                .second(context.getString(R.string.battery_state), getBatteryStatusForUi(status, context))
-                .third(context.getString(R.string.akku_technology), technology)
-                .fourth(context.getString(R.string.akku_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
-                .fifth(context.getString(R.string.akku_temp), getBatteryTemp(temp, context))
-                .sixth(context.getString(R.string.akku_connected), getConnectedState(context, extra))
-                .seventh(context.getString(R.string.akku_akku_health), getBatteryHealthForUi(health, context))
-                .build();
-
-        return informationen;
     }
 
     private String getBatteryStatusForUi(final int status, final Context context) {

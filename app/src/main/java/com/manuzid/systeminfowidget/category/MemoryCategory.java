@@ -107,6 +107,7 @@ public class MemoryCategory extends AbstractCategory {
             remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
             remoteView.setViewVisibility(R.id.usb_memory_percent, View.VISIBLE);
             remoteView.setTextViewText(R.id.usb_memory_percent, context.getString(R.string.memory_not_available));
+            remoteView.setTextViewText(R.id.txtFifth, "");
         } else {
             remoteView.setTextViewText(R.id.txtFifth, totalUsbMemory + freeUsbMemory + usedUsbMemory);
             remoteView.setViewVisibility(R.id.usb_memory_percent, View.VISIBLE);
@@ -174,7 +175,7 @@ public class MemoryCategory extends AbstractCategory {
         long total = ((long) statFs.getBlockCount() * (long) statFs.getBlockSize()) / 1048576;
         if (total >= 1000) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
-            double totalFree = total / (double) 1024.0;
+            double totalFree = total / 1024.0;
             return decimalFormat.format(totalFree) + " GB/";
         } else {
             return String.valueOf(total) + " MB/";

@@ -55,7 +55,7 @@ public final class StringUtils {
         }
         for (int i = 0; i < strLen; i++)
         {
-            if (Character.isWhitespace(cs.charAt(i)) == false)
+            if (!Character.isWhitespace(cs.charAt(i)))
             {
                 return false;
             }

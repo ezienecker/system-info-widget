@@ -1,11 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.manuzid.systeminfowidget"
-    android:versionCode="21"
-    android:versionName="2.1" >
-
-    <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="19" />
+    package="com.manuzid.systeminfowidget">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
@@ -38,7 +32,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/sysinfo_appwidget" />
+                android:resource="@xml/system_info_app_widget" />
         </receiver>
         <activity android:name=".preferences.ConfigPreferencesActivity"
             android:label="@string/app_name"

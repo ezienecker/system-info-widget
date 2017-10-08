@@ -1,7 +1,6 @@
 package com.manuzid.systeminfowidget.category.util;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.manuzid.systeminfowidget.category.Informationen;
 
