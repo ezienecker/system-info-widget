@@ -21,13 +21,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.MEMORY;
-
 /**
+ * Zeigt Informationen sowohl über den internen als auch den externen Speicher des Geräts an.
+ * <p>
  * Created by Emanuel Zienecker on 22.09.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class MemoryCategory extends AbstractCategory {
+    public static final String MEMORY = INTENT_FILTER_PREFIX + "MEMORY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

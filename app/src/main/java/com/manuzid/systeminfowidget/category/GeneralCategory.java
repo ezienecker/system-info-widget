@@ -11,15 +11,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.GENERAL;
-
 /**
  * Zeigt die Allgemeinen Informationen über das Gerät an.
- *
+ * <p>
  * Created by Emanuel Zienecker on 19.09.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class GeneralCategory extends AbstractCategory {
+    public static final String GENERAL = INTENT_FILTER_PREFIX + "GENERAL_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -37,6 +36,11 @@ public class GeneralCategory extends AbstractCategory {
     private Informationen informationen;
 
     @Override
+    public int getButtonId() {
+        return R.id.btnFirst;
+    }
+
+    @Override
     public int getRequestCode() {
         return 100;
     }
@@ -44,11 +48,6 @@ public class GeneralCategory extends AbstractCategory {
     @Override
     public String getRequestAction() {
         return GENERAL;
-    }
-
-    @Override
-    public int getButtonId() {
-        return R.id.btnFirst;
     }
 
     @Override

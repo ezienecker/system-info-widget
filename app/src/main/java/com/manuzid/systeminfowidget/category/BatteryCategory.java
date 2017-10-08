@@ -15,15 +15,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.BATTERY;
-
 /**
  * Zeigt Informationen über die Batterie an.
- *
+ * <p>
  * Created by Emanuel Zienecker on 22.09.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class BatteryCategory extends AbstractCategory {
+    public static final String BATTERY = INTENT_FILTER_PREFIX + "BATTERY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -70,6 +69,7 @@ public class BatteryCategory extends AbstractCategory {
         if (informationen == null) {
 
             Intent intent = ((Activity) context).getIntent();
+
             int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
             int extra = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
             int health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);

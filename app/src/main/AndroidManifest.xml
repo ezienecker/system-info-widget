@@ -20,15 +20,18 @@
         <receiver android:name="com.manuzid.systeminfowidget.SysInfoMainProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.DISPLAY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.GENRAL_WIDGET" />
+
+                <action android:name="com.manuzid.systeminfowidget.GENERAL_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.MORE_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.DISPLAY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.MEMORY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.AKKU_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.BATTERY_WIDGET" />
+
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
                 <action android:name="android.intent.action.BATTERY_OKAY" />
+
                 <action android:name="android.intent.action.POWER_CONNECTED" />
                 <action android:name="android.intent.action.POWER_DISCONNECTED" />
             </intent-filter>

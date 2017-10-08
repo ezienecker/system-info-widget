@@ -26,16 +26,15 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.BATTERY;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.CAMERA;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.DISPLAY;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.GENERAL;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.MEMORY;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.MORE;
-import static com.manuzid.systeminfowidget.util.SystemInfoLib.NONE;
+import static com.manuzid.systeminfowidget.category.AbstractCategory.NONE;
+import static com.manuzid.systeminfowidget.category.BatteryCategory.BATTERY;
+import static com.manuzid.systeminfowidget.category.CameraCategory.CAMERA;
+import static com.manuzid.systeminfowidget.category.DisplayCategory.DISPLAY;
+import static com.manuzid.systeminfowidget.category.GeneralCategory.GENERAL;
+import static com.manuzid.systeminfowidget.category.MemoryCategory.MEMORY;
+import static com.manuzid.systeminfowidget.category.MoreCategory.MORE;
 
 /**
  * Created by Emanuel Zienecker on 22.05.13. Copyright (c) 2013 Emanuel
@@ -164,14 +163,9 @@ public class SysInfoMainProvider extends AppWidgetProvider {
                 R.id.btnThird, R.id.btnFourth, R.id.btnFifth, R.id.btnSixth);
         int buttonCounter = 0;
 
-        // Warum ist die Observer Map durcheinander
         for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
             if (buttonCounter < buttonIds.size()) {
                 final AbstractCategory category = entry.getValue();
-
-                if (category == null) {
-                    System.out.println("Warum?");
-                }
 
                 // 1 Den Button das entsprechende PendingIntent zuweisen
                 remoteView.setOnClickPendingIntent(category.getButtonId(),
