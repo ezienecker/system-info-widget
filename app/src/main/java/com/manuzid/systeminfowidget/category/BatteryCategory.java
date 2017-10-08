@@ -1,8 +1,8 @@
 package com.manuzid.systeminfowidget.category;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import android.preference.PreferenceManager;
@@ -66,33 +66,30 @@ public class BatteryCategory extends AbstractCategory {
 
     @Override
     Informationen getInformationen(Context context) {
-        if (informationen == null) {
+        Intent mIntent = context.getApplicationContext().registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
-            Intent intent = ((Activity) context).getIntent();
+        int status = mIntent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
+        int extra = mIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
+        int health = mIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);
+        int temp = mIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
 
-            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
-            int extra = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
-            int health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);
-            int temp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+        String technology;
+        try {
+            technology = mIntent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
 
-            String technology;
-            try {
-                technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
-
-            } catch (Exception e) {
-                technology = context.getString(R.string.akku_technology_summ);
-            }
-
-            informationen = new Informationen.Builder()
-                    .first(context.getString(R.string.battery_capacitance), intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) + "%")
-                    .second(context.getString(R.string.battery_state), getBatteryStatusForUi(status, context))
-                    .third(context.getString(R.string.akku_technology), technology)
-                    .fourth(context.getString(R.string.akku_voltage), intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
-                    .fifth(context.getString(R.string.akku_temp), getBatteryTemp(temp, context))
-                    .sixth(context.getString(R.string.akku_connected), getConnectedState(context, extra))
-                    .seventh(context.getString(R.string.akku_akku_health), getBatteryHealthForUi(health, context))
-                    .build();
+        } catch (Exception e) {
+            technology = context.getString(R.string.akku_technology_summ);
         }
+
+        informationen = new Informationen.Builder()
+                .first(context.getString(R.string.battery_capacitance), mIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) + "%")
+                .second(context.getString(R.string.battery_state), getBatteryStatusForUi(status, context))
+                .third(context.getString(R.string.akku_technology), technology)
+                .fourth(context.getString(R.string.akku_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
+                .fifth(context.getString(R.string.akku_temp), getBatteryTemp(temp, context))
+                .sixth(context.getString(R.string.akku_connected), getConnectedState(context, extra))
+                .seventh(context.getString(R.string.akku_akku_health), getBatteryHealthForUi(health, context))
+                .build();
 
         return informationen;
     }
