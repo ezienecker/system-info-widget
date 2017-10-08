@@ -1,8 +1,5 @@
 package com.manuzid.systeminfowidget.preferences;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
@@ -19,14 +16,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.RemoteViews;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.SysInfoMainProvider;
 import com.manuzid.systeminfowidget.util.AppRater;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Emanuel Zienecker on 05.06.13. Copyright (c) 2013 Emanuel
@@ -34,6 +34,8 @@ import com.manuzid.systeminfowidget.util.AppRater;
  */
 public class ConfigPreferencesActivity extends Activity
 {
+    public static final String CATEGORY_SELECTION = "manuzid-category-selection";
+
     public static final String TEMP_FORMAT = "temp_format";
     public static final String TEMP_CELSIUS = "celsius";
     public static final String TEMP_FAHRENHEIT = "fahrenheit";
@@ -48,7 +50,7 @@ public class ConfigPreferencesActivity extends Activity
     private static final String SET_BACKGROUND_RES = "setBackgroundResource";
 
     private ListView preferencesListView;
-    private List<Preferences> prefData;
+    private List<SystemInfoPreference> prefData;
     private final Context mContext = this;
     private AlertDialog alertDialogTemp;
     private AlertDialog alertDialogColor;
@@ -84,28 +86,28 @@ public class ConfigPreferencesActivity extends Activity
                         getApplicationContext().getPackageManager());
 
         prefData = new ArrayList<>();
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_general_app_config)), "",
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_app_config)), "",
                 true));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_colorstyle)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_colorstyle)),
                 String.format(getResources().getString(R.string.config_colorstyle)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_temp_title)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_temp_title)),
                 String.format(getResources().getString(R.string.config_temp_summary)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_entrys_about_title)), "",
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entrys_about_title)), "",
                 true));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_entrys_about)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entrys_about)),
                 String.format(getResources().getString(R.string.config_entrys_about_app_summary), mVersionNumber),
                 false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_general_rate)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_rate)),
                 String.format(getResources().getString(R.string.config_general_rate_summary)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_general_friend)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_friend)),
                 String.format(getResources().getString(R.string.config_general_friend_summary)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_general_send_feedback)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_send_feedback)),
                 String.format(getResources().getString(R.string.config_general_send_feedback_summary)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_general_moreapps)),
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_moreapps)),
                 String.format(getResources().getString(R.string.config_general_moreapps_summary)), false));
-        prefData.add(new Preferences(String.format(getResources().getString(R.string.config_entrys_rights_title)), "",
+        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entrys_rights_title)), "",
                 true));
-        prefData.add(new Preferences(
+        prefData.add(new SystemInfoPreference(
                 String.format(getResources().getString(R.string.config_entrys_rights_legal_title)), "", false));
 
         PreferencesAdapter prefAdap = new PreferencesAdapter(getApplicationContext(), prefData);
@@ -116,7 +118,7 @@ public class ConfigPreferencesActivity extends Activity
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3)
             {
-                Preferences preferenceObject = (Preferences) preferencesListView.getAdapter().getItem(arg2);
+                SystemInfoPreference preferenceObject = (SystemInfoPreference) preferencesListView.getAdapter().getItem(arg2);
 
                 if (String.format(getResources().getString(R.string.config_colorstyle)).equals(preferenceObject.title))
                 {
@@ -127,11 +129,6 @@ public class ConfigPreferencesActivity extends Activity
                 {
                     showCustomDialog(1);
                 }
-                else if (String.format(getResources().getString(R.string.config_entrys_start_up)).equals(
-                        preferenceObject.title))
-                {
-
-                }
                 else if (String.format(getResources().getString(R.string.config_general_rate)).equals(
                         preferenceObject.title))
                 {
@@ -141,7 +138,7 @@ public class ConfigPreferencesActivity extends Activity
                 else if (String.format(getResources().getString(R.string.config_general_friend)).equals(
                         preferenceObject.title))
                 {
-                    StringBuffer buffer = new StringBuffer();
+                    StringBuilder buffer = new StringBuilder();
                     buffer.append("mailto:");
                     buffer.append("");
                     buffer.append("?subject=");
@@ -403,31 +400,31 @@ public class ConfigPreferencesActivity extends Activity
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
         RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
-        remoteView.setInt(R.id.btnGeneral, SET_BACKGROUND_RES, R.drawable.general_btn);
-        remoteView.setInt(R.id.btnMore, SET_BACKGROUND_RES, R.drawable.more_btn);
-        remoteView.setInt(R.id.btnDisplay, SET_BACKGROUND_RES, R.drawable.display_btn);
-        remoteView.setInt(R.id.btnCamera, SET_BACKGROUND_RES, R.drawable.camera_btn);
-        remoteView.setInt(R.id.btnMemory, SET_BACKGROUND_RES, R.drawable.memory_btn);
-        remoteView.setInt(R.id.btnAkku, SET_BACKGROUND_RES, R.drawable.akku_btn);
-        remoteView.setViewVisibility(R.id.lblManufacturer, View.GONE);
-        remoteView.setViewVisibility(R.id.txtManufacturer, View.GONE);
-        remoteView.setViewVisibility(R.id.lblModell, View.GONE);
-        remoteView.setViewVisibility(R.id.txtModell, View.GONE);
-        remoteView.setViewVisibility(R.id.lblProduct, View.GONE);
-        remoteView.setViewVisibility(R.id.txtProduct, View.GONE);
-        remoteView.setViewVisibility(R.id.lblBrand, View.GONE);
-        remoteView.setViewVisibility(R.id.txtBrand, View.GONE);
-        remoteView.setViewVisibility(R.id.lblSerialNumber, View.GONE);
-        remoteView.setViewVisibility(R.id.txtSerialnumber, View.GONE);
+        remoteView.setInt(R.id.btnThird, SET_BACKGROUND_RES, R.drawable.general_btn);
+        remoteView.setInt(R.id.btnFourth, SET_BACKGROUND_RES, R.drawable.more_btn);
+        remoteView.setInt(R.id.btnFirst, SET_BACKGROUND_RES, R.drawable.display_btn);
+        remoteView.setInt(R.id.btnSecond, SET_BACKGROUND_RES, R.drawable.camera_btn);
+        remoteView.setInt(R.id.btnFifth, SET_BACKGROUND_RES, R.drawable.memory_btn);
+        remoteView.setInt(R.id.btnSixth, SET_BACKGROUND_RES, R.drawable.battery_btn);
+        remoteView.setViewVisibility(R.id.lblFirstInfo, View.GONE);
+        remoteView.setViewVisibility(R.id.txtFirstInfo, View.GONE);
+        remoteView.setViewVisibility(R.id.lblSecondInfo, View.GONE);
+        remoteView.setViewVisibility(R.id.txtSecondInfo, View.GONE);
+        remoteView.setViewVisibility(R.id.lblThird, View.GONE);
+        remoteView.setViewVisibility(R.id.txtThird, View.GONE);
+        remoteView.setViewVisibility(R.id.lblFourth, View.GONE);
+        remoteView.setViewVisibility(R.id.txtFourth, View.GONE);
+        remoteView.setViewVisibility(R.id.lblFifth, View.GONE);
+        remoteView.setViewVisibility(R.id.txtFifth, View.GONE);
         remoteView.setViewVisibility(R.id.txtSupportedPictureSizes, View.GONE);
-        remoteView.setViewVisibility(R.id.lblDeviceId, View.GONE);
-        remoteView.setViewVisibility(R.id.txtDeviceId, View.GONE);
-        remoteView.setViewVisibility(R.id.lblTimeZone, View.GONE);
-        remoteView.setViewVisibility(R.id.txtTimeZone, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.devicememory_progressBar, View.GONE);
-        remoteView.setViewVisibility(R.id.usbmemory_progressBar, View.GONE);
+        remoteView.setViewVisibility(R.id.lblSixth, View.GONE);
+        remoteView.setViewVisibility(R.id.txtSixth, View.GONE);
+        remoteView.setViewVisibility(R.id.lblSeventh, View.GONE);
+        remoteView.setViewVisibility(R.id.txtSeventh, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_percent, View.GONE);
+        remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.GONE);
+        remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
         remoteView.setViewVisibility(R.id.imgRestore, View.VISIBLE);
         remoteView.setViewVisibility(R.id.txtConfigClick, View.VISIBLE);
 
@@ -438,22 +435,22 @@ public class ConfigPreferencesActivity extends Activity
         switch (colorScheme)
         {
             case ConfigPreferencesActivity.COLOR_BLUE:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_blue);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.relative_background_blue);
                 break;
             case ConfigPreferencesActivity.COLOR_RED:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_red);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_red);
                 break;
             case ConfigPreferencesActivity.COLOR_ORANGE:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_orange);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_orange);
                 break;
             case ConfigPreferencesActivity.COLOR_LILA:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_purple);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_purple);
                 break;
             case ConfigPreferencesActivity.COLOR_GREEN:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_green);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_green);
                 break;
             case ConfigPreferencesActivity.COLOR_BLACK:
-                remoteView.setInt(R.id.relaGeneral, SET_BACKGROUND_RES, R.drawable.rela_background_black);
+                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_black);
                 break;
         }
 
