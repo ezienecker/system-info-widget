@@ -8,8 +8,8 @@ android {
         applicationId "com.manuzid.systeminfowidget"
         minSdkVersion 13
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 300
+        versionName "3.0.0"
     }
     buildTypes {
         release {

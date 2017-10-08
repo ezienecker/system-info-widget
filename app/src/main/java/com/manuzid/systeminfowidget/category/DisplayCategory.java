@@ -43,8 +43,6 @@ public class DisplayCategory extends AbstractCategory {
         activeColoredButtons = Collections.unmodifiableMap(mActiveColoredButtons);
     }
 
-    private Informationen informationen;
-
     @Override
     public int getRequestCode() {
         return 102;
@@ -73,7 +71,7 @@ public class DisplayCategory extends AbstractCategory {
     @Override
     Informationen getInformationen(Context context) {
         Display display = ((WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        informationen = new Informationen.Builder()
+        return new Informationen.Builder()
                 .first(context.getString(R.string.display_display_size), getDeviceSize(context, display))
                 .second(context.getString(R.string.display_height), String.valueOf(getDisplayHeight(display)))
                 .third(context.getString(R.string.display_width), String.valueOf(getDisplayWidth(display)))
@@ -83,8 +81,6 @@ public class DisplayCategory extends AbstractCategory {
                 .seventh(context.getString(R.string.display_orientation),
                         getScreenOrientation(context.getResources().getConfiguration().orientation, context))
                 .build();
-
-        return informationen;
     }
 
     @SuppressLint("FloatMath")

@@ -1,8 +1,5 @@
 package com.manuzid.systeminfowidget.preferences;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
@@ -19,14 +16,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.RemoteViews;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.SysInfoMainProvider;
 import com.manuzid.systeminfowidget.util.AppRater;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Emanuel Zienecker on 05.06.13. Copyright (c) 2013 Emanuel
@@ -129,11 +129,6 @@ public class ConfigPreferencesActivity extends Activity
                 {
                     showCustomDialog(1);
                 }
-                else if (String.format(getResources().getString(R.string.config_entrys_start_up)).equals(
-                        preferenceObject.title))
-                {
-
-                }
                 else if (String.format(getResources().getString(R.string.config_general_rate)).equals(
                         preferenceObject.title))
                 {
@@ -143,7 +138,7 @@ public class ConfigPreferencesActivity extends Activity
                 else if (String.format(getResources().getString(R.string.config_general_friend)).equals(
                         preferenceObject.title))
                 {
-                    StringBuffer buffer = new StringBuffer();
+                    StringBuilder buffer = new StringBuilder();
                     buffer.append("mailto:");
                     buffer.append("");
                     buffer.append("?subject=");
