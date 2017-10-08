@@ -4,7 +4,7 @@
     <string name="image_content_discription">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">Hersteller</string>
-    <string name="general_modell">Modell</string>
+    <string name="general_model">Modell</string>
     <string name="general_product">Produkt</string>
     <string name="general_brand">Brand</string>
     <string name="general_serialnumber">Seriennummer</string>
@@ -12,7 +12,7 @@
     <string name="general_timezone">Zeitzone</string>
     <string name="general_unknow">Unbekannt</string>
 <!-- More-View -->
-    <string name="more_android_id">Android ID</string>
+    <string name="more_os_sdk_codename">Android OS</string>
     <string name="more_os_sdk_version">OS/SDK Version</string>
     <string name="more_board">Board</string>
     <string name="more_bootloader">Bootloader</string>
@@ -44,7 +44,7 @@
     <string name="camera_brand">Vorschaugröße</string>
     <string name="camera_serialnumber">Unterst. Bildgröße(n)</string>
     <string name="camera_supportet_formats">Unterst. Bildformate</string>
-    <string name="camera_timezone">Front Kamera</string>
+    <string name="camera_front_camera">Front Kamera</string>
     <string name="camera_facecam_available">Verfügbar</string>
     <string name="camera_facecam_not_available">Nicht Verfügbar</string>
     <string name="camera_picture_format_jpeg">JPEG</string>
@@ -62,26 +62,26 @@
     <string name="memory_used">Benutzt:</string>
     <string name="memory_not_available">Nicht Verfügbar</string>
 <!-- Akku-View -->
-    <string name="akku_capacitance">Kapazität</string>
-    <string name="akku_state">Status</string>
-    <string name="akku_state_charging">Wird geladen</string>
-    <string name="akku_state_dis_charging">Entladen</string>
-    <string name="akku_state_full">Geladen</string>
-    <string name="akku_state_not_charging">Lädt nicht</string>
+    <string name="battery_capacitance">Kapazität</string>
+    <string name="battery_state">Status</string>
+    <string name="battery_state_charging">Wird geladen</string>
+    <string name="battery_state_dis_charging">Entladen</string>
+    <string name="battery_state_full">Geladen</string>
+    <string name="battery_state_not_charging">Lädt nicht</string>
     <string name="akku_technology">Bauart</string>
     <string name="akku_voltage">Spannung</string>
     <string name="akku_temp">Temperatur</string>
     <string name="akku_akku_health">Akku Zustand</string>
-    <string name="akku_akku_health_cold">Kalt</string>
-    <string name="akku_akku_health_dead">Tot</string>
-    <string name="akku_akku_health_good">Gut</string>
-    <string name="akku_akku_health_overheat">Übertemperatur</string>
-    <string name="akku_akku_health_over_voltage">Überspannung</string>
-    <string name="akku_akku_health_unspecified_failure">nicht spezifizierter Defekt</string>
+    <string name="battery_health_cold">Kalt</string>
+    <string name="battery_health_dead">Tot</string>
+    <string name="battery_health_good">Gut</string>
+    <string name="battery_health_overheat">Übertemperatur</string>
+    <string name="battery_health_over_voltage">Überspannung</string>
+    <string name="battery_health_unspecified_failure">nicht spezifizierter Defekt</string>
     <string name="akku_connected">Verbunden</string>
-    <string name="akku_connected_usb">USB</string>
-    <string name="akku_connected_akku">Akku</string>
-    <string name="akku_connected_ac">AC</string>
+    <string name="battery_connected_usb">USB</string>
+    <string name="battery_connected_akku">Akku</string>
+    <string name="battery_connected_ac">AC</string>
     <string name="akku_technology_summ">Li-ion</string>
 <!-- Config-View -->
     <string name="config_general_app_config">APP-EINSTELLUNGEN</string>

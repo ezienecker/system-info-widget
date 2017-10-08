@@ -1,11 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.manuzid.systeminfowidget"
-    android:versionCode="21"
-    android:versionName="2.1" >
-
-    <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="19" />
+    package="com.manuzid.systeminfowidget">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
@@ -20,22 +14,25 @@
         <receiver android:name="com.manuzid.systeminfowidget.SysInfoMainProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.DISPLAY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.GENRAL_WIDGET" />
+
+                <action android:name="com.manuzid.systeminfowidget.GENERAL_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.MORE_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.DISPLAY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.MEMORY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.AKKU_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.BATTERY_WIDGET" />
+
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
                 <action android:name="android.intent.action.BATTERY_OKAY" />
+
                 <action android:name="android.intent.action.POWER_CONNECTED" />
                 <action android:name="android.intent.action.POWER_DISCONNECTED" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/sysinfo_appwidget" />
+                android:resource="@xml/system_info_app_widget" />
         </receiver>
         <activity android:name=".preferences.ConfigPreferencesActivity"
             android:label="@string/app_name"
