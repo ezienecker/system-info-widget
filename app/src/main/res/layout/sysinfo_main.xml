@@ -307,7 +307,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@drawable/sys_info_default_img"
-            android:contentDescription="@string/image_content_discription" />
+            android:contentDescription="@string/image_content_description" />
 
         <TextView
             android:id="@+id/txtConfigClick"
