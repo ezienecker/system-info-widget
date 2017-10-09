@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SystemInfoWidget</string>
     <string name="menu_settings">Settings</string>
-    <string name="image_content_discription">imagedisc</string>
+    <string name="image_content_description">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">Hersteller</string>
     <string name="general_model">Modell</string>
@@ -17,7 +17,7 @@
     <string name="more_board">Board</string>
     <string name="more_bootloader">Bootloader</string>
     <string name="more_cpu_i">CPU-ABI I</string>
-    <string name="more_cpu_ii">CPU-ABI II.</string>
+    <string name="more_used_ram">RAM (In Verwendung)</string>
     <string name="more_hardware">Hardware</string>
 <!-- Display-View -->
     <string name="display_height">Höhe</string>
