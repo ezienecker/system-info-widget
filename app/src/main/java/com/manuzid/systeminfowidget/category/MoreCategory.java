@@ -111,7 +111,7 @@ public class MoreCategory extends AbstractCategory {
         RandomAccessFile reader = null;
         String load;
         DecimalFormat twoDecimalForm = new DecimalFormat("#.##");
-        double totRam = 0;
+        double totRam;
         String lastValue = "";
         try {
             reader = new RandomAccessFile("/proc/meminfo", "r");
