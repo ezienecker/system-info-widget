@@ -2,13 +2,19 @@ package com.manuzid.systeminfowidget.category;
 
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Zeigt erweiterte Allgemeine Informationen über das Gerät an.
@@ -17,6 +23,7 @@ import java.util.Map;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class MoreCategory extends AbstractCategory {
+    private static final String TAG = MoreCategory.class.getSimpleName();
     public static final String MORE = INTENT_FILTER_PREFIX + "MORE_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
@@ -67,12 +74,86 @@ public class MoreCategory extends AbstractCategory {
                     .second(context.getString(R.string.more_os_sdk_version), Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT)
                     .third(context.getString(R.string.more_board), Build.BOARD)
                     .fourth(context.getString(R.string.more_bootloader), Build.BOOTLOADER)
-                    .fifth(context.getString(R.string.more_cpu_i), System.getProperty("os.arch"))
-                    .sixth(context.getString(R.string.more_cpu_ii), Build.CPU_ABI2)
+                    .fifth(context.getString(R.string.more_cpu_i), getCpuAbi())
+                    .sixth(context.getString(R.string.more_used_ram), getTotalRam())
                     .seventh(context.getString(R.string.more_hardware), Build.HARDWARE)
                     .build();
         }
 
         return informationen;
+    }
+
+    /**
+     * The name of the instruction set (CPU type + ABI convention) of native code.
+     *
+     * @return CPU-ABI as {@link String}
+     * @see <a href="https://developer.android.com/reference/android/os/Build.html">android.os.Build#CPU_ABI</a>
+     */
+    private String getCpuAbi() {
+        try {
+            if (Build.VERSION.SDK_INT < 21) {
+                //noinspection deprecation
+                return Build.CPU_ABI;
+            } else {
+                return Build.SUPPORTED_ABIS[0];
+            }
+        } catch (Exception e) {
+            return System.getProperty("os.arch");
+        }
+    }
+
+    /**
+     * Liefert den momentan verwendeten RAM.
+     *
+     * @return momentan verwendeten RAM. {@link String}
+     */
+    private String getTotalRam() {
+        RandomAccessFile reader = null;
+        String load;
+        DecimalFormat twoDecimalForm = new DecimalFormat("#.##");
+        double totRam = 0;
+        String lastValue = "";
+        try {
+            reader = new RandomAccessFile("/proc/meminfo", "r");
+            load = reader.readLine();
+
+            // Get the Number value from the string
+            Pattern p = Pattern.compile("(\\d+)");
+            Matcher m = p.matcher(load);
+            String value = "";
+            while (m.find()) {
+                value = m.group(1);
+            }
+            reader.close();
+
+            totRam = Double.parseDouble(value);
+
+            double mb = totRam / 1024.0;
+            double gb = totRam / 1048576.0;
+            double tb = totRam / 1073741824.0;
+
+            if (tb > 1) {
+                lastValue = twoDecimalForm.format(tb).concat(" TB");
+            } else if (gb > 1) {
+                lastValue = twoDecimalForm.format(gb).concat(" GB");
+            } else if (mb > 1) {
+                lastValue = twoDecimalForm.format(mb).concat(" MB");
+            } else {
+                lastValue = twoDecimalForm.format(totRam).concat(" KB");
+            }
+
+
+        } catch (IOException ex) {
+            Log.e(TAG, ex.getLocalizedMessage());
+        } finally {
+            try {
+                if (reader != null)
+                    reader.close();
+            } catch (IOException e) {
+                Log.e(TAG, e.getLocalizedMessage());
+            }
+        }
+
+        return lastValue;
     }
 }
