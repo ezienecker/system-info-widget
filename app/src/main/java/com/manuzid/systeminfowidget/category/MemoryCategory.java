@@ -170,9 +170,8 @@ public class MemoryCategory extends AbstractCategory {
         return getBusyMemory(getUsbStatFsObject());
     }
 
-    // TODO: Deprecated Methoden behandeln
     private String getTotalMemory(StatFs statFs) {
-        long total = ((long) statFs.getBlockCount() * (long) statFs.getBlockSize()) / 1048576;
+        long total = getTotalMemoryCount(statFs);
         if (total >= 1000) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
             double totalFree = total / 1024.0;
@@ -182,9 +181,9 @@ public class MemoryCategory extends AbstractCategory {
         }
     }
 
-    // TODO: Deprecated Methoden behandeln
     private String getFreeMemory(StatFs statFs) {
-        long free = (statFs.getAvailableBlocks() * (long) statFs.getBlockSize()) / 1048576;
+        long free = getFreeMemoryCount(statFs);
+
         if (free >= 1000) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
             double totalFree = free / 1024.0;
@@ -194,11 +193,10 @@ public class MemoryCategory extends AbstractCategory {
         }
     }
 
-    // TODO: Deprecated Methoden behandeln
     private String getBusyMemory(StatFs statFs) {
-        long Total = ((long) statFs.getBlockCount() * (long) statFs.getBlockSize()) / 1048576;
-        long Free = (statFs.getAvailableBlocks() * (long) statFs.getBlockSize()) / 1048576;
-        long busy = Total - Free;
+        long total = getTotalMemoryCount(statFs);
+        long free = getFreeMemoryCount(statFs);
+        long busy = total - free;
         if (busy >= 1000) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
             double totalFree = busy / 1024.0;
@@ -208,13 +206,30 @@ public class MemoryCategory extends AbstractCategory {
         }
     }
 
-    // TODO: Deprecated Methoden behandeln
     private int calculateMemoryInPercentForUi(StatFs statFs) {
-        double total = ((double) statFs.getBlockCount() * (double) statFs.getBlockSize()) / 1048576;
-        double free = (statFs.getAvailableBlocks() * (double) statFs.getBlockSize()) / 1048576;
+        long total = getTotalMemoryCount(statFs);
+        long free = getFreeMemoryCount(statFs);
         double busy = total - free;
         double a = (busy / total) * 100;
         return (int) a;
+    }
+
+    private long getTotalMemoryCount(StatFs statFs) {
+        if (Build.VERSION.SDK_INT < 18) {
+            //noinspection deprecation
+            return ((long) statFs.getBlockCount() * (long) statFs.getBlockSize()) / 1048576;
+        } else {
+            return (statFs.getBlockCountLong() * statFs.getBlockSizeLong()) / 1048576;
+        }
+    }
+
+    private long getFreeMemoryCount(StatFs statFs) {
+        if (Build.VERSION.SDK_INT < 18) {
+            //noinspection deprecation
+            return ((long) statFs.getAvailableBlocks() * (long) statFs.getBlockSize()) / 1048576;
+        } else {
+            return (statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong()) / 1048576;
+        }
     }
 
     /**
