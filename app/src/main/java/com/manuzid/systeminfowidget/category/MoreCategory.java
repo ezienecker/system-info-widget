@@ -42,11 +42,6 @@ public class MoreCategory extends AbstractCategory {
     private Informationen informationen;
 
     @Override
-    public int getButtonId() {
-        return R.id.btnSecond;
-    }
-
-    @Override
     public int getRequestCode() {
         return 101;
     }

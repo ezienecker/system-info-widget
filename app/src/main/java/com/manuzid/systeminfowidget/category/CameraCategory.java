@@ -54,11 +54,6 @@ public class CameraCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        return R.id.btnFourth;
-    }
-
-    @Override
     public int getRequestCode() {
         return 103;
     }

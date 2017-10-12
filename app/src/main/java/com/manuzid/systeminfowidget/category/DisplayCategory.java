@@ -54,11 +54,6 @@ public class DisplayCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        return R.id.btnThird;
-    }
-
-    @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.display_btn;
     }

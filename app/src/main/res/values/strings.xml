@@ -113,16 +113,29 @@
     <string name="config_general_send_feedback_mail_title">Feedback/Report</string>
     <string name="config_general_moreapps">Android Market</string>
     <string name="config_general_moreapps_summary">More Apps</string>
-    <string name="config_entrys_rights_title">LEGAL NOTICES</string>
-    <string name="config_entrys_rights_legal_title">Bequest</string>
-    <string name="config_entrys_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
+    <string name="config_entries_rights_title">LEGAL NOTICES</string>
+    <string name="config_entries_rights_legal_title">Bequest</string>
+    <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
     <string name="config_send_mail_title">send e-mail</string>
-    <string name="config_config_click">\"Click\" for Seetings-Menu</string>
+    <string name="config_config_click">\"Click\" for Settings-Menu</string>
     <string name="config_save_changes">Update Widget</string>
+    <string name="config_category_title">Category</string>
+    <string name="config_category_summary">Category Choice</string>
+    <string name="config_category_choice_general">General informationen</string>
+    <string name="config_category_choice_more">Advanced informationen</string>
+    <string name="config_category_choice_display">Display</string>
+    <string name="config_category_choice_camera">Camera</string>
+    <string name="config_category_choice_memory">Storage</string>
+    <string name="config_category_choice_battery">Battery</string>
+    <string name="config_category_choice_network">Network</string>
+    <string name="config_category_choice_too_much_items_selected">Select a maximum of six entries</string>
+    <string name="config_category_choice_too_little_items_selected">Select at least six entries</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
 <!-- Feedback-View -->
 	<string name="feedback_app_version">SystemInfo Version:</string>
 	<string name="feedback_os_version">Android Version:</string>
-	<string name="feedback_device_name">Devicename:</string>
+	<string name="feedback_device_name">Device name:</string>
 	<string name="feedback_problem_disc">Problem description:</string>
 	<string name="feedback_mail_subject">Contact Developer</string>
 <!-- Support-View -->

@@ -59,11 +59,6 @@ public class MemoryCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        return R.id.btnFifth;
-    }
-
-    @Override
     public Map<String, Integer> getActiveColoredButtonsMap() {
         return activeColoredButtons;
     }

@@ -48,11 +48,6 @@ public class BatteryCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        return R.id.btnSixth;
-    }
-
-    @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.battery_btn;
     }
