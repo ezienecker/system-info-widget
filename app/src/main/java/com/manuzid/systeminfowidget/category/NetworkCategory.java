@@ -1,6 +1,5 @@
 package com.manuzid.systeminfowidget.category;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.manuzid.systeminfowidget.R;
@@ -9,16 +8,13 @@ import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
- * Zeigt die Allgemeinen Informationen über das Gerät an.
- * <p>
- * Created by Emanuel Zienecker on 19.09.17.
+ * Created by Emanuel Zienecker on 09.10.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
-public class GeneralCategory extends AbstractCategory {
-    public static final String GENERAL = INTENT_FILTER_PREFIX + "GENERAL_WIDGET";
+public class NetworkCategory extends AbstractCategory {
+    public static final String NETWORK = INTENT_FILTER_PREFIX + "NETWORK_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -33,21 +29,19 @@ public class GeneralCategory extends AbstractCategory {
         activeColoredButtons = Collections.unmodifiableMap(mActiveColoredButtons);
     }
 
-    private Informationen informationen;
-
     @Override
     public int getRequestCode() {
-        return 100;
+        return 107;
     }
 
     @Override
     public String getRequestAction() {
-        return GENERAL;
+        return NETWORK;
     }
 
     @Override
     public int getDefaultButtonDrawable() {
-        return R.drawable.general_btn;
+        return R.drawable.network_btn;
     }
 
     @Override
@@ -55,21 +49,16 @@ public class GeneralCategory extends AbstractCategory {
         return activeColoredButtons;
     }
 
-    @SuppressLint("HardwareIds")
     @Override
     Informationen getInformationen(Context context) {
-        if (informationen == null) {
-            informationen = new Informationen.Builder()
-                    .first(context.getString(R.string.general_manufacturer), android.os.Build.MANUFACTURER)
-                    .second(context.getString(R.string.general_model), android.os.Build.MODEL)
-                    .third(context.getString(R.string.general_product), android.os.Build.PRODUCT)
-                    .fourth(context.getString(R.string.general_brand), android.os.Build.BRAND)
-                    .fifth(context.getString(R.string.general_serialnumber), android.os.Build.SERIAL)
-                    .sixth(context.getString(R.string.general_device_id), android.os.Build.ID)
-                    .seventh(context.getString(R.string.general_timezone), TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT))
-                    .build();
-        }
-
-        return informationen;
+        return new Informationen.Builder()
+                .first(context.getString(R.string.general_manufacturer), "Network")
+                .second(context.getString(R.string.general_model), "Network")
+                .third(context.getString(R.string.general_product), "Network")
+                .fourth(context.getString(R.string.general_brand), "Network")
+                .fifth(context.getString(R.string.general_serialnumber), "Network")
+                .sixth(context.getString(R.string.general_device_id), "Network")
+                .seventh(context.getString(R.string.general_timezone), "Network")
+                .build();
     }
 }

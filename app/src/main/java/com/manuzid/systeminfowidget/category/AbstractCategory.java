@@ -24,6 +24,8 @@ public abstract class AbstractCategory {
     static final String INTENT_FILTER_PREFIX = "com.manuzid.systeminfowidget.";
     public static final String NONE = INTENT_FILTER_PREFIX + "NONE";
 
+    private int buttonId;
+
     /**
      * Liefert den Request-Code der von der SubClass gesetzt werden muss.
      * Für den PendingIntent wird eine entsprechende Code gebraucht.
@@ -45,7 +47,17 @@ public abstract class AbstractCategory {
      *
      * @return Id des Buttons
      */
-    public abstract int getButtonId();
+    public int getButtonId() {
+        return buttonId;
+    }
+
+    /**
+     * Setzt die Id des Button der zur Kategorie gehört.
+     *
+     */
+    public void setButtonId(int buttonId) {
+        this.buttonId = buttonId;
+    }
 
     /**
      * Liefert die Standard-Grafik der Kategorie.

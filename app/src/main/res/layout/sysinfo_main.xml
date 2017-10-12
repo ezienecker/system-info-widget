@@ -24,35 +24,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:background="@drawable/more_btn" />
+            android:background="@drawable/general_btn" />
 
         <Button
             android:id="@+id/btnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:background="@drawable/display_btn" />
+            android:background="@drawable/general_btn" />
 
         <Button
             android:id="@+id/btnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:background="@drawable/camera_btn" />
+            android:background="@drawable/general_btn" />
 
         <Button
             android:id="@+id/btnFifth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:background="@drawable/memory_btn" />
+            android:background="@drawable/general_btn" />
 
         <Button
             android:id="@+id/btnSixth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:background="@drawable/battery_btn" />
+            android:background="@drawable/general_btn" />
     </LinearLayout>
 
     <RelativeLayout

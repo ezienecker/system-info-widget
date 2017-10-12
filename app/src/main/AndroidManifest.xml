@@ -21,6 +21,7 @@
                 <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.MEMORY_WIDGET" />
                 <action android:name="com.manuzid.systeminfowidget.BATTERY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.NETWORK_WIDGET" />
 
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
