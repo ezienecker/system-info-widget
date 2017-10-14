@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -36,7 +35,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
-import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
 import static com.manuzid.systeminfowidget.category.AbstractCategory.NONE;
 import static com.manuzid.systeminfowidget.category.BatteryCategory.BATTERY;
 import static com.manuzid.systeminfowidget.category.CameraCategory.CAMERA;
@@ -111,24 +109,20 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
         super.onEnabled(context);
         initObserverMap(context);
-        Log.e(LOG_TAG, "onEnabled");
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
-        Log.e(LOG_TAG, "onDeleted");
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
-        Log.e(LOG_TAG, "onDisabled");
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Log.e(LOG_TAG, "onUpdated");
         for (int i = appWidgetIds.length; --i >= 0; ) {
             int appWidgetId = appWidgetIds[i];
 
@@ -153,7 +147,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e(LOG_TAG, "onReceive");
         final String colorScheme = getStringColorSchemeFromConfiguration(context);
         final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
@@ -195,6 +188,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     /**
      * Wurde eine USB-Verbindung hergestellt/aufgehoben und ist die Battery-View aktiv
+     *
      * @param intentAction Intent-Action die geprüft wird
      * @return true wenn Condition eintritt andernfalls false
      */
@@ -428,15 +422,15 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));
 
         // 1.1 Kategorien in eine einheitliche Reihenfolge bringen
-        List<String> listParagraph = new ArrayList<>(categorySelection);
-        Collections.sort(listParagraph);
+        List<String> listCategorySelection = new ArrayList<>(categorySelection);
+        Collections.sort(listCategorySelection);
 
         // 2. Einträge aus der Observer-Map löschen
         clearObserver();
 
         // 3. Diese registrieren
         int i = 0;
-        for (String category : listParagraph) {
+        for (String category : listCategorySelection) {
             i++;
             AbstractCategory lCategory = availableCategories.get(category);
             lCategory.setButtonId(availableButtons.get(i));
