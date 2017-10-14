@@ -25,10 +25,10 @@ import com.manuzid.systeminfowidget.category.MoreCategory;
 import com.manuzid.systeminfowidget.category.NetworkCategory;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
+import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
 import static com.manuzid.systeminfowidget.category.AbstractCategory.NONE;
 import static com.manuzid.systeminfowidget.category.BatteryCategory.BATTERY;
 import static com.manuzid.systeminfowidget.category.CameraCategory.CAMERA;
@@ -52,14 +53,9 @@ import static com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity
  */
 public class SysInfoMainProvider extends AppWidgetProvider {
     /**
-     * TAG fürs Logging
-     */
-    private static final String TAG = SysInfoMainProvider.class.getSimpleName();
-
-    /**
      * Liste der Beobachter
      */
-    private static Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
+    private static final Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
 
     /**
      * Alle zur Auswahl Verfügbaren Kategorien
@@ -115,20 +111,24 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
         super.onEnabled(context);
         initObserverMap(context);
+        Log.e(LOG_TAG, "onEnabled");
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
+        Log.e(LOG_TAG, "onDeleted");
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
+        Log.e(LOG_TAG, "onDisabled");
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Log.e(LOG_TAG, "onUpdated");
         for (int i = appWidgetIds.length; --i >= 0; ) {
             int appWidgetId = appWidgetIds[i];
 
@@ -153,6 +153,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.e(LOG_TAG, "onReceive");
         final String colorScheme = getStringColorSchemeFromConfiguration(context);
         final int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 
@@ -426,19 +427,21 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));
 
+        // 1.1 Kategorien in eine einheitliche Reihenfolge bringen
+        List<String> listParagraph = new ArrayList<>(categorySelection);
+        Collections.sort(listParagraph);
+
         // 2. Einträge aus der Observer-Map löschen
         clearObserver();
 
         // 3. Diese registrieren
         int i = 0;
-        for (String category : categorySelection) {
+        for (String category : listParagraph) {
             i++;
             AbstractCategory lCategory = availableCategories.get(category);
             lCategory.setButtonId(availableButtons.get(i));
             addObserver(lCategory);
         }
-
-
     }
 
     /**

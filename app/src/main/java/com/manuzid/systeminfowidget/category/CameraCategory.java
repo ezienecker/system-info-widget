@@ -21,7 +21,7 @@ import java.util.Map;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class CameraCategory extends AbstractCategory {
-    public static final String CAMERA = INTENT_FILTER_PREFIX + "CAMERA_WIDGET";
+    public static final String CAMERA = INTENT_FILTER_PREFIX + "4_CAMERA_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

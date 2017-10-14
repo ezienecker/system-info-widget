@@ -13,7 +13,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -32,10 +31,8 @@ import com.manuzid.systeminfowidget.util.AppRater;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
@@ -566,7 +563,7 @@ public class ConfigPreferencesActivity extends Activity {
                 selectedCategoriesFromSharedPreferences.contains(CAMERA),
                 selectedCategoriesFromSharedPreferences.contains(MEMORY),
                 selectedCategoriesFromSharedPreferences.contains(BATTERY),
-        selectedCategoriesFromSharedPreferences.contains(NETWORK)};
+                selectedCategoriesFromSharedPreferences.contains(NETWORK)};
     }
 
 }

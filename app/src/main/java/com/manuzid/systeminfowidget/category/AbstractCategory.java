@@ -53,7 +53,6 @@ public abstract class AbstractCategory {
 
     /**
      * Setzt die Id des Button der zur Kategorie gehört.
-     *
      */
     public void setButtonId(int buttonId) {
         this.buttonId = buttonId;
@@ -113,7 +112,7 @@ public abstract class AbstractCategory {
      * Kümmert sich darum dass die entsprechende View mit den korrekten Informationen befüllt wird.
      *
      * @param remoteView - Application context
-     * @param context  - Application resources
+     * @param context    - Application resources
      * @return {@link RemoteViews}
      */
     public RemoteViews prepareRemoteView(RemoteViews remoteView, Context context) {
@@ -166,5 +165,4 @@ public abstract class AbstractCategory {
     public void restoreButtonBackgroundResource(RemoteViews remoteViews) {
         remoteViews.setInt(getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME, getDefaultButtonDrawable());
     }
-
 }
