@@ -381,6 +381,7 @@ public class ConfigPreferencesActivity extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 final SparseBooleanArray checkedItemPositions = ((AlertDialog) dialog).getListView().getCheckedItemPositions();
 
+                                // TODO: So richtig funzt das noch nicht,
                                 int count = 0;
                                 for (int i = 0; i < checkedItemPositions.size(); i++) {
                                     final boolean checkedState = checkedItemPositions.get(i);
@@ -521,8 +522,6 @@ public class ConfigPreferencesActivity extends Activity {
     private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
         if (SysInfoMainProvider.availableCategories == null)
             return;
-
-        int buttonCounter = 0;
 
         final Set<String> selectedCategoriesFromSharedPreferences = getSelectedCategoriesFromSharedPreferences(context);
 
