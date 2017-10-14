@@ -20,12 +20,12 @@ public class NetworkCategory extends AbstractCategory {
 
     static {
         HashMap<String, Integer> mActiveColoredButtons = new HashMap<>();
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLUE, R.drawable.general_btn_pressed_blue);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_RED, R.drawable.general_btn_pressed_red);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_LILA, R.drawable.general_btn_pressed_purple);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_ORANGE, R.drawable.general_btn_pressed_orange);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_GREEN, R.drawable.general_btn_pressed_green);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLACK, R.drawable.general_btn_pressed_black);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLUE, R.drawable.network_btn_pressed_blue);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_RED, R.drawable.network_btn_pressed_red);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_LILA, R.drawable.network_btn_pressed_purple);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_ORANGE, R.drawable.network_btn_pressed_orange);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_GREEN, R.drawable.network_btn_pressed_green);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLACK, R.drawable.network_btn_pressed_black);
         activeColoredButtons = Collections.unmodifiableMap(mActiveColoredButtons);
     }
 

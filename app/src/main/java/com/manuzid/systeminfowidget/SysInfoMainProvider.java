@@ -248,7 +248,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
         if (category.equals(lCategory.getRequestAction())) {
             // 1 Keine Kategorie wird angezeigt, die Standard-View wird angezeigt.
-            category = NONE;
+            resetCategory();
 
             // 2 Button der aktuellen Kategorie zurücksetzen.
             restoreAllButtonBackgroundResource(remoteViews);
@@ -429,7 +429,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         // 2. Einträge aus der Observer-Map löschen
         clearObserver();
 
-        // 2. Diese registrieren
+        // 3. Diese registrieren
         int i = 0;
         for (String category : categorySelection) {
             i++;
@@ -437,6 +437,8 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             lCategory.setButtonId(availableButtons.get(i));
             addObserver(lCategory);
         }
+
+
     }
 
     /**

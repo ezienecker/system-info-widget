@@ -25,7 +25,9 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/app/src/main/java/com/manuzid/systeminfowidget" vcs="" />
+    <mapping directory="$PROJECT_DIR$/sysinfowidget" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sysinfowidget" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sysinfowidget" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sysinfowidget" vcs="Git" />
