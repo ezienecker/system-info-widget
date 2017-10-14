@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class MemoryCategory extends AbstractCategory {
-    public static final String MEMORY = INTENT_FILTER_PREFIX + "MEMORY_WIDGET";
+    public static final String MEMORY = INTENT_FILTER_PREFIX + "5_MEMORY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

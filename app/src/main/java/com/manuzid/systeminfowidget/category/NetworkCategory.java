@@ -14,7 +14,7 @@ import java.util.Map;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class NetworkCategory extends AbstractCategory {
-    public static final String NETWORK = INTENT_FILTER_PREFIX + "NETWORK_WIDGET";
+    public static final String NETWORK = INTENT_FILTER_PREFIX + "7_NETWORK_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 

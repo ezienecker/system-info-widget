@@ -18,7 +18,7 @@ import java.util.TimeZone;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class GeneralCategory extends AbstractCategory {
-    public static final String GENERAL = INTENT_FILTER_PREFIX + "GENERAL_WIDGET";
+    public static final String GENERAL = INTENT_FILTER_PREFIX + "1_GENERAL_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
