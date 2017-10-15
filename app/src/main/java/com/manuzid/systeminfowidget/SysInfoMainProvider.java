@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Network;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.SparseIntArray;
@@ -176,6 +177,11 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             resetCategory();
             final AbstractCategory mFakeCategory = observerMap.get(DISPLAY);
             updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
+        } else if (hasNetworkChange(intentAction)) {
+            // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
+            resetCategory();
+            final AbstractCategory mFakeCategory = observerMap.get(NETWORK);
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
         }
     }
 
@@ -184,6 +190,12 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      */
     private void resetCategory() {
         category = NONE;
+    }
+
+    private boolean hasNetworkChange(String intentAction) {
+        return ("android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
+                "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
+                "android.net.wifi.STATE_CHANGE".equals(intentAction)) &&  category.equals(NETWORK);
     }
 
     /**
@@ -398,14 +410,14 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      *
      * @param beobachter - Der Beobachter, der der Liste hinzugefügt werden soll
      */
-    private void addObserver(AbstractCategory beobachter) {
+    private static void addObserver(AbstractCategory beobachter) {
         observerMap.put(beobachter.getRequestAction(), beobachter);
     }
 
     /**
      * Einträge aus dem Observer löschen.
      */
-    private void clearObserver() {
+    private static void clearObserver() {
         observerMap.clear();
     }
 
@@ -416,7 +428,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      *
      * @param context {@link Context}
      */
-    private void initObserverMap(Context context) {
+    public static void initObserverMap(Context context) {
         // 1. Welche Observer sind in den Preferences gesetzt?
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));

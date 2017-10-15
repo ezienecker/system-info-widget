@@ -31,7 +31,7 @@
     <string name="display_dps_tv">TV (213)</string>
     <string name="display_dps_default">prédéfini (160)</string>
     <string name="display_fps">taux de rafraîchissement (FPS)</string>
-    <string name="display_display_skala">Display échelle</string>
+    <string name="display_display_scale">Display échelle</string>
     <string name="display_display_size">Display gabarit</string>
     <string name="display_display_size_summary">inches</string>
     <string name="display_orientation">alignement naturel</string>
@@ -83,6 +83,25 @@
     <string name="battery_connected_akku">accu</string>
     <string name="battery_connected_ac">AC</string>
     <string name="akku_technology_summ">Li-ion</string>
+<!-- Network-View -->
+    <string name="network_mobile">Mobile Data</string>
+    <string name="network_mobile_state">Statut</string>
+    <string name="network_mobile_connection_type">Type de Connexion</string>
+    <string name="network_wlan">W-LAN</string>
+    <string name="network_wlan_name">Nom du réseau</string>
+    <string name="network_wlan_state">Statut</string>
+    <string name="network_wlan_signal_strength">Force du Signal</string>
+    <string name="network_wlan_connection_state_connected">Connecté</string>
+    <string name="network_wlan_connection_state_disconnected">déconnecté</string>
+    <string name="network_wlan_connection_type_gprs">GPRS</string>
+    <string name="network_wlan_connection_type_edge">EDGE</string>
+    <string name="network_wlan_connection_type_2g">2G</string>
+    <string name="network_wlan_connection_type_3g">3G</string>
+    <string name="network_wlan_connection_type_lte">LTE</string>
+    <string name="network_wlan_connection_strength_weak">Faible</string>
+    <string name="network_wlan_connection_strength_fair">Assez</string>
+    <string name="network_wlan_connection_strength_good">Bien</string>
+    <string name="network_wlan_connection_strength_excellent">Excellent</string>
 <!-- Config-View -->
     <string name="config_general_app_config">APP-PARAMÈTRES</string>
     <string name="config_temp_title">température</string>
