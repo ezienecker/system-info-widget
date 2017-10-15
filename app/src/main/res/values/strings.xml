@@ -31,7 +31,7 @@
     <string name="display_dps_tv">TV (213)</string>
     <string name="display_dps_default">Default (160)</string>
     <string name="display_fps">Refresh Rate (FPS)</string>
-    <string name="display_display_skala">Display Scaling</string>
+    <string name="display_display_scale">Display Scaling</string>
     <string name="display_display_size">Display Size</string>
     <string name="display_display_size_summary">inches</string>
     <string name="display_orientation">Natural Orientation</string>
@@ -61,7 +61,7 @@
     <string name="memory_usb_sd_memory">USB/SD-Storage</string>
     <string name="memory_used">Used:</string>
     <string name="memory_not_available">Not Available</string>
-<!-- Akku-View -->
+<!-- Battery-View -->
     <string name="battery_capacitance">Capacitance</string>
     <string name="battery_state">State</string>
     <string name="battery_state_charging">Charging</string>
@@ -83,6 +83,25 @@
     <string name="battery_connected_akku">Akku</string>
     <string name="battery_connected_ac">AC</string>
     <string name="akku_technology_summ">Li-ion</string>
+<!-- Network-View -->
+    <string name="network_mobile">Mobile Data</string>
+    <string name="network_mobile_state">State</string>
+    <string name="network_mobile_connection_type">Connection Type</string>
+    <string name="network_wlan">W-Lan</string>
+    <string name="network_wlan_name">Network name</string>
+    <string name="network_wlan_state">State</string>
+    <string name="network_wlan_signal_strength">Signal strength</string>
+    <string name="network_wlan_connection_state_connected">Connected</string>
+    <string name="network_wlan_connection_state_disconnected">Disconnected</string>
+    <string name="network_wlan_connection_type_gprs">GPRS</string>
+    <string name="network_wlan_connection_type_edge">EDGE</string>
+    <string name="network_wlan_connection_type_2g">2G</string>
+    <string name="network_wlan_connection_type_3g">3G</string>
+    <string name="network_wlan_connection_type_lte">LTE</string>
+    <string name="network_wlan_connection_strength_weak">Weak</string>
+    <string name="network_wlan_connection_strength_fair">Fair</string>
+    <string name="network_wlan_connection_strength_good">Good</string>
+    <string name="network_wlan_connection_strength_excellent">Excellent</string>
 <!-- Config-View -->
     <string name="config_general_app_config">APP-SEETINGS</string>
     <string name="config_temp_title">Temperature</string>

@@ -3,11 +3,14 @@ package com.manuzid.systeminfowidget.category;
 import android.content.Context;
 
 import com.manuzid.systeminfowidget.R;
+import com.manuzid.systeminfowidget.category.util.ConnectivityUtil;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.manuzid.systeminfowidget.category.util.ConnectivityUtil.getWifiName;
 
 /**
  * Created by Emanuel Zienecker on 09.10.17.
@@ -51,14 +54,34 @@ public class NetworkCategory extends AbstractCategory {
 
     @Override
     Informationen getInformationen(Context context) {
+        String mobileConnectionState = ConnectivityUtil.isConnectedMobile(context) ? context.getString(R.string.network_wlan_connection_state_connected) :
+                context.getString(R.string.network_wlan_connection_state_disconnected);
+
+        String mobileType = ConnectivityUtil.getNetworkClass(context);
+
+        String wifiName = ConnectivityUtil.getWifiName(context);
+
+        if (wifiName == null) {
+            wifiName = context.getString(R.string.general_unknow);
+        } else {
+            wifiName = wifiName.endsWith("\"") ? wifiName.substring(0, wifiName.length() - 1) : wifiName;
+            wifiName = wifiName.startsWith("\"") ? wifiName.substring(1, wifiName.length()) : wifiName;
+        }
+
+        String wifiConnectionState = ConnectivityUtil.isConnectedWifi(context) ? context.getString(R.string.network_wlan_connection_state_connected) :
+                context.getString(R.string.network_wlan_connection_state_disconnected);
+
+        String wifiConnectionStrength = ConnectivityUtil.getWifiSignalStrength(context);
+
         return new Informationen.Builder()
-                .first(context.getString(R.string.general_manufacturer), "Network")
-                .second(context.getString(R.string.general_model), "Network")
-                .third(context.getString(R.string.general_product), "Network")
-                .fourth(context.getString(R.string.general_brand), "Network")
-                .fifth(context.getString(R.string.general_serialnumber), "Network")
-                .sixth(context.getString(R.string.general_device_id), "Network")
-                .seventh(context.getString(R.string.general_timezone), "Network")
+                .first(context.getString(R.string.network_mobile), "")
+                .second(context.getString(R.string.network_mobile_state), mobileConnectionState)
+                .third(context.getString(R.string.network_mobile_connection_type), mobileType)
+                .fourth(context.getString(R.string.network_wlan), "")
+                .fifth(context.getString(R.string.network_wlan_name), wifiName)
+                .sixth(context.getString(R.string.network_wlan_state), wifiConnectionState)
+                .seventh(context.getString(R.string.network_wlan_signal_strength), wifiConnectionStrength)
                 .build();
     }
+
 }

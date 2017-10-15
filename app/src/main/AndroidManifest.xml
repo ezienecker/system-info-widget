@@ -5,6 +5,8 @@
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:icon="@drawable/system_info_launcher_icon"
@@ -29,6 +31,10 @@
 
                 <action android:name="android.intent.action.POWER_CONNECTED" />
                 <action android:name="android.intent.action.POWER_DISCONNECTED" />
+
+                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.wifi.RSSI_CHANGED" />
             </intent-filter>
 
             <meta-data

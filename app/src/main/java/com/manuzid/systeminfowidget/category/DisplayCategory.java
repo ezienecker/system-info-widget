@@ -72,7 +72,7 @@ public class DisplayCategory extends AbstractCategory {
                 .third(context.getString(R.string.display_width), String.valueOf(getDisplayWidth(display)))
                 .fourth(context.getString(R.string.display_dps), getScreenDps(context.getResources().getDisplayMetrics(), context))
                 .fifth(context.getString(R.string.display_fps), String.valueOf(display.getRefreshRate()))
-                .sixth(context.getString(R.string.display_display_skala), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
+                .sixth(context.getString(R.string.display_display_scale), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
                 .seventh(context.getString(R.string.display_orientation),
                         getScreenOrientation(context.getResources().getConfiguration().orientation, context))
                 .build();

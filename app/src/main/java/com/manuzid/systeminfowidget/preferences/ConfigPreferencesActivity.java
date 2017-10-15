@@ -513,6 +513,8 @@ public class ConfigPreferencesActivity extends Activity {
 
         registerOnClickPendingIntentForCategories(context, remoteView, mAppWidgetId);
 
+        SysInfoMainProvider.initObserverMap(context);
+
         SysInfoMainProvider.updateAppWidget(appWidgetManager, mAppWidgetId, remoteView);
     }
 
