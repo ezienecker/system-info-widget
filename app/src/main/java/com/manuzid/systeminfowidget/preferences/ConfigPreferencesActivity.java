@@ -460,9 +460,7 @@ public class ConfigPreferencesActivity extends Activity {
         final Context context = ConfigPreferencesActivity.this;
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
-        // Hier die UI setzen
-
-        RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
+        final RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
 
         remoteView.setViewVisibility(R.id.lblFirstInfo, View.GONE);
         remoteView.setViewVisibility(R.id.txtFirstInfo, View.GONE);
@@ -513,9 +511,7 @@ public class ConfigPreferencesActivity extends Activity {
 
         registerOnClickPendingIntentForCategories(context, remoteView, mAppWidgetId);
 
-        SysInfoMainProvider.initObserverMap(context);
-
-        SysInfoMainProvider.updateAppWidget(appWidgetManager, mAppWidgetId, remoteView);
+        SysInfoMainProvider.updateAppWidget(appWidgetManager, mAppWidgetId, remoteView, context);
     }
 
     private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {

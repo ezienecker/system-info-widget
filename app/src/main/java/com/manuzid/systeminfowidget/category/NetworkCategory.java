@@ -10,9 +10,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.manuzid.systeminfowidget.category.util.ConnectivityUtil.getWifiName;
-
 /**
+ * Zeigt Netzwerk-Informationen an
+ * <p>
  * Created by Emanuel Zienecker on 09.10.17.
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */

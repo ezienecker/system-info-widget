@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.Network;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.SparseIntArray;
@@ -195,7 +194,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     private boolean hasNetworkChange(String intentAction) {
         return ("android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
                 "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
-                "android.net.wifi.STATE_CHANGE".equals(intentAction)) &&  category.equals(NETWORK);
+                "android.net.wifi.STATE_CHANGE".equals(intentAction)) && category.equals(NETWORK);
     }
 
     /**
@@ -281,12 +280,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             // 6 Aktive Kategorie festlegen.
             category = lCategory.getRequestAction();
             return remoteViews;
-        }
-    }
-
-    private void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
-        for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
-            entry.getValue().restoreButtonBackgroundResource(remoteViews);
         }
     }
 
@@ -406,6 +399,17 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     /**
+     * Wiederherstellen der Button-Drawables.
+     *
+     * @param remoteViews {@link RemoteViews} auf der die Buttons gezeichnet sind.
+     */
+    private static void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
+        for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
+            entry.getValue().restoreButtonBackgroundResource(remoteViews);
+        }
+    }
+
+    /**
      * Fügt der Liste der Beobachter einen Observer hinzu
      *
      * @param beobachter - Der Beobachter, der der Liste hinzugefügt werden soll
@@ -428,7 +432,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      *
      * @param context {@link Context}
      */
-    public static void initObserverMap(Context context) {
+    private static void initObserverMap(Context context) {
         // 1. Welche Observer sind in den Preferences gesetzt?
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));
@@ -457,7 +461,11 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      * @param appWidgetId      id des entsprechenden Widgets welches aktualisiert werden soll
      * @param remoteView       {@link RemoteViews}
      */
-    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView) {
+    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView, Context context) {
+        initObserverMap(context);
+
+        restoreAllButtonBackgroundResource(remoteView);
+
         appWidgetManager.updateAppWidget(appWidgetId, remoteView);
     }
 

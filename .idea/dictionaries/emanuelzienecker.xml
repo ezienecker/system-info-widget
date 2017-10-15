@@ -57,6 +57,7 @@
       <w>gehört</w>
       <w>gerätegröße</w>
       <w>geräts</w>
+      <w>gezeichnet</w>
       <w>gprs</w>
       <w>grafik</w>
       <w>heraus</w>
@@ -86,6 +87,7 @@
       <w>kopfzeile</w>
       <w>korrekten</w>
       <w>ladegerät</w>
+      <w>lans</w>
       <w>lauftext</w>
       <w>manipuliert</w>
       <w>mbps</w>
@@ -96,6 +98,7 @@
       <w>navigieren</w>
       <w>navigiert</w>
       <w>nein</w>
+      <w>netzwerk</w>
       <w>netzwerknamen</w>
       <w>netzwerks</w>
       <w>platzieren</w>
@@ -114,15 +117,18 @@
       <w>schleife</w>
       <w>schwerer</w>
       <w>sichtbar</w>
+      <w>signalstärke</w>
       <w>sinnvoll</w>
       <w>sonst</w>
       <w>sowohl</w>
       <w>speicher</w>
       <w>speichermedium</w>
+      <w>staffelung</w>
       <w>standardansicht</w>
       <w>stehen</w>
       <w>stelle</w>
       <w>stellt</w>
+      <w>stärke</w>
       <w>systeminfowidget</w>
       <w>textfeld</w>
       <w>triggern</w>
