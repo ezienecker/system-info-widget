@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="emanuelzienecker">
     <words>
+      <w>abgestellt</w>
       <w>abhänig</w>
       <w>abmelden</w>
       <w>abzumelden</w>
@@ -11,11 +12,15 @@
       <w>alles</w>
       <w>allgemeine</w>
       <w>allgemeinen</w>
+      <w>angeschlossen</w>
       <w>ansicht</w>
+      <w>ansonsten</w>
       <w>anzeigenden</w>
       <w>anzuzeigenden</w>
       <w>applikation</w>
       <w>aufbereiten</w>
+      <w>aufgehoben</w>
+      <w>aufräumen</w>
       <w>ausimplementieren</w>
       <w>batterie</w>
       <w>befindet</w>
@@ -28,12 +33,15 @@
       <w>betreffen</w>
       <w>bitte</w>
       <w>boolschen</w>
+      <w>bringen</w>
       <w>damit</w>
       <w>danach</w>
       <w>darstellung</w>
       <w>eigenschaften</w>
       <w>eigentlichen</w>
+      <w>einheitliche</w>
       <w>einstellungs</w>
+      <w>eintritt</w>
       <w>elementen</w>
       <w>entsprechend</w>
       <w>entspricht</w>
@@ -46,15 +54,20 @@
       <w>farbschemata</w>
       <w>festlegen</w>
       <w>folgende</w>
+      <w>fürs</w>
       <w>gehört</w>
       <w>gerätegröße</w>
       <w>geräts</w>
+      <w>gezeichnet</w>
+      <w>gprs</w>
       <w>grafik</w>
       <w>heraus</w>
+      <w>hergestellt</w>
       <w>herschaltet</w>
       <w>hierauf</w>
       <w>hintergrund</w>
       <w>imagedisc</w>
+      <w>immer</w>
       <w>implementieren</w>
       <w>implementiert</w>
       <w>inaktiv</w>
@@ -65,13 +78,20 @@
       <w>jeweiligen</w>
       <w>kamera</w>
       <w>kategorie</w>
+      <w>kbps</w>
+      <w>kleine</w>
       <w>klickt</w>
+      <w>knappe</w>
       <w>kommen</w>
       <w>konstruktor</w>
       <w>kontruktion</w>
+      <w>kopfzeile</w>
       <w>korrekten</w>
+      <w>ladegerät</w>
+      <w>lans</w>
       <w>lauftext</w>
       <w>manipuliert</w>
+      <w>mbps</w>
       <w>meminfo</w>
       <w>möglichen</w>
       <w>müssen</w>
@@ -79,36 +99,50 @@
       <w>navigieren</w>
       <w>navigiert</w>
       <w>nein</w>
+      <w>netzwerk</w>
+      <w>netzwerknamen</w>
+      <w>netzwerks</w>
       <w>platzieren</w>
       <w>proc</w>
       <w>protokolliert</w>
+      <w>präsentiert</w>
       <w>reagieren</w>
       <w>reagiert</w>
       <w>realisieren</w>
       <w>registrierte</w>
       <w>registrierten</w>
+      <w>rssi</w>
       <w>ruft</w>
       <w>sammeln</w>
       <w>schauen</w>
       <w>schleife</w>
       <w>schwerer</w>
       <w>sichtbar</w>
+      <w>signalstärke</w>
       <w>sinnvoll</w>
       <w>sonst</w>
       <w>sowohl</w>
       <w>speicher</w>
       <w>speichermedium</w>
+      <w>staffelung</w>
       <w>standardansicht</w>
       <w>stehen</w>
       <w>stelle</w>
       <w>stellt</w>
+      <w>stärke</w>
       <w>systeminfowidget</w>
+      <w>tatsächlich</w>
       <w>textfeld</w>
       <w>triggern</w>
+      <w>ungleich</w>
       <w>unterhalb</w>
       <w>unterstützt</w>
+      <w>untertitel</w>
       <w>verbessern</w>
+      <w>verbessert</w>
+      <w>verbunden</w>
       <w>verfügung</w>
+      <w>verschlechtert</w>
       <w>versteckt</w>
       <w>verwendet</w>
       <w>verzeichnis</w>
@@ -119,6 +153,7 @@
       <w>wiederhergestellte</w>
       <w>wiederherstellen</w>
       <w>wirksam</w>
+      <w>wlan</w>
       <w>zugeordnet</w>
       <w>zugewiesen</w>
       <w>zurückgeben</w>
@@ -129,6 +164,7 @@
       <w>zuweisen</w>
       <w>zweite</w>
       <w>überhaupt</w>
+      <w>überprüfen</w>
     </words>
   </dictionary>
 </component>
