@@ -2,7 +2,6 @@ package com.manuzid.systeminfowidget.preferences;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,12 +20,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.SysInfoMainProvider;
-import com.manuzid.systeminfowidget.category.AbstractCategory;
 import com.manuzid.systeminfowidget.util.AppRater;
 
 import java.util.ArrayList;
@@ -35,7 +32,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
 import static com.manuzid.systeminfowidget.category.BatteryCategory.BATTERY;
 import static com.manuzid.systeminfowidget.category.CameraCategory.CAMERA;
 import static com.manuzid.systeminfowidget.category.DisplayCategory.DISPLAY;
@@ -64,8 +60,6 @@ public class ConfigPreferencesActivity extends Activity {
     public static final String COLOR_GREEN = "color_green";
     public static final String COLOR_BLACK = "color_black";
 
-    private static final String SET_BACKGROUND_RES = "setBackgroundResource";
-
     private ListView preferencesListView;
     private List<SystemInfoPreference> prefData;
     private final Context mContext = this;
@@ -77,8 +71,6 @@ public class ConfigPreferencesActivity extends Activity {
     private String tempFormat;
     private String mVersionNumber;
 
-    private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,12 +79,6 @@ public class ConfigPreferencesActivity extends Activity {
 
         preferencesListView = (ListView) findViewById(R.id.preferences_listview);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-        }
 
         tempFormat = prefs.getString(TEMP_FORMAT, TEMP_CELSIUS);
         colorScheme = prefs.getString(COLOR_SCHEME, COLOR_BLUE);
@@ -378,9 +364,9 @@ public class ConfigPreferencesActivity extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 final SparseBooleanArray checkedItemPositions = ((AlertDialog) dialog).getListView().getCheckedItemPositions();
 
-                                // TODO: So richtig funzt das noch nicht,
+                                // 1. Überprüfen ob der Benutzer tatsächlich 6 Einträge ausgewählt hat
                                 int count = 0;
-                                for (int i = 0; i < checkedItemPositions.size(); i++) {
+                                for (int i = 0; i <= checkedItemPositions.size(); i++) {
                                     final boolean checkedState = checkedItemPositions.get(i);
                                     if (checkedState)
                                         count++;
@@ -457,87 +443,9 @@ public class ConfigPreferencesActivity extends Activity {
     }
 
     private void updateAppWidget() {
-        final Context context = ConfigPreferencesActivity.this;
-        final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-        final RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
-
-        remoteView.setViewVisibility(R.id.lblFirstInfo, View.GONE);
-        remoteView.setViewVisibility(R.id.txtFirstInfo, View.GONE);
-        remoteView.setViewVisibility(R.id.lblSecondInfo, View.GONE);
-        remoteView.setViewVisibility(R.id.txtSecondInfo, View.GONE);
-        remoteView.setViewVisibility(R.id.lblThird, View.GONE);
-        remoteView.setViewVisibility(R.id.txtThird, View.GONE);
-        remoteView.setViewVisibility(R.id.lblFourth, View.GONE);
-        remoteView.setViewVisibility(R.id.txtFourth, View.GONE);
-        remoteView.setViewVisibility(R.id.lblFifth, View.GONE);
-        remoteView.setViewVisibility(R.id.txtFifth, View.GONE);
-        remoteView.setViewVisibility(R.id.txtSupportedPictureSizes, View.GONE);
-        remoteView.setViewVisibility(R.id.lblSixth, View.GONE);
-        remoteView.setViewVisibility(R.id.txtSixth, View.GONE);
-        remoteView.setViewVisibility(R.id.lblSeventh, View.GONE);
-        remoteView.setViewVisibility(R.id.txtSeventh, View.GONE);
-        remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.usb_memory_percent, View.GONE);
-        remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.GONE);
-        remoteView.setViewVisibility(R.id.usb_memory_progress_bar, View.GONE);
-        remoteView.setViewVisibility(R.id.imgRestore, View.VISIBLE);
-        remoteView.setViewVisibility(R.id.txtConfigClick, View.VISIBLE);
-
-        final String colorScheme;
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        colorScheme = prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
-
-        switch (colorScheme) {
-            case ConfigPreferencesActivity.COLOR_BLUE:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.relative_background_blue);
-                break;
-            case ConfigPreferencesActivity.COLOR_RED:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_red);
-                break;
-            case ConfigPreferencesActivity.COLOR_ORANGE:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_orange);
-                break;
-            case ConfigPreferencesActivity.COLOR_LILA:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_purple);
-                break;
-            case ConfigPreferencesActivity.COLOR_GREEN:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_green);
-                break;
-            case ConfigPreferencesActivity.COLOR_BLACK:
-                remoteView.setInt(R.id.relative_general, SET_BACKGROUND_RES, R.drawable.rela_background_black);
-                break;
-        }
-
-        registerOnClickPendingIntentForCategories(context, remoteView, mAppWidgetId);
-
-        SysInfoMainProvider.updateAppWidget(appWidgetManager, mAppWidgetId, remoteView, context);
-    }
-
-    private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
-        if (SysInfoMainProvider.availableCategories == null)
-            return;
-
-        final Set<String> selectedCategoriesFromSharedPreferences = getSelectedCategoriesFromSharedPreferences(context);
-
-        for (String category : selectedCategoriesFromSharedPreferences) {
-            final AbstractCategory lCategory = SysInfoMainProvider.availableCategories.get(category);
-
-            // 1 Den Button das entsprechende PendingIntent zuweisen
-            remoteView.setOnClickPendingIntent(lCategory.getButtonId(),
-                    preparePendingIntent(context, lCategory.getRequestAction(), appWidgetId, lCategory.getRequestCode()));
-
-            // 2 Kategorie-Drawable für den Button setzen
-            remoteView.setInt(lCategory.getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME,
-                    lCategory.getDefaultButtonDrawable());
-        }
-    }
-
-    private PendingIntent preparePendingIntent(Context context, String reqAction, int appWidgetId, int reqCode) {
-        Intent preparedIntent = new Intent();
-        preparedIntent.setAction(reqAction);
-        preparedIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        return PendingIntent.getBroadcast(context, reqCode, preparedIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(this, SysInfoMainProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        sendBroadcast(intent);
     }
 
     private static Set<String> getSelectedCategoriesFromSharedPreferences(Context context) {

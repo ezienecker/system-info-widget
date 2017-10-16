@@ -281,20 +281,16 @@ public class MemoryCategory extends AbstractCategory {
             }
         } else {
             final String rawUserId;
-            if (Build.VERSION.SDK_INT < 17) {
-                rawUserId = "";
-            } else {
-                final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-                final String[] folders = DIR_SEPARATOR.split(path);
-                final String lastFolder = folders[folders.length - 1];
-                boolean isDigit = false;
-                try {
-                    int t = Integer.valueOf(lastFolder);
-                    isDigit = true;
-                } catch (NumberFormatException ignored) {
-                }
-                rawUserId = isDigit ? lastFolder : "";
+            final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+            final String[] folders = DIR_SEPARATOR.split(path);
+            final String lastFolder = folders[folders.length - 1];
+            boolean isDigit = false;
+            try {
+                int t = Integer.valueOf(lastFolder);
+                isDigit = true;
+            } catch (NumberFormatException ignored) {
             }
+            rawUserId = isDigit ? lastFolder : "";
             if (TextUtils.isEmpty(rawUserId)) {
                 rv.add(rawEmulatedStorageTarget);
             } else {

@@ -58,7 +58,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     /**
      * Alle zur Auswahl Verfügbaren Kategorien
      */
-    public static final Map<String, AbstractCategory> availableCategories;
+    private static final Map<String, AbstractCategory> availableCategories;
 
     static {
         HashMap<String, AbstractCategory> mActiveColoredButtons = new HashMap<>();
@@ -112,16 +112,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     @Override
-    public void onDeleted(Context context, int[] appWidgetIds) {
-        super.onDeleted(context, appWidgetIds);
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        super.onDisabled(context);
-    }
-
-    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int i = appWidgetIds.length; --i >= 0; ) {
             int appWidgetId = appWidgetIds[i];
@@ -160,7 +150,11 @@ public class SysInfoMainProvider extends AppWidgetProvider {
              * Beim platzieren des Widget kommt folgende IntentAction: android.appwidget.action.APPWIDGET_ENABLE.
              * Danach kommt folgende IntentAction: android.appwidget.action.APPWIDGET_UPDATE
              */
-            super.onReceive(context, intent);
+            // 1 Initialisieren der Kategorien
+            initObserverMap(context);
+
+            // 2 Widget entsprechend zurücksetzen
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, null, appWidgetId));
         } else if (hasPowerPluginChangedAndBatteryViewIsActive(intentAction)) {
             // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
             resetCategory();
@@ -191,6 +185,13 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         category = NONE;
     }
 
+    /**
+     * Wurde das W-Lan an/abgestellt oder hat sich das Signal verschlechtert oder verbessert und
+     * ist die Network-View aktiv.
+     *
+     * @param intentAction Intent-Action die geprüft wird
+     * @return true wenn Condition eintritt andernfalls false
+     */
     private boolean hasNetworkChange(String intentAction) {
         return ("android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
                 "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
@@ -198,7 +199,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     /**
-     * Wurde eine USB-Verbindung hergestellt/aufgehoben und ist die Battery-View aktiv
+     * Wurde eine USB-Verbindung hergestellt/aufgehoben und ist die Battery-View aktiv.
      *
      * @param intentAction Intent-Action die geprüft wird
      * @return true wenn Condition eintritt andernfalls false
@@ -217,6 +218,11 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     private boolean hasScreenChangedAndDisplayViewIsActive(String intentAction) {
         return AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction) &&
                 category.equals(DISPLAY);
+    }
+
+    private boolean isIntentActionFromWidgetThatNeedAction(String intentAction) {
+        return AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(intentAction) ||
+                AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction);
     }
 
     private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
@@ -252,14 +258,17 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory, int appWidgetId) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
-        if (category.equals(lCategory.getRequestAction())) {
+        if (lCategory == null || category.equals(lCategory.getRequestAction())) {
             // 1 Keine Kategorie wird angezeigt, die Standard-View wird angezeigt.
             resetCategory();
 
             // 2 Button der aktuellen Kategorie zurücksetzen.
             restoreAllButtonBackgroundResource(remoteViews);
 
-            // 3 Zurücksetzen und Zurückgeben der Standard-View.
+            // 3 Aktiv-Status des Hintergrund setzen, abhänig vom Farbschema.
+            restoreRemoteViewBackground(context, remoteViews);
+
+            // 4 Zurücksetzen und Zurückgeben der Standard-View.
             return restoreStandardView(context, remoteViews, appWidgetId);
         } else {
             // 1 View wiederherstellen damit die Informationen sichtbar werden.
@@ -349,7 +358,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteViews.setViewVisibility(R.id.imgRestore, standardElementVisibility);
         remoteViews.setViewVisibility(R.id.txtConfigClick, standardElementVisibility);
 
-        // 2 PendingIntent damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
+        // 2 PendingIntent registrieren damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
         registerOnClickPendingIntentForCategories(context, remoteViews, appWidgetId);
 
         // 3 Registrieren der Einstellungs-Activity (Wird aktiviert wenn der Benutzer auf das Widget klickt).
@@ -387,26 +396,21 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteView.setInt(R.id.relative_general, BACKGROUND_RESOURCE_METHOD_NAME, relativeBackgroundDrawable);
     }
 
-    @NonNull
-    private String getStringColorSchemeFromConfiguration(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
-    }
-
-    private boolean isIntentActionFromWidgetThatNeedAction(String intentAction) {
-        return AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(intentAction) ||
-                AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction);
-    }
-
     /**
      * Wiederherstellen der Button-Drawables.
      *
      * @param remoteViews {@link RemoteViews} auf der die Buttons gezeichnet sind.
      */
-    private static void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
+    private void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
         for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
             entry.getValue().restoreButtonBackgroundResource(remoteViews);
         }
+    }
+
+    @NonNull
+    private String getStringColorSchemeFromConfiguration(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
     }
 
     /**
@@ -414,14 +418,14 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      *
      * @param beobachter - Der Beobachter, der der Liste hinzugefügt werden soll
      */
-    private static void addObserver(AbstractCategory beobachter) {
+    private void addObserver(AbstractCategory beobachter) {
         observerMap.put(beobachter.getRequestAction(), beobachter);
     }
 
     /**
      * Einträge aus dem Observer löschen.
      */
-    private static void clearObserver() {
+    private void clearObserver() {
         observerMap.clear();
     }
 
@@ -432,7 +436,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
      *
      * @param context {@link Context}
      */
-    private static void initObserverMap(Context context) {
+    private void initObserverMap(Context context) {
         // 1. Welche Observer sind in den Preferences gesetzt?
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));
@@ -452,21 +456,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             lCategory.setButtonId(availableButtons.get(i));
             addObserver(lCategory);
         }
-    }
-
-    /**
-     * Damit aus den Einstellungen heraus die Änderungen auch wirksam werden (Triggern von den LifeCycle-Methods).
-     *
-     * @param appWidgetManager {@link AppWidgetManager}
-     * @param appWidgetId      id des entsprechenden Widgets welches aktualisiert werden soll
-     * @param remoteView       {@link RemoteViews}
-     */
-    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView, Context context) {
-        initObserverMap(context);
-
-        restoreAllButtonBackgroundResource(remoteView);
-
-        appWidgetManager.updateAppWidget(appWidgetId, remoteView);
     }
 
 }
