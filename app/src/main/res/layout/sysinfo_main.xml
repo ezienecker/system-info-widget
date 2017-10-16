@@ -241,7 +241,7 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
-            android:singleLine="true"
+            android:maxLines="1"
             android:text="@string/general_unknow"
             android:textColor="@android:color/white"
             android:visibility="gone">
