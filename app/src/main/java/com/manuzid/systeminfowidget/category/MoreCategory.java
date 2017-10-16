@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class MoreCategory extends AbstractCategory {
     private static final String TAG = MoreCategory.class.getSimpleName();
-    public static final String MORE = INTENT_FILTER_PREFIX + "MORE_WIDGET";
+    public static final String MORE = INTENT_FILTER_PREFIX + "2_MORE_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -40,11 +40,6 @@ public class MoreCategory extends AbstractCategory {
     }
 
     private Informationen informationen;
-
-    @Override
-    public int getButtonId() {
-        return R.id.btnSecond;
-    }
 
     @Override
     public int getRequestCode() {

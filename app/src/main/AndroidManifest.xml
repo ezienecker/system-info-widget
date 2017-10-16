@@ -5,9 +5,11 @@
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:icon="@drawable/sysinfo_launcher_icon"
+        android:icon="@drawable/system_info_launcher_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:allowBackup="true" >
@@ -15,12 +17,13 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 
-                <action android:name="com.manuzid.systeminfowidget.GENERAL_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.MORE_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.DISPLAY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.CAMERA_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.MEMORY_WIDGET" />
-                <action android:name="com.manuzid.systeminfowidget.BATTERY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.1_GENERAL_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.2_MORE_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.3_DISPLAY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.4_CAMERA_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.5_MEMORY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.6_BATTERY_WIDGET" />
+                <action android:name="com.manuzid.systeminfowidget.7_NETWORK_WIDGET" />
 
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
                 <action android:name="android.intent.action.BATTERY_LOW" />
@@ -28,6 +31,10 @@
 
                 <action android:name="android.intent.action.POWER_CONNECTED" />
                 <action android:name="android.intent.action.POWER_DISCONNECTED" />
+
+                <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.wifi.RSSI_CHANGED" />
             </intent-filter>
 
             <meta-data

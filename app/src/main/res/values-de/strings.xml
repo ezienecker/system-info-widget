@@ -31,7 +31,7 @@
     <string name="display_dps_tv">TV (213)</string>
     <string name="display_dps_default">Voreingestellt (160)</string>
     <string name="display_fps">Aktualisierungsrate (FPS)</string>
-    <string name="display_display_skala">Display Skalierung</string>
+    <string name="display_display_scale">Display Skalierung</string>
     <string name="display_display_size">Display Größe</string>
     <string name="display_display_size_summary">inches</string>
     <string name="display_orientation">Natürliche Ausrichtung</string>
@@ -61,7 +61,7 @@
     <string name="memory_usb_sd_memory">USB/SD-Speicher</string>
     <string name="memory_used">Benutzt:</string>
     <string name="memory_not_available">Nicht Verfügbar</string>
-<!-- Akku-View -->
+<!-- Battery-View -->
     <string name="battery_capacitance">Kapazität</string>
     <string name="battery_state">Status</string>
     <string name="battery_state_charging">Wird geladen</string>
@@ -83,6 +83,25 @@
     <string name="battery_connected_akku">Akku</string>
     <string name="battery_connected_ac">AC</string>
     <string name="akku_technology_summ">Li-ion</string>
+<!-- Network-View -->
+    <string name="network_mobile">Mobile Daten</string>
+    <string name="network_mobile_state">Status</string>
+    <string name="network_mobile_connection_type">Netzwerk Typ</string>
+    <string name="network_wlan">W-Lan</string>
+    <string name="network_wlan_name">Netzwerkname</string>
+    <string name="network_wlan_state">Status</string>
+    <string name="network_wlan_signal_strength">Signalstärke</string>
+    <string name="network_wlan_connection_state_connected">Verbunden</string>
+    <string name="network_wlan_connection_state_disconnected">Getrennt</string>
+    <string name="network_wlan_connection_type_gprs">GPRS</string>
+    <string name="network_wlan_connection_type_edge">EDGE</string>
+    <string name="network_wlan_connection_type_2g">2G</string>
+    <string name="network_wlan_connection_type_3g">3G</string>
+    <string name="network_wlan_connection_type_lte">LTE</string>
+    <string name="network_wlan_connection_strength_weak">Schwach</string>
+    <string name="network_wlan_connection_strength_fair">Ausreichend</string>
+    <string name="network_wlan_connection_strength_good">Gut</string>
+    <string name="network_wlan_connection_strength_excellent">Ausgezeichnet</string>
 <!-- Config-View -->
     <string name="config_general_app_config">APP-EINSTELLUNGEN</string>
     <string name="config_temp_title">Temperatur</string>
@@ -113,12 +132,25 @@
     <string name="config_general_send_feedback_mail_title">Feedback/Report</string>
     <string name="config_general_moreapps">Android Market</string>
     <string name="config_general_moreapps_summary">Weitere Apps</string>
-    <string name="config_entrys_rights_title">RECHTLICHE HINWEISE</string>
-    <string name="config_entrys_rights_legal_title">Zuwendungen</string>
-    <string name="config_entrys_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
+    <string name="config_entries_rights_title">RECHTLICHE HINWEISE</string>
+    <string name="config_entries_rights_legal_title">Zuwendungen</string>
+    <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
     <string name="config_send_mail_title">E-Mail senden</string>
     <string name="config_config_click">\"Klick\" für Einstellungen</string>
     <string name="config_save_changes">Widget aktualisiert</string>
+    <string name="config_category_title">Kategorie</string>
+    <string name="config_category_summary">Kategorie-Auswahl</string>
+    <string name="config_category_choice_general">Allgemeine Informationen</string>
+    <string name="config_category_choice_more">Erweiterte Informationen</string>
+    <string name="config_category_choice_display">Display</string>
+    <string name="config_category_choice_camera">Kamera</string>
+    <string name="config_category_choice_memory">Speicher</string>
+    <string name="config_category_choice_battery">Batterie</string>
+    <string name="config_category_choice_network">Netzwerk</string>
+    <string name="config_category_choice_too_much_items_selected">Maximal sechs Einträge auswählen</string>
+    <string name="config_category_choice_too_little_items_selected">Wähle mindestens sechs Einträge aus</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Abbrechen</string>
 <!-- Feedback-View -->
 	<string name="feedback_app_version">SystemInfo Version:</string>
 	<string name="feedback_os_version">Android Version:</string>

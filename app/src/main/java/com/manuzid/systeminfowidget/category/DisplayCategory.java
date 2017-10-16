@@ -28,7 +28,7 @@ import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class DisplayCategory extends AbstractCategory {
-    public static final String DISPLAY = INTENT_FILTER_PREFIX + "DISPLAY_WIDGET";
+    public static final String DISPLAY = INTENT_FILTER_PREFIX + "3_DISPLAY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -54,11 +54,6 @@ public class DisplayCategory extends AbstractCategory {
     }
 
     @Override
-    public int getButtonId() {
-        return R.id.btnThird;
-    }
-
-    @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.display_btn;
     }
@@ -77,7 +72,7 @@ public class DisplayCategory extends AbstractCategory {
                 .third(context.getString(R.string.display_width), String.valueOf(getDisplayWidth(display)))
                 .fourth(context.getString(R.string.display_dps), getScreenDps(context.getResources().getDisplayMetrics(), context))
                 .fifth(context.getString(R.string.display_fps), String.valueOf(display.getRefreshRate()))
-                .sixth(context.getString(R.string.display_display_skala), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
+                .sixth(context.getString(R.string.display_display_scale), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
                 .seventh(context.getString(R.string.display_orientation),
                         getScreenOrientation(context.getResources().getConfiguration().orientation, context))
                 .build();

@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class MemoryCategory extends AbstractCategory {
-    public static final String MEMORY = INTENT_FILTER_PREFIX + "MEMORY_WIDGET";
+    public static final String MEMORY = INTENT_FILTER_PREFIX + "5_MEMORY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -56,11 +56,6 @@ public class MemoryCategory extends AbstractCategory {
     @Override
     public int getDefaultButtonDrawable() {
         return R.drawable.memory_btn;
-    }
-
-    @Override
-    public int getButtonId() {
-        return R.id.btnFifth;
     }
 
     @Override
@@ -286,20 +281,16 @@ public class MemoryCategory extends AbstractCategory {
             }
         } else {
             final String rawUserId;
-            if (Build.VERSION.SDK_INT < 17) {
-                rawUserId = "";
-            } else {
-                final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-                final String[] folders = DIR_SEPARATOR.split(path);
-                final String lastFolder = folders[folders.length - 1];
-                boolean isDigit = false;
-                try {
-                    int t = Integer.valueOf(lastFolder);
-                    isDigit = true;
-                } catch (NumberFormatException ignored) {
-                }
-                rawUserId = isDigit ? lastFolder : "";
+            final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+            final String[] folders = DIR_SEPARATOR.split(path);
+            final String lastFolder = folders[folders.length - 1];
+            boolean isDigit = false;
+            try {
+                int t = Integer.valueOf(lastFolder);
+                isDigit = true;
+            } catch (NumberFormatException ignored) {
             }
+            rawUserId = isDigit ? lastFolder : "";
             if (TextUtils.isEmpty(rawUserId)) {
                 rv.add(rawEmulatedStorageTarget);
             } else {

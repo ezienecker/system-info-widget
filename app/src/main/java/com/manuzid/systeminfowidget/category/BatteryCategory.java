@@ -22,7 +22,7 @@ import java.util.Map;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public class BatteryCategory extends AbstractCategory {
-    public static final String BATTERY = INTENT_FILTER_PREFIX + "BATTERY_WIDGET";
+    public static final String BATTERY = INTENT_FILTER_PREFIX + "6_BATTERY_WIDGET";
 
     private static final Map<String, Integer> activeColoredButtons;
 
@@ -45,11 +45,6 @@ public class BatteryCategory extends AbstractCategory {
     @Override
     public String getRequestAction() {
         return BATTERY;
-    }
-
-    @Override
-    public int getButtonId() {
-        return R.id.btnSixth;
     }
 
     @Override

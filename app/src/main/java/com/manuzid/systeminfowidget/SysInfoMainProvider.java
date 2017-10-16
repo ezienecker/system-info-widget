@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -20,12 +21,18 @@ import com.manuzid.systeminfowidget.category.DisplayCategory;
 import com.manuzid.systeminfowidget.category.GeneralCategory;
 import com.manuzid.systeminfowidget.category.MemoryCategory;
 import com.manuzid.systeminfowidget.category.MoreCategory;
+import com.manuzid.systeminfowidget.category.NetworkCategory;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static com.manuzid.systeminfowidget.Constants.BACKGROUND_RESOURCE_METHOD_NAME;
 import static com.manuzid.systeminfowidget.category.AbstractCategory.NONE;
@@ -35,26 +42,50 @@ import static com.manuzid.systeminfowidget.category.DisplayCategory.DISPLAY;
 import static com.manuzid.systeminfowidget.category.GeneralCategory.GENERAL;
 import static com.manuzid.systeminfowidget.category.MemoryCategory.MEMORY;
 import static com.manuzid.systeminfowidget.category.MoreCategory.MORE;
+import static com.manuzid.systeminfowidget.category.NetworkCategory.NETWORK;
+import static com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity.CATEGORY_SELECTION;
 
 /**
  * Created by Emanuel Zienecker on 22.05.13. Copyright (c) 2013 Emanuel
  * Zienecker. All rights reserved.
  */
 public class SysInfoMainProvider extends AppWidgetProvider {
-
     /**
      * Liste der Beobachter
      */
-    private static Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
+    private static final Map<String, AbstractCategory> observerMap = new LinkedHashMap<>();
+
+    /**
+     * Alle zur Auswahl Verfügbaren Kategorien
+     */
+    private static final Map<String, AbstractCategory> availableCategories;
 
     static {
-        observerMap.put(GENERAL, new GeneralCategory());
-        observerMap.put(MORE, new MoreCategory());
-        observerMap.put(DISPLAY, new DisplayCategory());
-        observerMap.put(CAMERA, new CameraCategory());
-        observerMap.put(MEMORY, new MemoryCategory());
-        observerMap.put(BATTERY, new BatteryCategory());
+        HashMap<String, AbstractCategory> mActiveColoredButtons = new HashMap<>();
+        mActiveColoredButtons.put(GENERAL, new GeneralCategory());
+        mActiveColoredButtons.put(MORE, new MoreCategory());
+        mActiveColoredButtons.put(DISPLAY, new DisplayCategory());
+        mActiveColoredButtons.put(CAMERA, new CameraCategory());
+        mActiveColoredButtons.put(MEMORY, new MemoryCategory());
+        mActiveColoredButtons.put(BATTERY, new BatteryCategory());
+        mActiveColoredButtons.put(NETWORK, new NetworkCategory());
+        availableCategories = Collections.unmodifiableMap(mActiveColoredButtons);
     }
+
+    /**
+     * Alle Widget-Buttons die belegt werden können
+     */
+    private static final SparseIntArray availableButtons = new SparseIntArray();
+
+    static {
+        availableButtons.append(1, R.id.btnFirst);
+        availableButtons.append(2, R.id.btnSecond);
+        availableButtons.append(3, R.id.btnThird);
+        availableButtons.append(4, R.id.btnFourth);
+        availableButtons.append(5, R.id.btnFifth);
+        availableButtons.append(6, R.id.btnSixth);
+    }
+
 
     /**
      * IntentFilter um auf Änderungen die von der Batterie kommen reagieren zu können
@@ -77,16 +108,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
-    }
-
-    @Override
-    public void onDeleted(Context context, int[] appWidgetIds) {
-        super.onDeleted(context, appWidgetIds);
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        super.onDisabled(context);
+        initObserverMap(context);
     }
 
     @Override
@@ -128,7 +150,11 @@ public class SysInfoMainProvider extends AppWidgetProvider {
              * Beim platzieren des Widget kommt folgende IntentAction: android.appwidget.action.APPWIDGET_ENABLE.
              * Danach kommt folgende IntentAction: android.appwidget.action.APPWIDGET_UPDATE
              */
-            super.onReceive(context, intent);
+            // 1 Initialisieren der Kategorien
+            initObserverMap(context);
+
+            // 2 Widget entsprechend zurücksetzen
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, null, appWidgetId));
         } else if (hasPowerPluginChangedAndBatteryViewIsActive(intentAction)) {
             // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
             resetCategory();
@@ -144,11 +170,40 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             resetCategory();
             final AbstractCategory mFakeCategory = observerMap.get(DISPLAY);
             updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
+        } else if (hasNetworkChange(intentAction)) {
+            // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
+            resetCategory();
+            final AbstractCategory mFakeCategory = observerMap.get(NETWORK);
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
         }
     }
 
-    private void resetCategory() { category = NONE; }
+    /**
+     * Zurücksetzen der Kategorie.
+     */
+    private void resetCategory() {
+        category = NONE;
+    }
 
+    /**
+     * Wurde das W-Lan an/abgestellt oder hat sich das Signal verschlechtert oder verbessert und
+     * ist die Network-View aktiv.
+     *
+     * @param intentAction Intent-Action die geprüft wird
+     * @return true wenn Condition eintritt andernfalls false
+     */
+    private boolean hasNetworkChange(String intentAction) {
+        return ("android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
+                "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
+                "android.net.wifi.STATE_CHANGE".equals(intentAction)) && category.equals(NETWORK);
+    }
+
+    /**
+     * Wurde eine USB-Verbindung hergestellt/aufgehoben und ist die Battery-View aktiv.
+     *
+     * @param intentAction Intent-Action die geprüft wird
+     * @return true wenn Condition eintritt andernfalls false
+     */
     private boolean hasPowerPluginChangedAndBatteryViewIsActive(String intentAction) {
         return (Intent.ACTION_POWER_CONNECTED.equals(intentAction) ||
                 Intent.ACTION_POWER_DISCONNECTED.equals(intentAction)) && category.equals(BATTERY);
@@ -165,25 +220,22 @@ public class SysInfoMainProvider extends AppWidgetProvider {
                 category.equals(DISPLAY);
     }
 
+    private boolean isIntentActionFromWidgetThatNeedAction(String intentAction) {
+        return AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(intentAction) ||
+                AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction);
+    }
+
     private void registerOnClickPendingIntentForCategories(Context context, RemoteViews remoteView, int appWidgetId) {
-        List<Integer> buttonIds = Arrays.asList(R.id.btnFirst, R.id.btnSecond,
-                R.id.btnThird, R.id.btnFourth, R.id.btnFifth, R.id.btnSixth);
-        int buttonCounter = 0;
-
         for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
-            if (buttonCounter < buttonIds.size()) {
-                final AbstractCategory category = entry.getValue();
+            final AbstractCategory category = entry.getValue();
 
-                // 1 Den Button das entsprechende PendingIntent zuweisen
-                remoteView.setOnClickPendingIntent(category.getButtonId(),
-                        preparePendingIntent(context, category.getRequestAction(), appWidgetId, category.getRequestCode()));
+            // 1 Den Button das entsprechende PendingIntent zuweisen
+            remoteView.setOnClickPendingIntent(category.getButtonId(),
+                    preparePendingIntent(context, category.getRequestAction(), appWidgetId, category.getRequestCode()));
 
-                // 2 Kategorie-Drawable für den Button setzen
-                remoteView.setInt(category.getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME,
-                        category.getDefaultButtonDrawable());
-
-                buttonCounter++;
-            }
+            // 2 Kategorie-Drawable für den Button setzen
+            remoteView.setInt(category.getButtonId(), BACKGROUND_RESOURCE_METHOD_NAME,
+                    category.getDefaultButtonDrawable());
         }
     }
 
@@ -206,14 +258,17 @@ public class SysInfoMainProvider extends AppWidgetProvider {
 
     private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory, int appWidgetId) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
-        if (category.equals(lCategory.getRequestAction())) {
+        if (lCategory == null || category.equals(lCategory.getRequestAction())) {
             // 1 Keine Kategorie wird angezeigt, die Standard-View wird angezeigt.
-            category = NONE;
+            resetCategory();
 
             // 2 Button der aktuellen Kategorie zurücksetzen.
             restoreAllButtonBackgroundResource(remoteViews);
 
-            // 3 Zurücksetzen und Zurückgeben der Standard-View.
+            // 3 Aktiv-Status des Hintergrund setzen, abhänig vom Farbschema.
+            restoreRemoteViewBackground(context, remoteViews);
+
+            // 4 Zurücksetzen und Zurückgeben der Standard-View.
             return restoreStandardView(context, remoteViews, appWidgetId);
         } else {
             // 1 View wiederherstellen damit die Informationen sichtbar werden.
@@ -234,12 +289,6 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             // 6 Aktive Kategorie festlegen.
             category = lCategory.getRequestAction();
             return remoteViews;
-        }
-    }
-
-    private void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
-        for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
-            entry.getValue().restoreButtonBackgroundResource(remoteViews);
         }
     }
 
@@ -309,7 +358,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteViews.setViewVisibility(R.id.imgRestore, standardElementVisibility);
         remoteViews.setViewVisibility(R.id.txtConfigClick, standardElementVisibility);
 
-        // 2 PendingIntent damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
+        // 2 PendingIntent registrieren damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
         registerOnClickPendingIntentForCategories(context, remoteViews, appWidgetId);
 
         // 3 Registrieren der Einstellungs-Activity (Wird aktiviert wenn der Benutzer auf das Widget klickt).
@@ -347,26 +396,66 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         remoteView.setInt(R.id.relative_general, BACKGROUND_RESOURCE_METHOD_NAME, relativeBackgroundDrawable);
     }
 
+    /**
+     * Wiederherstellen der Button-Drawables.
+     *
+     * @param remoteViews {@link RemoteViews} auf der die Buttons gezeichnet sind.
+     */
+    private void restoreAllButtonBackgroundResource(RemoteViews remoteViews) {
+        for (Map.Entry<String, AbstractCategory> entry : observerMap.entrySet()) {
+            entry.getValue().restoreButtonBackgroundResource(remoteViews);
+        }
+    }
+
     @NonNull
     private String getStringColorSchemeFromConfiguration(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(ConfigPreferencesActivity.COLOR_SCHEME, ConfigPreferencesActivity.COLOR_BLUE);
     }
 
-    private boolean isIntentActionFromWidgetThatNeedAction(String intentAction) {
-        return AppWidgetManager.ACTION_APPWIDGET_ENABLED.equals(intentAction) ||
-                AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intentAction);
+    /**
+     * Fügt der Liste der Beobachter einen Observer hinzu
+     *
+     * @param beobachter - Der Beobachter, der der Liste hinzugefügt werden soll
+     */
+    private void addObserver(AbstractCategory beobachter) {
+        observerMap.put(beobachter.getRequestAction(), beobachter);
     }
 
     /**
+     * Einträge aus dem Observer löschen.
+     */
+    private void clearObserver() {
+        observerMap.clear();
+    }
+
+    /**
+     * Initialisierung der Map, wird zu Beginn aufgerufen und wenn der Benutzer
+     * in den Einstellungen war.
      * Damit aus den Einstellungen heraus die Änderungen auch wirksam werden (Triggern von den LifeCycle-Methods).
      *
-     * @param appWidgetManager {@link AppWidgetManager}
-     * @param appWidgetId      id des entsprechenden Widgets welches aktualisiert werden soll
-     * @param remoteView       {@link RemoteViews}
+     * @param context {@link Context}
      */
-    public static void updateAppWidget(AppWidgetManager appWidgetManager, int appWidgetId, RemoteViews remoteView) {
-        appWidgetManager.updateAppWidget(appWidgetId, remoteView);
+    private void initObserverMap(Context context) {
+        // 1. Welche Observer sind in den Preferences gesetzt?
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> categorySelection = prefs.getStringSet(CATEGORY_SELECTION, new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY)));
+
+        // 1.1 Kategorien in eine einheitliche Reihenfolge bringen
+        List<String> listCategorySelection = new ArrayList<>(categorySelection);
+        Collections.sort(listCategorySelection);
+
+        // 2. Einträge aus der Observer-Map löschen
+        clearObserver();
+
+        // 3. Diese registrieren
+        int i = 0;
+        for (String category : listCategorySelection) {
+            i++;
+            AbstractCategory lCategory = availableCategories.get(category);
+            lCategory.setButtonId(availableButtons.get(i));
+            addObserver(lCategory);
+        }
     }
 
 }
