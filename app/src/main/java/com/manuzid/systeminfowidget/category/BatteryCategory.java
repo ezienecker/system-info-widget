@@ -28,12 +28,12 @@ public class BatteryCategory extends AbstractCategory {
 
     static {
         HashMap<String, Integer> mActiveColoredButtons = new HashMap<>();
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLUE, R.drawable.akku_btn_pressed_blue);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_RED, R.drawable.akku_btn_pressed_red);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_LILA, R.drawable.akku_btn_pressed_purple);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_ORANGE, R.drawable.akku_btn_pressed_orange);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_GREEN, R.drawable.akku_btn_pressed_green);
-        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLACK, R.drawable.akku_btn_pressed_black);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLUE, R.drawable.battery_btn_pressed_blue);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_RED, R.drawable.battery_btn_pressed_red);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_LILA, R.drawable.battery_btn_pressed_purple);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_ORANGE, R.drawable.battery_btn_pressed_orange);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_GREEN, R.drawable.battery_btn_pressed_green);
+        mActiveColoredButtons.put(ConfigPreferencesActivity.COLOR_BLACK, R.drawable.battery_btn_pressed_black);
         activeColoredButtons = Collections.unmodifiableMap(mActiveColoredButtons);
     }
 
