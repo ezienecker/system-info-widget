@@ -240,6 +240,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
+            android:scrollbars="vertical"
             android:scrollHorizontally="true"
             android:maxLines="1"
             android:text="@string/general_unknow"
