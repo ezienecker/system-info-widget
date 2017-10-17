@@ -89,7 +89,7 @@ public class DisplayCategory extends AbstractCategory {
 
             DecimalFormat decimalFormat = new DecimalFormat("#0.0");
 
-            String deviceSize = decimalFormat.format(FloatMath.sqrt(height * height + width * width));
+            String deviceSize = decimalFormat.format(Math.sqrt(height * height + width * width));
             deviceSize = deviceSize.replace(",", ".");
             deviceSize = deviceSize + " " + context.getString(R.string.display_display_size_summary);
             return deviceSize;

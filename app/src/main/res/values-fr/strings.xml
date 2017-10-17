@@ -12,7 +12,7 @@
     <string name="general_timezone">fuseau horaire</string>
     <string name="general_unknow">inconnu</string>
 <!-- More-View -->
-    <string name="more_os_sdk_codename">Android OS</string>
+    <string name="more_os_sdk_codename">OS nom</string>
     <string name="more_os_sdk_version">OS/SDK version</string>
     <string name="more_board">Board</string>
     <string name="more_bootloader">Bootloader</string>

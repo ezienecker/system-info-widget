@@ -9,6 +9,7 @@ import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.HashMap;
@@ -65,8 +66,8 @@ public class MoreCategory extends AbstractCategory {
     Informationen getInformationen(Context context) {
         if (informationen == null) {
             informationen = new Informationen.Builder()
-                    .first(context.getString(R.string.more_os_sdk_codename), Build.VERSION.CODENAME)
-                    .second(context.getString(R.string.more_os_sdk_version), Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT)
+                    .first(context.getString(R.string.more_os_sdk_version), Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT)
+                    .second(context.getString(R.string.more_os_sdk_codename), getOsName(Build.VERSION.SDK_INT))
                     .third(context.getString(R.string.more_board), Build.BOARD)
                     .fourth(context.getString(R.string.more_bootloader), Build.BOOTLOADER)
                     .fifth(context.getString(R.string.more_cpu_i), getCpuAbi())
@@ -76,6 +77,27 @@ public class MoreCategory extends AbstractCategory {
         }
 
         return informationen;
+    }
+
+    private String getOsName(int sdkInt) {
+        switch (sdkInt) {
+            case 17:
+            case 18:
+                return "Jelly Bean";
+            case 19:
+                return "KitKat";
+            case 21:
+            case 22:
+                return "Lollipop";
+            case 23:
+                return "Marshmallow";
+            case 24:
+            case 25:
+                return "Nougat";
+            case 26:
+            default:
+                return "Oreo";
+        }
     }
 
     /**
