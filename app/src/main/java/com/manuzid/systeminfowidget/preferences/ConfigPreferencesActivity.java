@@ -88,9 +88,9 @@ public class ConfigPreferencesActivity extends Activity {
                         getApplicationContext().getPackageManager());
 
         prefData = new ArrayList<>();
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_app_config)), "",
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_app_config), "",
                 true));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_colorstyle)),
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_colorstyle),
                 String.format(getResources().getString(R.string.config_colorstyle)), false));
         prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_temp_title)),
                 String.format(getResources().getString(R.string.config_temp_summary)), false));
@@ -169,10 +169,10 @@ public class ConfigPreferencesActivity extends Activity {
 
                         startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO, Uri.parse(uriString)),
                                 getResources().getString(R.string.feedback_mail_subject)));
-                    } else if (String.format(getResources().getString(R.string.config_general_moreapps)).equals(
+                    } else if (getResources().getString(R.string.config_general_moreapps).equals(
                             preferenceObject.title)) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=ManuZiD")));
-                    } else if (String.format(getResources().getString(R.string.config_entries_rights_legal_title)).equals(
+                    } else if (getResources().getString(R.string.config_entries_rights_legal_title).equals(
                             preferenceObject.title)) {
                         startActivity(new Intent(Intent.ACTION_VIEW, null, getApplicationContext(),
                                 RightsLegalActivity.class));
@@ -186,12 +186,12 @@ public class ConfigPreferencesActivity extends Activity {
                     case 0:
                         final CharSequence[] colorItems =
                                 {
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_blue)),
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_red)),
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_orange)),
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_lila)),
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_green)),
-                                        String.format(mContext.getResources().getString(R.string.config_colorstyle_black))};
+                                        mContext.getResources().getString(R.string.config_colorstyle_blue),
+                                        mContext.getResources().getString(R.string.config_colorstyle_red),
+                                        mContext.getResources().getString(R.string.config_colorstyle_orange),
+                                        mContext.getResources().getString(R.string.config_colorstyle_lila),
+                                        mContext.getResources().getString(R.string.config_colorstyle_green),
+                                        mContext.getResources().getString(R.string.config_colorstyle_black)};
                         int checkedColorItem = 0;
                         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         colorScheme = prefs.getString(COLOR_SCHEME, COLOR_BLUE);
@@ -218,7 +218,7 @@ public class ConfigPreferencesActivity extends Activity {
                         }
 
                         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                        builder.setTitle(String.format(getResources().getString(R.string.config_colorstyle)));
+                        builder.setTitle(getResources().getString(R.string.config_colorstyle));
                         builder.setSingleChoiceItems(colorItems, checkedColorItem, new OnClickListener() {
 
                             @Override
@@ -227,50 +227,50 @@ public class ConfigPreferencesActivity extends Activity {
                                     case 0:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLUE).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLUE).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLUE).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLUE).apply();
                                         }
                                         break;
 
                                     case 1:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_RED).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_RED).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_RED).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_RED).apply();
                                         }
                                         break;
                                     case 2:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_ORANGE).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_ORANGE).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_ORANGE).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_ORANGE).apply();
                                         }
                                         break;
                                     case 3:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_LILA).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_LILA).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_LILA).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_LILA).apply();
                                         }
                                         break;
                                     case 4:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_GREEN).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_GREEN).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_GREEN).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_GREEN).apply();
                                         }
                                         break;
                                     case 5:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLACK).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLACK).apply();
                                         } else {
-                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLACK).commit();
+                                            prefs.edit().putString(COLOR_SCHEME, COLOR_BLACK).apply();
                                         }
                                         break;
                                 }
@@ -284,8 +284,8 @@ public class ConfigPreferencesActivity extends Activity {
                         break;
                     case 1:
                         final CharSequence[] tempItems =
-                                {String.format(mContext.getResources().getString(R.string.config_temp_celcius)),
-                                        String.format(mContext.getResources().getString(R.string.config_temp_fahrenheit))};
+                                {mContext.getResources().getString(R.string.config_temp_celcius),
+                                        mContext.getResources().getString(R.string.config_temp_fahrenheit)};
                         int checkedTempItem = 0;
                         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         tempFormat = prefs.getString(TEMP_FORMAT, TEMP_CELSIUS);
@@ -295,7 +295,7 @@ public class ConfigPreferencesActivity extends Activity {
                             checkedTempItem = 1;
                         }
                         final AlertDialog.Builder tempBuilder = new AlertDialog.Builder(mContext);
-                        tempBuilder.setTitle(String.format(getResources().getString(R.string.config_colorstyle)));
+                        tempBuilder.setTitle(getResources().getString(R.string.config_colorstyle));
                         tempBuilder.setSingleChoiceItems(tempItems, checkedTempItem, new OnClickListener() {
 
                             @Override
@@ -304,17 +304,17 @@ public class ConfigPreferencesActivity extends Activity {
                                     case 0:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                            prefs.edit().putString(TEMP_FORMAT, TEMP_CELSIUS).commit();
+                                            prefs.edit().putString(TEMP_FORMAT, TEMP_CELSIUS).apply();
                                         } else {
-                                            prefs.edit().putString(TEMP_FORMAT, TEMP_CELSIUS).commit();
+                                            prefs.edit().putString(TEMP_FORMAT, TEMP_CELSIUS).apply();
                                         }
                                         break;
                                     case 1:
                                         if (prefs == null) {
                                             prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                            prefs.edit().putString(TEMP_FORMAT, TEMP_FAHRENHEIT).commit();
+                                            prefs.edit().putString(TEMP_FORMAT, TEMP_FAHRENHEIT).apply();
                                         } else {
-                                            prefs.edit().putString(TEMP_FORMAT, TEMP_FAHRENHEIT).commit();
+                                            prefs.edit().putString(TEMP_FORMAT, TEMP_FAHRENHEIT).apply();
                                         }
                                         break;
                                 }
