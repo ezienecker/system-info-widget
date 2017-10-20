@@ -61,7 +61,6 @@ public class ConfigPreferencesActivity extends Activity {
     public static final String COLOR_BLACK = "color_black";
 
     private ListView preferencesListView;
-    private List<SystemInfoPreference> prefData;
     private final Context mContext = this;
     private AlertDialog alertDialogTemp;
     private AlertDialog alertDialogCategory;
@@ -77,7 +76,7 @@ public class ConfigPreferencesActivity extends Activity {
         setContentView(R.layout.sysinfo_preferences);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        preferencesListView = (ListView) findViewById(R.id.preferences_listview);
+        preferencesListView = findViewById(R.id.preferences_listview);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         tempFormat = prefs.getString(TEMP_FORMAT, TEMP_CELSIUS);
@@ -87,32 +86,32 @@ public class ConfigPreferencesActivity extends Activity {
                 getAppVersionNumber(getApplicationContext().getPackageName(),
                         getApplicationContext().getPackageManager());
 
-        prefData = new ArrayList<>();
+        List<SystemInfoPreference> prefData = new ArrayList<>();
         prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_app_config), "",
                 true));
         prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_colorstyle),
-                String.format(getResources().getString(R.string.config_colorstyle)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_temp_title)),
-                String.format(getResources().getString(R.string.config_temp_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_category_title)),
-                String.format(getResources().getString(R.string.config_category_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entrys_about_title)), "",
+                getResources().getString(R.string.config_colorstyle), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_temp_title),
+                getResources().getString(R.string.config_temp_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_category_title),
+                getResources().getString(R.string.config_category_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_entrys_about_title), "",
                 true));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entrys_about)),
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_entrys_about),
                 String.format(getResources().getString(R.string.config_entrys_about_app_summary), mVersionNumber),
                 false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_rate)),
-                String.format(getResources().getString(R.string.config_general_rate_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_friend)),
-                String.format(getResources().getString(R.string.config_general_friend_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_send_feedback)),
-                String.format(getResources().getString(R.string.config_general_send_feedback_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_general_moreapps)),
-                String.format(getResources().getString(R.string.config_general_moreapps_summary)), false));
-        prefData.add(new SystemInfoPreference(String.format(getResources().getString(R.string.config_entries_rights_title)), "",
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_rate),
+                getResources().getString(R.string.config_general_rate_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_friend),
+                getResources().getString(R.string.config_general_friend_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_send_feedback),
+                getResources().getString(R.string.config_general_send_feedback_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_general_moreapps),
+                getResources().getString(R.string.config_general_moreapps_summary), false));
+        prefData.add(new SystemInfoPreference(getResources().getString(R.string.config_entries_rights_title), "",
                 true));
         prefData.add(new SystemInfoPreference(
-                String.format(getResources().getString(R.string.config_entries_rights_legal_title)), "", false));
+                getResources().getString(R.string.config_entries_rights_legal_title), "", false));
 
         PreferencesAdapter prefAdap = new PreferencesAdapter(getApplicationContext(), prefData);
         preferencesListView.setAdapter(prefAdap);
@@ -122,20 +121,30 @@ public class ConfigPreferencesActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
                 SystemInfoPreference preferenceObject = (SystemInfoPreference) preferencesListView.getAdapter().getItem(arg2);
 
-                if (String.format(getResources().getString(R.string.config_colorstyle)).equals(preferenceObject.title)) {
+                if (getResources().getString(R.string.config_colorstyle).equals(preferenceObject.title)) {
                     showCustomDialog(0);
-                } else if (String.format(getResources().getString(R.string.config_temp_title)).equals(
+                } else if (getResources().getString(R.string.config_temp_title).equals(
                         preferenceObject.title)) {
                     showCustomDialog(1);
-                } else if (String.format(getResources().getString(R.string.config_category_title)).equals(
+                } else if (getResources().getString(R.string.config_category_title).equals(
                         preferenceObject.title)) {
                     showCustomDialog(2);
-                } else if (String.format(getResources().getString(R.string.config_general_rate)).equals(
+                } else if (getResources().getString(R.string.config_general_rate).equals(
                         preferenceObject.title)) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="
                             + getApplicationContext().getPackageName())));
-                } else if (String.format(getResources().getString(R.string.config_general_friend)).equals(
+                } else if (getResources().getString(R.string.config_general_friend).equals(
                         preferenceObject.title)) {
+                    String recommendationUri = "mailto:";
+                    recommendationUri += "?subject=";
+                    recommendationUri += getResources().getString(R.string.support_subject);
+                    recommendationUri += "?body=";
+                    recommendationUri += getResources().getString(R.string.support_text);
+                    recommendationUri += "\n";
+                    recommendationUri += "https://market://details?id=" + getApplicationContext().getPackageName();
+                    recommendationUri = recommendationUri.replace(" ", "%20");
+
+
                     StringBuilder buffer = new StringBuilder();
                     buffer.append("mailto:");
                     buffer.append("");
@@ -150,7 +159,7 @@ public class ConfigPreferencesActivity extends Activity {
                     startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO, Uri.parse(uriString)),
                             getResources().getString(R.string.config_general_friend)));
                 } else {
-                    if (String.format(getResources().getString(R.string.config_general_send_feedback)).equals(
+                    if (getResources().getString(R.string.config_general_send_feedback).equals(
                             preferenceObject.title)) {
                         String feedbackString = "mailto:"
                                 + "manuzidtv@gmail.com"
