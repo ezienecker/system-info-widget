@@ -456,6 +456,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
             lCategory.setButtonId(availableButtons.get(i));
             addObserver(lCategory);
         }
+
     }
 
 }
