@@ -101,19 +101,6 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
         return getPreviewFormats(camera.getParameters().getSupportedPreviewFormats(), context);
     }
 
-    @Override
-    String isFaceCamAvailable(Context context) {
-        try {
-            if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
-                return context.getString(R.string.camera_facecam_available);
-            } else {
-                return context.getString(R.string.camera_facecam_not_available);
-            }
-        } catch (Exception e) {
-            return context.getString(R.string.general_unknow);
-        }
-    }
-
     @NonNull
     private String getPictureFormatForUI(final int pictureInt, final Context context) {
         switch (pictureInt) {
