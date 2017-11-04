@@ -1,5 +1,6 @@
 package com.manuzid.systeminfowidget.preferences;
 
+import android.Manifest;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +11,14 @@ import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.manuzid.systeminfowidget.R;
-import com.manuzid.systeminfowidget.SysInfoMainProvider;
+import com.manuzid.systeminfowidget.SystemInfoMainProvider;
+import com.manuzid.systeminfowidget.util.AppRater;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +42,9 @@ import static com.manuzid.systeminfowidget.category.NetworkCategory.NETWORK;
  * Zienecker. All rights reserved.
  */
 public class ConfigPreferencesActivity extends PreferenceActivity {
+    // Camera Constant Permission
+    private static final int SYSTEM_INFO_CAMERA = 1;
+
     // Keys für die Auswahlen
     public static final String CATEGORY_SELECTION = "manuzid-category-selection";
     public static final String TEMP_FORMAT = "temp_format";
@@ -68,8 +75,8 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
         private MultiSelectListPreference multiSelectListPreference;
         private String mVersionNumber;
 
-        Set<String> categorySelection = new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY, NETWORK));
-        List<String> listCategorySelection = new ArrayList<>(categorySelection);
+        final Set<String> categorySelection = new LinkedHashSet<>(Arrays.asList(GENERAL, MORE, DISPLAY, CAMERA, MEMORY, BATTERY, NETWORK));
+        final List<String> listCategorySelection = new ArrayList<>(categorySelection);
 
         @Override
         public void onCreate(final Bundle savedInstanceState) {
@@ -106,7 +113,7 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
             rightsLegal.setIntent(new Intent(Intent.ACTION_VIEW, null, mContext, RightsLegalActivity.class));
 
             // MultiSelect für die Kategorien
-            multiSelectListPreference = (MultiSelectListPreference) findPreference("manuzid-category-selection");
+            multiSelectListPreference = (MultiSelectListPreference) findPreference(CATEGORY_SELECTION);
             multiSelectListPreference.setEntries(config_categories);
             multiSelectListPreference.setEntryValues(charCategorySelection);
 
@@ -115,6 +122,14 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
 
             multiSelectListPreference.setOnPreferenceChangeListener(this);
             multiSelectListPreference.setOnPreferenceClickListener(this);
+
+            int permissionCheck = ContextCompat.checkSelfPermission(mContext,
+                    Manifest.permission.CAMERA);
+
+            if (permissionCheck == PackageManager.PERMISSION_DENIED)
+                ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.CAMERA}, SYSTEM_INFO_CAMERA);
+
+            AppRater.appLaunched(this.getActivity());
         }
 
         @Override
@@ -165,7 +180,7 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            if (preference.getKey().equals("manuzid-category-selection")) {
+            if (preference.getKey().equals(CATEGORY_SELECTION)) {
                 @SuppressWarnings("unchecked")
                 HashSet<String> selectedValues = (HashSet<String>) newValue;
 
@@ -189,7 +204,7 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
     }
 
     private void updateAppWidget() {
-        Intent intent = new Intent(this, SysInfoMainProvider.class);
+        Intent intent = new Intent(this, SystemInfoMainProvider.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         sendBroadcast(intent);
     }

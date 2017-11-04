@@ -49,7 +49,7 @@ import static com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity
  * Created by Emanuel Zienecker on 22.05.13. Copyright (c) 2013 Emanuel
  * Zienecker. All rights reserved.
  */
-public class SysInfoMainProvider extends AppWidgetProvider {
+public class SystemInfoMainProvider extends AppWidgetProvider {
     /**
      * Liste der Beobachter
      */
@@ -293,7 +293,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     private void updateAppWidget(final Context context, final RemoteViews remoteView) {
-        ComponentName myComponentName = new ComponentName(context, SysInfoMainProvider.class);
+        ComponentName myComponentName = new ComponentName(context, SystemInfoMainProvider.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(myComponentName, remoteView);
     }

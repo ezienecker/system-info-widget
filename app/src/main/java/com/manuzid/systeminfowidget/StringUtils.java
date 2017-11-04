@@ -5,7 +5,13 @@ package com.manuzid.systeminfowidget;
  * Copyright (c) 2017 Emanuel Zienecker. All rights reserved.
  */
 public final class StringUtils {
-    private StringUtils() {}
+    /**
+     * The empty String {@code ""}.
+     */
+    private static final String EMPTY = "";
+
+    private StringUtils() {
+    }
 
     /**
      * <p>Checks if a CharSequence is empty ("") or null.</p>
@@ -26,8 +32,7 @@ public final class StringUtils {
      * @return {@code true} if the CharSequence is empty or null
      * @since 3.0 Changed signature from isEmpty(String) to isEmpty(CharSequence)
      */
-    public static boolean isEmpty(final CharSequence cs)
-    {
+    public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
     }
 
@@ -46,25 +51,40 @@ public final class StringUtils {
      * @return {@code true} if the CharSequence is null, empty or whitespace
      * @since 3.0 Changed signature from isBlank(String) to isBlank(CharSequence)
      */
-    public static boolean isBlank(final CharSequence cs)
-    {
+    public static boolean isBlank(final CharSequence cs) {
         int strLen;
-        if (cs == null || (strLen = cs.length()) == 0)
-        {
+        if (cs == null || (strLen = cs.length()) == 0) {
             return true;
         }
-        for (int i = 0; i < strLen; i++)
-        {
-            if (!Character.isWhitespace(cs.charAt(i)))
-            {
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(cs.charAt(i))) {
                 return false;
             }
         }
         return true;
     }
 
-    public static boolean isNotBlank(final CharSequence cs)
-    {
+    public static boolean isNotBlank(final CharSequence cs) {
         return !isBlank(cs);
+    }
+
+    public static String join(final Object[] array, final String separator, final int startIndex, final int endIndex) {
+        if (array == null) {
+            return null;
+        }
+        final int noOfItems = endIndex - startIndex;
+        if (noOfItems <= 0) {
+            return EMPTY;
+        }
+        final StringBuilder buf = new StringBuilder(noOfItems * 16);
+        for (int i = startIndex; i < endIndex; i++) {
+            if (i > startIndex) {
+                buf.append(separator);
+            }
+            if (array[i] != null) {
+                buf.append(array[i]);
+            }
+        }
+        return buf.toString();
     }
 }

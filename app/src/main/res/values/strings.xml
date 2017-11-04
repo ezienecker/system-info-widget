@@ -47,12 +47,12 @@
     <string name="camera_front_camera">Front Camera</string>
     <string name="camera_face_cam_available">Available</string>
     <string name="camera_face_cam_not_available">Not Available</string>
-    <string name="camera_picture_format_jpeg">JPEG</string>
-    <string name="camera_picture_format_nv">NV16</string>
-    <string name="camera_picture_format_nv_second">NV21</string>
-    <string name="camera_picture_format_rgb">RGB_565</string>
-    <string name="camera_picture_format_yuy">YUY2</string>
-    <string name="camera_picture_format_yv">YV12</string>
+    <string name="camera_picture_format_jpeg" translatable="false">JPEG</string>
+    <string name="camera_picture_format_nv" translatable="false">NV16</string>
+    <string name="camera_picture_format_nv_second" translatable="false">NV21</string>
+    <string name="camera_picture_format_rgb" translatable="false">RGB_565</string>
+    <string name="camera_picture_format_yuy" translatable="false">YUY2</string>
+    <string name="camera_picture_format_yv" translatable="false">YV12</string>
 <!-- Memory-View -->
     <string name="memory_header_memory">Storage-Medium</string>
     <string name="memory_header_values">Total/Free/Used</string>
@@ -129,12 +129,12 @@
     <string name="config_category_title">Category</string>
     <string name="config_category_summary">Category Choice</string>
     <string name="config_category_choice_wrong">Choose exactly six entries</string>
-    <string name="settings_key_sys_version">bow_version_setting</string>
-    <string name="settings_key_rate_bow">rate_bow_setting</string>
-    <string name="settings_key_forward">forward_setting</string>
-    <string name="settings_key_feedback">feedback_setting</string>
-    <string name="settings_key_rights">rights_setting</string>
-    <string name="settings_key_market">market_setting</string>
+    <string name="settings_key_sys_version" translatable="false">bow_version_setting</string>
+    <string name="settings_key_rate_bow" translatable="false">rate_bow_setting</string>
+    <string name="settings_key_forward" translatable="false">forward_setting</string>
+    <string name="settings_key_feedback" translatable="false">feedback_setting</string>
+    <string name="settings_key_rights" translatable="false">rights_setting</string>
+    <string name="settings_key_market" translatable="false">market_setting</string>
 <!-- Feedback-View -->
 	<string name="feedback_app_version">SystemInfo Version:</string>
 	<string name="feedback_os_version">Android Version:</string>
@@ -148,4 +148,6 @@
 	<string name="rate_dialog_remind_later">Remind me later</string>
 	<string name="rate_dialog_no_thanks">No, Thanks</string>
 	<string name="rate_dialog_text">If you enjoy using SystemInfoWidget, please take a moment to rate it. Thanks for your support!</string>
+    <string name="camera_picture_format_yuv" translatable="false">YUV 420</string>
+    <string name="camera_picture_format_private" translatable="false">Opaque</string>
 </resources>

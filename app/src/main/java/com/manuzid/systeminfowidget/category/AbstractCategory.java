@@ -71,7 +71,7 @@ public abstract class AbstractCategory {
      * @return eine Map<String, Integer>, erste Wert ist das Farbschema und
      * der zweite die dazugehörige Drawable
      */
-    public abstract Map<String, Integer> getActiveColoredButtonsMap();
+    protected abstract Map<String, Integer> getActiveColoredButtonsMap();
 
     /**
      * Alle möglichen Farbschemata müssen in einer Map gespeichert werden und dann bei
