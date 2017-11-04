@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SystemInfoWidget</string>
-    <string name="menu_settings">Settings</string>
     <string name="image_content_description">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">Hersteller</string>
@@ -56,7 +55,6 @@
 <!-- Memory-View -->
     <string name="memory_header_memory">Speicher-Medium</string>
     <string name="memory_header_values">Gesamt/Verfügbar/Benutzt</string>
-    <string name="memory_ram">Ram</string>
     <string name="memory_devicememory">Gerätespeicher</string>
     <string name="memory_usb_sd_memory">USB/SD-Speicher</string>
     <string name="memory_used">Benutzt:</string>
@@ -107,8 +105,6 @@
     <string name="config_temp_title">Temperatur</string>
     <string name="config_temp_summary">Temperatur Anzeige</string>
     <string name="config_temp_celsius_default">celsius</string>
-    <string name="config_temp_dialog_ok">OK</string>
-    <string name="config_temp_dialog_cancel">Abbrechen</string>
     <string name="config_color_style">Farb-Schema</string>
     <string name="config_color_style_summary">Farb-Schema Auswahl</string>
     <string name="config_color_style_default">color_blue</string>
@@ -116,35 +112,22 @@
     <string name="config_entries_about">Aktuelle SystemInfo Widget-Version</string>
     <string name="config_entries_about_app_summary">Version: %s</string>
     <string name="config_entries_about_app_summary_fail">Version: Nicht Verfügbar</string>
-    <string name="config_entrys_start_up">Start-Up-Guide</string>
-    <string name="config_entrys_start_up_summary">Einleitung</string>
     <string name="config_general_rate">SystemInfo Widget Bewerten</string>
     <string name="config_general_rate_summary">Bewerten Sie uns im Store</string>
     <string name="config_general_friend">Weiterempfehlen</string>
     <string name="config_general_friend_summary">Empfehlen Sie uns weiter</string>
     <string name="config_general_send_feedback">Feedback senden</string>
     <string name="config_general_send_feedback_summary">Geben Sie uns Feedback</string>
-    <string name="config_general_send_feedback_mail_title">Feedback/Report</string>
     <string name="config_general_more_apps">Android Market</string>
     <string name="config_general_more_apps_summary">Weitere Apps</string>
     <string name="config_entries_rights_title">RECHTLICHE HINWEISE</string>
     <string name="config_entries_rights_legal_title">Zuwendungen</string>
     <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
-    <string name="config_send_mail_title">E-Mail senden</string>
     <string name="config_config_click">\"Klick\" für Einstellungen</string>
     <string name="config_save_changes">Widget aktualisiert</string>
     <string name="config_category_title">Kategorie</string>
     <string name="config_category_summary">Kategorie-Auswahl</string>
-    <string name="config_category_choice_general">Allgemeine Informationen</string>
-    <string name="config_category_choice_more">Erweiterte Informationen</string>
-    <string name="config_category_choice_display">Display</string>
-    <string name="config_category_choice_camera">Kamera</string>
-    <string name="config_category_choice_memory">Speicher</string>
-    <string name="config_category_choice_battery">Batterie</string>
-    <string name="config_category_choice_network">Netzwerk</string>
     <string name="config_category_choice_wrong">Wählen Sie genau sechs Einträge</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_cancel">Abbrechen</string>
 <!-- Feedback-View -->
 	<string name="feedback_app_version">SystemInfo Version:</string>
 	<string name="feedback_os_version">Android Version:</string>
