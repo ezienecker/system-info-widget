@@ -47,13 +47,7 @@
     <string name="camera_front_camera">Front Kamera</string>
     <string name="camera_face_cam_available">Verfügbar</string>
     <string name="camera_face_cam_not_available">Nicht Verfügbar</string>
-    <string name="camera_picture_format_jpeg">JPEG</string>
-    <string name="camera_picture_format_nv">NV16</string>
-    <string name="camera_picture_format_nv_second">NV21</string>
-    <string name="camera_picture_format_rgb">RGB_565</string>
-    <string name="camera_picture_format_yuy">YUY2</string>
-    <string name="camera_picture_format_yv">YV12</string>
-<!-- Memory-View -->
+    <!-- Memory-View -->
     <string name="memory_header_memory">Speicher-Medium</string>
     <string name="memory_header_values">Gesamt/Verfügbar/Benutzt</string>
     <string name="memory_device_memory">Gerätespeicher</string>

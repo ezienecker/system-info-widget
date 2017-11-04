@@ -47,13 +47,7 @@
     <string name="camera_front_camera">caméra frontale</string>
     <string name="camera_face_cam_available">disponibles</string>
     <string name="camera_face_cam_not_available">indisponible</string>
-    <string name="camera_picture_format_jpeg">JPEG</string>
-    <string name="camera_picture_format_nv">NV16</string>
-    <string name="camera_picture_format_nv_second">NV21</string>
-    <string name="camera_picture_format_rgb">RGB_565</string>
-    <string name="camera_picture_format_yuy">YUY2</string>
-    <string name="camera_picture_format_yv">YV12</string>
-<!-- Memory-View -->
+    <!-- Memory-View -->
     <string name="memory_header_memory">mémoire informat.</string>
     <string name="memory_header_values">totale/disponible/utilisées</string>
     <string name="memory_device_memory">engin mémoire</string>
@@ -66,7 +60,7 @@
     <string name="battery_state_charging">recharger</string>
     <string name="battery_state_dis_charging">déchargée</string>
     <string name="battery_state_full">chargement</string>
-    <string name="battery_state_not_charging"></string>
+    <string name="battery_state_not_charging">Ne pas charger</string>
     <string name="battery_technology">modèle</string>
     <string name="battery_voltage">tension</string>
     <string name="battery_temp">température</string>
