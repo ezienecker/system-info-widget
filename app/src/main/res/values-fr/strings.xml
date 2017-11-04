@@ -106,21 +106,22 @@
     <string name="config_general_app_config">APP-PARAMÈTRES</string>
     <string name="config_temp_title">température</string>
     <string name="config_temp_summary">température indication</string>
-    <string name="config_temp_celcius">Celsius degrés (°C)</string>
+    <string name="config_temp_celsius">Celsius degrés (°C)</string>
     <string name="config_temp_fahrenheit">Fahrenheit (°F)</string>
     <string name="config_temp_dialog_ok">OK</string>
     <string name="config_temp_dialog_cancel">rupture</string>
-    <string name="config_colorstyle">Couleur-Scheme</string>
-    <string name="config_colorstyle_blue">bleu</string>
+    <string name="config_color_style">Couleur-Scheme</string>
+    <string name="config_color_style_summary">Color-Schema Choice</string>
+    <string name="config_color_style_default">color_blue</string>
     <string name="config_colorstyle_green">vert</string>
     <string name="config_colorstyle_red">rouge</string>
     <string name="config_colorstyle_orange">orange</string>
     <string name="config_colorstyle_lila">lilas</string>
     <string name="config_colorstyle_black">noir</string>
-    <string name="config_entrys_about_title">AU SUJET DE</string>
-    <string name="config_entrys_about">La version actuelle du SystemInfo Widget</string>
-    <string name="config_entrys_about_app_summary">Version: %s</string>
-    <string name="config_entrys_about_app_summary_fail">Version: indisponible</string>
+    <string name="config_about_title">AU SUJET DE</string>
+    <string name="config_entries_about">La version actuelle du SystemInfo Widget</string>
+    <string name="config_entries_about_app_summary">Version: %s</string>
+    <string name="config_entries_about_app_summary_fail">Version: indisponible</string>
     <string name="config_entrys_start_up"></string>
     <string name="config_entrys_start_up_summary">introduction</string>
     <string name="config_general_rate">Taux SystemInfo Widget</string>
@@ -130,8 +131,8 @@
     <string name="config_general_send_feedback">Vos commentaires</string>
     <string name="config_general_send_feedback_summary">Donnez-nous vos commentaires</string>
     <string name="config_general_send_feedback_mail_title">Commentaires/Rapport</string>
-    <string name="config_general_moreapps">Android Market</string>
-    <string name="config_general_moreapps_summary">plus d\'applications</string>
+    <string name="config_general_more_apps">Android Market</string>
+    <string name="config_general_more_apps_summary">plus d\'applications</string>
     <string name="config_entries_rights_title">MENTIONS LÉGALES</string>
     <string name="config_entries_rights_legal_title">Mentions légales</string>
     <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
@@ -147,8 +148,7 @@
     <string name="config_category_choice_memory">mémoire</string>
     <string name="config_category_choice_battery">batterie</string>
     <string name="config_category_choice_network">réseau</string>
-    <string name="config_category_choice_too_much_items_selected">Sélectionnez un maximum de six entrées</string>
-    <string name="config_category_choice_too_little_items_selected">Sélectionnez au moins six entrées</string>
+    <string name="config_category_choice_wrong">Choisissez exactement six entrées</string>
     <string name="dialog_ok">D\'accord</string>
     <string name="dialog_cancel">Annuler</string>
 <!-- Feedback-View -->
@@ -164,4 +164,5 @@
 	<string name="rate_dialog_remind_later">ensuite</string>
 	<string name="rate_dialog_no_thanks">Non merci</string>
 	<string name="rate_dialog_text">Si vous aimez utiliser System Info Widget, s\'il vous plaît prendre un moment pour évaluer ce. Merci pour votre soutien!</string>
+    <string name="config_temp_celsius_default">celsius</string>
 </resources>
