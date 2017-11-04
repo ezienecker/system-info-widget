@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
-import android.util.FloatMath;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;

@@ -1,7 +1,9 @@
 package com.manuzid.systeminfowidget.category.util;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 
+import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.category.Informationen;
 
 /**
@@ -15,7 +17,18 @@ public abstract class AbstractCameraSupport {
     abstract String getPreviewSize();
     abstract String getSupportedSizes();
     abstract String getSupportedFormats(Context context);
-    abstract String isFaceCamAvailable(Context context);
+
+    String isFaceCamAvailable(Context context) {
+        try {
+            if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
+                return context.getString(R.string.camera_facecam_available);
+            } else {
+                return context.getString(R.string.camera_facecam_not_available);
+            }
+        } catch (Exception e) {
+            return context.getString(R.string.general_unknow);
+        }
+    }
 
     public abstract Informationen getInformationen(Context context);
 }

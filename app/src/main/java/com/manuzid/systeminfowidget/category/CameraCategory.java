@@ -7,6 +7,7 @@ import android.widget.RemoteViews;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.category.util.AbstractCameraSupport;
+import com.manuzid.systeminfowidget.category.util.CameraInformationenEqualAndOverSdk21;
 import com.manuzid.systeminfowidget.category.util.CameraInformationenUnderSdk21;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
@@ -45,11 +46,10 @@ public class CameraCategory extends AbstractCategory {
     private AbstractCameraSupport cameraSupport;
 
     public CameraCategory() {
-        if (Build.VERSION.SDK_INT < 21) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             cameraSupport = new CameraInformationenUnderSdk21();
         } else {
-            // TODO: Camera2 implementieren und benutzen
-            cameraSupport = new CameraInformationenUnderSdk21();
+            cameraSupport = new CameraInformationenEqualAndOverSdk21();
         }
     }
 

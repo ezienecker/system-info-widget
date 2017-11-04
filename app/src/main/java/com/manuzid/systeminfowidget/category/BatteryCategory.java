@@ -127,12 +127,13 @@ public class BatteryCategory extends AbstractCategory {
     }
 
     private String getBatteryTemp(final int temp, final Context context) {
+        String defaultTemperatureValue = context.getString(R.string.config_temp_celsius_default);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String tempFormat = prefs.getString(ConfigPreferencesActivity.TEMP_FORMAT, ConfigPreferencesActivity.TEMP_CELSIUS);
+        String tempFormat = prefs.getString(ConfigPreferencesActivity.TEMP_FORMAT, defaultTemperatureValue);
 
         String batteryTemp = context.getString(R.string.general_unknow);
         if (temp > 0) {
-            if (ConfigPreferencesActivity.TEMP_CELSIUS.equals(tempFormat)) {
+            if (defaultTemperatureValue.equals(tempFormat)) {
                 batteryTemp = temp / 10 + " °C";
             } else {
                 DecimalFormat decimalFormat = new DecimalFormat("#0.00");
