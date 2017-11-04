@@ -83,7 +83,7 @@ public class MemoryCategory extends AbstractCategory {
         remoteView.setTextViewText(R.id.lblFirstInfo, context.getString(R.string.memory_header_memory));
         remoteView.setTextViewText(R.id.txtFirstInfo, context.getString(R.string.memory_header_values));
 
-        remoteView.setTextViewText(R.id.lblSecondInfo, context.getString(R.string.memory_devicememory));
+        remoteView.setTextViewText(R.id.lblSecondInfo, context.getString(R.string.memory_device_memory));
         remoteView.setTextViewText(R.id.txtSecondInfo, totalDeviceMemory + freeDeviceMemory + usedDeviceMemory);
 
         remoteView.setTextViewText(R.id.lblThird, "");

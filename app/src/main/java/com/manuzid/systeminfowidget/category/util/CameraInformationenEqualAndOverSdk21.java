@@ -86,10 +86,10 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
         Informationen informationen = new Informationen.Builder()
                 .first(context.getString(R.string.camera_manufacturer), pictureFormat)
                 .second(context.getString(R.string.camera_product), pictureSize)
-                .third(context.getString(R.string.camera_modell), previewFormat)
+                .third(context.getString(R.string.camera_model), previewFormat)
                 .fourth(context.getString(R.string.camera_brand), previewPictureSize)
                 .fifth(context.getString(R.string.camera_serialnumber), supportedPictureSizes)
-                .sixth(context.getString(R.string.camera_supportet_formats), supportedPictureFormats)
+                .sixth(context.getString(R.string.camera_supported_formats), supportedPictureFormats)
                 .seventh(context.getString(R.string.camera_front_camera), faceCam)
                 .build();
 

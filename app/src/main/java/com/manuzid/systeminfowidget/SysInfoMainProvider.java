@@ -116,7 +116,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
         for (int i = appWidgetIds.length; --i >= 0; ) {
             int appWidgetId = appWidgetIds[i];
 
-            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
+            RemoteViews remoteView = new RemoteViews(context.getPackageName(), R.layout.system_info_main);
 
             // 1 PendingIntent damit wenn der Benutzer die Buttons benutzt auch zwischen den Kategorien navigieren kann.
             registerOnClickPendingIntentForCategories(context, remoteView, appWidgetId);
@@ -257,7 +257,7 @@ public class SysInfoMainProvider extends AppWidgetProvider {
     }
 
     private RemoteViews handleRemoteViews(Context context, String colorScheme, AbstractCategory lCategory, int appWidgetId) {
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.sysinfo_main);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.system_info_main);
         if (lCategory == null || category.equals(lCategory.getRequestAction())) {
             // 1 Keine Kategorie wird angezeigt, die Standard-View wird angezeigt.
             resetCategory();
