@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SystemInfoWidget</string>
-    <string name="menu_settings">Settings</string>
     <string name="image_content_description">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">producteur</string>
@@ -56,7 +55,6 @@
 <!-- Memory-View -->
     <string name="memory_header_memory">mémoire informat.</string>
     <string name="memory_header_values">totale/disponible/utilisées</string>
-    <string name="memory_ram">mémoire vive</string>
     <string name="memory_devicememory">engin mémoire</string>
     <string name="memory_usb_sd_memory">USB/SD mémoire</string>
     <string name="memory_used">utilisées:</string>
@@ -106,51 +104,29 @@
     <string name="config_general_app_config">APP-PARAMÈTRES</string>
     <string name="config_temp_title">température</string>
     <string name="config_temp_summary">température indication</string>
-    <string name="config_temp_celsius">Celsius degrés (°C)</string>
-    <string name="config_temp_fahrenheit">Fahrenheit (°F)</string>
-    <string name="config_temp_dialog_ok">OK</string>
-    <string name="config_temp_dialog_cancel">rupture</string>
     <string name="config_color_style">Couleur-Scheme</string>
     <string name="config_color_style_summary">Color-Schema Choice</string>
     <string name="config_color_style_default">color_blue</string>
-    <string name="config_colorstyle_green">vert</string>
-    <string name="config_colorstyle_red">rouge</string>
-    <string name="config_colorstyle_orange">orange</string>
-    <string name="config_colorstyle_lila">lilas</string>
-    <string name="config_colorstyle_black">noir</string>
     <string name="config_about_title">AU SUJET DE</string>
     <string name="config_entries_about">La version actuelle du SystemInfo Widget</string>
     <string name="config_entries_about_app_summary">Version: %s</string>
     <string name="config_entries_about_app_summary_fail">Version: indisponible</string>
-    <string name="config_entrys_start_up"></string>
-    <string name="config_entrys_start_up_summary">introduction</string>
     <string name="config_general_rate">Taux SystemInfo Widget</string>
     <string name="config_general_rate_summary">Nous vitesse à la Android Market</string>
     <string name="config_general_friend">recommander</string>
     <string name="config_general_friend_summary">Recommandez-nous</string>
     <string name="config_general_send_feedback">Vos commentaires</string>
     <string name="config_general_send_feedback_summary">Donnez-nous vos commentaires</string>
-    <string name="config_general_send_feedback_mail_title">Commentaires/Rapport</string>
     <string name="config_general_more_apps">Android Market</string>
     <string name="config_general_more_apps_summary">plus d\'applications</string>
     <string name="config_entries_rights_title">MENTIONS LÉGALES</string>
     <string name="config_entries_rights_legal_title">Mentions légales</string>
     <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
-    <string name="config_send_mail_title">Envoyer un e-mail</string>
     <string name="config_config_click">\"Cliquez sur\" Paramètres pour</string>
     <string name="config_save_changes">actualiser ce widget</string>
     <string name="config_category_title">Catégorie</string>
     <string name="config_category_summary">Sélection de catégorie</string>
-    <string name="config_category_choice_general">Sélection de l\'information générale</string>
-    <string name="config_category_choice_more">Sélection avancée de l\'information</string>
-    <string name="config_category_choice_display">l\'affichage</string>
-    <string name="config_category_choice_camera">caméra</string>
-    <string name="config_category_choice_memory">mémoire</string>
-    <string name="config_category_choice_battery">batterie</string>
-    <string name="config_category_choice_network">réseau</string>
     <string name="config_category_choice_wrong">Choisissez exactement six entrées</string>
-    <string name="dialog_ok">D\'accord</string>
-    <string name="dialog_cancel">Annuler</string>
 <!-- Feedback-View -->
 	<string name="feedback_app_version">SystemInfo version:</string>
 	<string name="feedback_os_version">Android version:</string>

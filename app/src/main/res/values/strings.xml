@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SystemInfoWidget</string>
-    <string name="menu_settings">Settings</string>
     <string name="image_content_description">imagedisc</string>
 <!-- General-View -->
     <string name="general_manufacturer">Manufacturer</string>
@@ -56,7 +55,6 @@
 <!-- Memory-View -->
     <string name="memory_header_memory">Storage-Medium</string>
     <string name="memory_header_values">Total/Free/Used</string>
-    <string name="memory_ram">Ram</string>
     <string name="memory_devicememory">Device Storage</string>
     <string name="memory_usb_sd_memory">USB/SD-Storage</string>
     <string name="memory_used">Used:</string>
@@ -114,35 +112,22 @@
     <string name="config_entries_about">Current SystemInfo Widget-Version</string>
     <string name="config_entries_about_app_summary">Version: %s</string>
     <string name="config_entries_about_app_summary_fail">Version: Not Available</string>
-    <string name="config_entrys_start_up">Start-Up-Guide</string>
-    <string name="config_entrys_start_up_summary">Introduction</string>
     <string name="config_general_rate">Rate SystemInfo Widget</string>
     <string name="config_general_rate_summary">Rate us at the store</string>
     <string name="config_general_friend">Recommend</string>
     <string name="config_general_friend_summary">Recommend us</string>
     <string name="config_general_send_feedback">send Feedback</string>
     <string name="config_general_send_feedback_summary">Give us Feedback</string>
-    <string name="config_general_send_feedback_mail_title">Feedback/Report</string>
     <string name="config_general_more_apps">Android Market</string>
     <string name="config_general_more_apps_summary">More Apps</string>
     <string name="config_entries_rights_title">LEGAL NOTICES</string>
     <string name="config_entries_rights_legal_title">Bequest</string>
     <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
-    <string name="config_send_mail_title">send e-mail</string>
     <string name="config_config_click">\"Click\" for Settings-Menu</string>
     <string name="config_save_changes">Update Widget</string>
     <string name="config_category_title">Category</string>
     <string name="config_category_summary">Category Choice</string>
-    <string name="config_category_choice_general">General informationen</string>
-    <string name="config_category_choice_more">Advanced informationen</string>
-    <string name="config_category_choice_display">Display</string>
-    <string name="config_category_choice_camera">Camera</string>
-    <string name="config_category_choice_memory">Storage</string>
-    <string name="config_category_choice_battery">Battery</string>
-    <string name="config_category_choice_network">Network</string>
     <string name="config_category_choice_wrong">Choose exactly six entries</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_cancel">Cancel</string>
     <string name="settings_key_sys_version">bow_version_setting</string>
     <string name="settings_key_rate_bow">rate_bow_setting</string>
     <string name="settings_key_forward">forward_setting</string>

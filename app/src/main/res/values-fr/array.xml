@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="config_color_style">
+        <item>bleu</item>
+        <item>vert</item>
+        <item>rouge</item>
+        <item>orange</item>
+        <item>lilas</item>
+        <item>noir</item>
+    </string-array>
+    <string-array name="config_temperature_style">
+        <item>Celsius degrés (°C)</item>
+        <item>Fahrenheit (°F)</item>
+    </string-array>
+    <string-array name="config_categories">
+        <item>Sélection de l\'information générale</item>
+        <item>Sélection avancée de l\'information</item>
+        <item>l\'affichage</item>
+        <item>caméra</item>
+        <item>mémoire</item>
+        <item>batterie</item>
+        <item>réseau</item>
+    </string-array>
+</resources>
