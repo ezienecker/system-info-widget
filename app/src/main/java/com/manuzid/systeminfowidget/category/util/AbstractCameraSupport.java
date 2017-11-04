@@ -21,9 +21,9 @@ public abstract class AbstractCameraSupport {
     String isFaceCamAvailable(Context context) {
         try {
             if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
-                return context.getString(R.string.camera_facecam_available);
+                return context.getString(R.string.camera_face_cam_available);
             } else {
-                return context.getString(R.string.camera_facecam_not_available);
+                return context.getString(R.string.camera_face_cam_not_available);
             }
         } catch (Exception e) {
             return context.getString(R.string.general_unknow);

@@ -65,11 +65,11 @@ public class BatteryCategory extends AbstractCategory {
             return new Informationen.Builder()
                     .first(context.getString(R.string.battery_capacitance), context.getString(R.string.general_unknow))
                     .second(context.getString(R.string.battery_state), context.getString(R.string.general_unknow))
-                    .third(context.getString(R.string.akku_technology), context.getString(R.string.general_unknow))
-                    .fourth(context.getString(R.string.akku_voltage), context.getString(R.string.general_unknow))
-                    .fifth(context.getString(R.string.akku_temp), context.getString(R.string.general_unknow))
-                    .sixth(context.getString(R.string.akku_connected), context.getString(R.string.general_unknow))
-                    .seventh(context.getString(R.string.akku_akku_health), context.getString(R.string.general_unknow))
+                    .third(context.getString(R.string.battery_technology), context.getString(R.string.general_unknow))
+                    .fourth(context.getString(R.string.battery_voltage), context.getString(R.string.general_unknow))
+                    .fifth(context.getString(R.string.battery_temp), context.getString(R.string.general_unknow))
+                    .sixth(context.getString(R.string.battery_connected), context.getString(R.string.general_unknow))
+                    .seventh(context.getString(R.string.battery_battery_health), context.getString(R.string.general_unknow))
                     .build();
         } else {
 
@@ -83,17 +83,17 @@ public class BatteryCategory extends AbstractCategory {
                 technology = mIntent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
 
             } catch (Exception e) {
-                technology = context.getString(R.string.akku_technology_summ);
+                technology = context.getString(R.string.battery_technology_summary);
             }
 
             return new Informationen.Builder()
                     .first(context.getString(R.string.battery_capacitance), mIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0) + "%")
                     .second(context.getString(R.string.battery_state), getBatteryStatusForUi(status, context))
-                    .third(context.getString(R.string.akku_technology), technology)
-                    .fourth(context.getString(R.string.akku_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
-                    .fifth(context.getString(R.string.akku_temp), getBatteryTemp(temp, context))
-                    .sixth(context.getString(R.string.akku_connected), getConnectedState(context, extra))
-                    .seventh(context.getString(R.string.akku_akku_health), getBatteryHealthForUi(health, context))
+                    .third(context.getString(R.string.battery_technology), technology)
+                    .fourth(context.getString(R.string.battery_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
+                    .fifth(context.getString(R.string.battery_temp), getBatteryTemp(temp, context))
+                    .sixth(context.getString(R.string.battery_connected), getConnectedState(context, extra))
+                    .seventh(context.getString(R.string.battery_battery_health), getBatteryHealthForUi(health, context))
                     .build();
         }
     }
@@ -116,7 +116,7 @@ public class BatteryCategory extends AbstractCategory {
     private String getConnectedState(final Context context, final int connectedState) {
         switch (connectedState) {
             case 0:
-                return context.getString(R.string.battery_connected_akku);
+                return context.getString(R.string.battery_connected_battery);
             case BatteryManager.BATTERY_PLUGGED_USB:
                 return context.getString(R.string.battery_connected_usb);
             case BatteryManager.BATTERY_PLUGGED_AC:
