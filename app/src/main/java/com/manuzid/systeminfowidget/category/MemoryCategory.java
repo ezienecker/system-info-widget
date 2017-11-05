@@ -286,7 +286,9 @@ public class MemoryCategory extends AbstractCategory {
             final String lastFolder = folders[folders.length - 1];
             boolean isDigit = false;
             try {
-                int t = Integer.valueOf(lastFolder);
+                // Only check that variable is a number
+                //noinspection ResultOfMethodCallIgnored
+                Integer.valueOf(lastFolder);
                 isDigit = true;
             } catch (NumberFormatException ignored) {
             }

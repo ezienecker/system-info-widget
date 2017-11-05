@@ -136,4 +136,5 @@
 	<string name="rate_dialog_remind_later">Später</string>
 	<string name="rate_dialog_no_thanks">Nein, Danke</string>
 	<string name="rate_dialog_text">Wenn Ihnen das SystemInfo-Widget gefällt, nehmen Sie sich bitte einen Moment Zeit um es zu bewerten. Danke für Ihre Unterstützung</string>
+    <string name="rate_dialog_ok">Bewerten</string>
 </resources>

@@ -53,6 +53,8 @@
     <string name="camera_picture_format_rgb" translatable="false">RGB_565</string>
     <string name="camera_picture_format_yuy" translatable="false">YUY2</string>
     <string name="camera_picture_format_yv" translatable="false">YV12</string>
+    <string name="camera_picture_format_yuv" translatable="false">YUV 420</string>
+    <string name="camera_picture_format_private" translatable="false">Opaque</string>
 <!-- Memory-View -->
     <string name="memory_header_memory">Storage-Medium</string>
     <string name="memory_header_values">Total/Free/Used</string>
@@ -148,6 +150,5 @@
 	<string name="rate_dialog_remind_later">Remind me later</string>
 	<string name="rate_dialog_no_thanks">No, Thanks</string>
 	<string name="rate_dialog_text">If you enjoy using SystemInfoWidget, please take a moment to rate it. Thanks for your support!</string>
-    <string name="camera_picture_format_yuv" translatable="false">YUV 420</string>
-    <string name="camera_picture_format_private" translatable="false">Opaque</string>
+    <string name="rate_dialog_ok">Rate Now</string>
 </resources>
