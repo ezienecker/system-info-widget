@@ -19,12 +19,16 @@ public class AppRater
 {
     private final static String APP_NAME = "com.manuzid.systeminfowidget";
 
-    private final static int DAYS_UNTIL_PROMPT = 3;
+    // TODO: Counter wieder auf 3 setzen
+    private final static int DAYS_UNTIL_PROMPT = 0;
     private final static int LAUNCHES_UNTIL_PROMPT = 7;
 
-    public static void app_launched(Context mContext) {
-        SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
-        if (prefs.getBoolean("dontshowagain", false)) { return ; }
+    private final static String PREFERENCE_FILE_NAME = "app-rater";
+    private final static String PREFERENCE_ATTRIBUTE_NAME = "not-show-again";
+
+    public static void appLaunched(Context mContext) {
+        SharedPreferences prefs = mContext.getSharedPreferences(PREFERENCE_FILE_NAME, 0);
+        if (prefs.getBoolean(PREFERENCE_ATTRIBUTE_NAME, false)) { return ; }
 
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -33,10 +37,10 @@ public class AppRater
         editor.putLong("launch_count", launch_count);
 
         // Get date of first launch
-        Long date_firstLaunch = prefs.getLong("date_firstlaunch", 0);
+        Long date_firstLaunch = prefs.getLong("date_first_launch", 0);
         if (date_firstLaunch == 0) {
             date_firstLaunch = System.currentTimeMillis();
-            editor.putLong("date_firstlaunch", date_firstLaunch);
+            editor.putLong("date_first_launch", date_firstLaunch);
         }
 
         // Wait at least n days before opening
@@ -87,7 +91,7 @@ public class AppRater
         b3.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 if (editor != null) {
-                    editor.putBoolean("dontshowagain", true);
+                    editor.putBoolean(PREFERENCE_ATTRIBUTE_NAME, true);
                     editor.commit();
                 }
                 dialog.dismiss();
