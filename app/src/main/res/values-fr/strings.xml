@@ -136,4 +136,5 @@
 	<string name="rate_dialog_no_thanks">Non merci</string>
 	<string name="rate_dialog_text">Si vous aimez utiliser System Info Widget, s\'il vous plaît prendre un moment pour évaluer ce. Merci pour votre soutien!</string>
     <string name="config_temp_celsius_default">celsius</string>
+    <string name="rate_dialog_ok">évaluer</string>
 </resources>

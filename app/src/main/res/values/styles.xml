@@ -5,5 +5,4 @@
         <item name="android:minHeight">16dip</item>
         <item name="android:maxHeight">16dip</item>
     </style>
-    <style name="AppTheme" parent="android:Theme.Light" />
 </resources>

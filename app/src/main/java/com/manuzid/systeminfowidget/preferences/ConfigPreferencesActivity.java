@@ -16,9 +16,9 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.kobakei.ratethisapp.RateThisApp;
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.SystemInfoMainProvider;
-import com.manuzid.systeminfowidget.util.AppRater;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,7 +129,18 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
             if (permissionCheck == PackageManager.PERMISSION_DENIED)
                 ActivityCompat.requestPermissions(this.getActivity(), new String[]{Manifest.permission.CAMERA}, SYSTEM_INFO_CAMERA);
 
-            AppRater.appLaunched(this.getActivity());
+            // Custom strings
+            RateThisApp.Config config = new RateThisApp.Config();
+            config.setTitle(R.string.config_general_rate);
+            config.setMessage(R.string.rate_dialog_text);
+            config.setYesButtonText(R.string.rate_dialog_ok);
+            config.setNoButtonText(R.string.rate_dialog_no_thanks);
+            config.setCancelButtonText(R.string.rate_dialog_remind_later);
+            RateThisApp.init(config);
+            // Monitor launch times and interval from installation
+            RateThisApp.onCreate(this.getActivity());
+            // If the condition is satisfied, "Rate this app" dialog will be shown
+            RateThisApp.showRateDialogIfNeeded(this.getActivity());
         }
 
         @Override
