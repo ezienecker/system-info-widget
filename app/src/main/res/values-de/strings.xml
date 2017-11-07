@@ -117,7 +117,6 @@
     <string name="config_general_more_apps_summary">Weitere Apps</string>
     <string name="config_entries_rights_title">RECHTLICHE HINWEISE</string>
     <string name="config_entries_rights_legal_title">Zuwendungen</string>
-    <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
     <string name="config_config_click">\"Klick\" für Einstellungen</string>
     <string name="config_save_changes">Widget aktualisiert</string>
     <string name="config_category_title">Kategorie</string>
@@ -137,4 +136,7 @@
 	<string name="rate_dialog_no_thanks">Nein, Danke</string>
 	<string name="rate_dialog_text">Wenn Ihnen das SystemInfo-Widget gefällt, nehmen Sie sich bitte einen Moment Zeit um es zu bewerten. Danke für Ihre Unterstützung</string>
     <string name="rate_dialog_ok">Bewerten</string>
+    <string name="config_entries_privacy_policy">Datenschutzerklärung</string>
+    <string name="no_internet_title">Keine Interneteverbindung</string>
+    <string name="no_internet_message">Es besteht keine Verbindung zum Internet</string>
 </resources>

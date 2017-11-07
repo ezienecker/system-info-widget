@@ -116,7 +116,6 @@
     <string name="config_general_more_apps_summary">plus d\'applications</string>
     <string name="config_entries_rights_title">MENTIONS LÉGALES</string>
     <string name="config_entries_rights_legal_title">Mentions légales</string>
-    <string name="config_entries_rights_legal_privat">Legal Notices:\n© 2013 Emanuel Zienecker. All rights reserved.\n</string>
     <string name="config_config_click">\"Cliquez sur\" Paramètres pour</string>
     <string name="config_save_changes">actualiser ce widget</string>
     <string name="config_category_title">Catégorie</string>
@@ -137,4 +136,7 @@
 	<string name="rate_dialog_text">Si vous aimez utiliser System Info Widget, s\'il vous plaît prendre un moment pour évaluer ce. Merci pour votre soutien!</string>
     <string name="config_temp_celsius_default">celsius</string>
     <string name="rate_dialog_ok">évaluer</string>
+    <string name="config_entries_privacy_policy">Vos informations personnelles</string>
+    <string name="no_internet_title">Pas d\'internet</string>
+    <string name="no_internet_message">Il n\'y a pas de connexion à Internet</string>
 </resources>

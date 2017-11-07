@@ -112,6 +112,9 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
             Preference rightsLegal = findPreference(getResources().getString(R.string.settings_key_rights));
             rightsLegal.setIntent(new Intent(Intent.ACTION_VIEW, null, mContext, RightsLegalActivity.class));
 
+            Preference privacyPolicySettings = findPreference("privacy_policy_settings");
+            privacyPolicySettings.setIntent(new Intent(Intent.ACTION_VIEW, null, mContext, PrivacyPolicyActivity.class));
+
             // MultiSelect für die Kategorien
             multiSelectListPreference = (MultiSelectListPreference) findPreference(CATEGORY_SELECTION);
             multiSelectListPreference.setEntries(config_categories);
