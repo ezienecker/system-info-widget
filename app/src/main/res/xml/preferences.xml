@@ -45,6 +45,9 @@
         <Preference
             android:key="@string/settings_key_rights"
             android:title="@string/config_entries_rights_legal_title" />
+        <Preference
+            android:key="privacy_policy_settings"
+            android:title="@string/config_entries_privacy_policy" />
     </PreferenceCategory>
 
 </PreferenceScreen>
