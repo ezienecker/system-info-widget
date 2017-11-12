@@ -24,7 +24,7 @@ import com.manuzid.systeminfowidget.R;
  */
 @SuppressLint("SetJavaScriptEnabled")
 public class PrivacyPolicyActivity extends Activity {
-    private static final String DESTINATION_URL = "http://systeminfowidget.manuzid.de";
+    private static final String DESTINATION_URL = "http://systeminfowidget.manuzid.de/privacy.html";
 
     WebView webView;
 
