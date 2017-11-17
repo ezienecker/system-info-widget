@@ -243,12 +243,7 @@ public class MemoryCategory extends AbstractCategory {
      */
     private StatFs getUsbStatFsObject() {
         File externalSdCard = getExternalSDCardDirectory();
-
-        if (externalSdCard != null) {
-            return new StatFs(externalSdCard.getAbsolutePath());
-        } else {
-            return new StatFs(Environment.getDataDirectory().getAbsolutePath());
-        }
+        return new StatFs(externalSdCard.getAbsolutePath());
     }
 
     /**
