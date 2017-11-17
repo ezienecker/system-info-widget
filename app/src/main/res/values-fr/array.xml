@@ -21,4 +21,25 @@
         <item>batterie</item>
         <item>réseau</item>
     </string-array>
+    <string-array name="config_color_style_keys">
+        <item>color_blue</item>
+        <item>color_green</item>
+        <item>color_red</item>
+        <item>color_orange</item>
+        <item>color_lila</item>
+        <item>color_black</item>
+    </string-array>
+    <string-array name="config_temperature_style_keys">
+        <item>celsius</item>
+        <item>fahrenheit</item>
+    </string-array>
+    <string-array name="config_categories_keys">
+        <item>general</item>
+        <item>advanced</item>
+        <item>display</item>
+        <item>camera</item>
+        <item>storage</item>
+        <item>battery</item>
+        <item>network</item>
+    </string-array>
 </resources>

@@ -119,7 +119,7 @@
     <string name="config_general_rate_summary">Rate us at the store</string>
     <string name="config_general_friend">Recommend</string>
     <string name="config_general_friend_summary">Recommend us</string>
-    <string name="config_general_send_feedback">send Feedback</string>
+    <string name="config_general_send_feedback">Send Feedback</string>
     <string name="config_general_send_feedback_summary">Give us Feedback</string>
     <string name="config_general_more_apps">Android Market</string>
     <string name="config_general_more_apps_summary">More Apps</string>
@@ -154,4 +154,5 @@
     <string name="config_entries_privacy_policy">Privacy Policy</string>
     <string name="no_internet_title">No Internet</string>
     <string name="no_internet_message">There is no internet connection</string>
+    <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"http://systeminfowidget.manuzid.de\",\n  }\n}]</string>
 </resources>
