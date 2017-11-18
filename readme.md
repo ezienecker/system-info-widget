@@ -24,6 +24,10 @@ Zum starten der App muss nichts besonderes beachtet werden.
 
 ## Release History
 
+* v3.2.7/v3.2.7v2
+    * Fehler behoben wobei es beim Zugriff auf den Externen-Speicher zu Problemen kam
+    * Build Gradle Version angehoben
+    * Reihenfolge der Farbeinstellungen korrigiert
 * v3.2.6
     * Neuen AppRater Dialog implementiert
     * Kleinere Bugs behoben und Typos entfernt
