@@ -54,3 +54,23 @@ Zum starten der App muss nichts besonderes beachtet werden.
     * Überarbeiten der Software-Architektur, sauberes Design
     * Kategorien dahingehend erweitert das nun der App dynamisch weitere Kategorien hinzugefügt werden können
     * Nicht mehr verwendetes entfernt
+* v2.1.0
+    * Beheben des Problems das bei Aufruf des Reiters "Speicher" das Widget abstürzt
+    * Beheben des Problems, dass das Widget im Menü nicht angezeigt wurde
+    * Beheben des Problems das nicht der korrekte SD-Karten Wert bei den Samsung Galaxy S3 angezeigt wird
+    * Verfügbar für Nexus 7
+    * Hinzufügen einer neuen Farbe: Schwarz
+    * Beheben des Update-Problems (aus den Einstellung kommend)
+    * Beheben des Fehlerhaften Links unter "Mehr Apps"
+
+## Best Practices
+
+**Kategorie hinzufügen**
+
+    * Kategorie-Klasse unter 'com.manuzid.systeminfowidget.category' anlegen, diese muss von der Klasse: 'com.manuzid.systeminfowidget.category.AbstractCategory' erben
+    * Diese muss folgende Kriterien erfüllen
+        * ein neues Icon in den entsprechenden Farben
+        * ein IntentFilter der auch in der AndroidManifest bekannt gegeben werden muss (in der Klasse eine Konstante)
+        * ein RequestCode
+        * in der array.xml muss 'config_categories' und 'config_categories_keys' entsprechend erweitert werden
+    * In der 'ConfigPreferencesActivity' muss das Set 'categorySelection' mit der Konstante aus der neuen Kategorie-Klasse erweitert werden
