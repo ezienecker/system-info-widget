@@ -71,10 +71,10 @@
         </activity>
         <activity
             android:name=".preferences.RightsLegalActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".preferences.PrivacyPolicyActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
