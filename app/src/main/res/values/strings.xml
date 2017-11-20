@@ -121,7 +121,7 @@
     <string name="config_general_friend_summary">Recommend us</string>
     <string name="config_general_send_feedback">Send Feedback</string>
     <string name="config_general_send_feedback_summary">Give us Feedback</string>
-    <string name="config_general_more_apps">Android Market</string>
+    <string name="config_general_more_apps">Google Play</string>
     <string name="config_general_more_apps_summary">More Apps</string>
     <string name="config_entries_rights_title">LEGAL NOTICES</string>
     <string name="config_entries_rights_legal_title">Bequest</string>

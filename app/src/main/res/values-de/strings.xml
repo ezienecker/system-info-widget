@@ -113,7 +113,7 @@
     <string name="config_general_friend_summary">Empfehlen Sie uns weiter</string>
     <string name="config_general_send_feedback">Feedback senden</string>
     <string name="config_general_send_feedback_summary">Geben Sie uns Feedback</string>
-    <string name="config_general_more_apps">Android Market</string>
+    <string name="config_general_more_apps">Google Play</string>
     <string name="config_general_more_apps_summary">Weitere Apps</string>
     <string name="config_entries_rights_title">RECHTLICHE HINWEISE</string>
     <string name="config_entries_rights_legal_title">Zuwendungen</string>
