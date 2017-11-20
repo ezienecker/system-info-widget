@@ -65,6 +65,11 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
         getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
     }
 
+    @Override
+    protected boolean isValidFragment(String fragmentName) {
+        return PrefsFragment.class.getName().equals(fragmentName);
+    }
+
     public static class PrefsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener,
             Preference.OnPreferenceChangeListener {
         private static final String TAG = PrefsFragment.class.getSimpleName();

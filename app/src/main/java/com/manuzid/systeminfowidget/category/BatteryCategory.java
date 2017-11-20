@@ -80,7 +80,7 @@ public class BatteryCategory extends AbstractCategory {
 
             String technology;
             try {
-                technology = mIntent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
+                technology = mIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
 
             } catch (Exception e) {
                 technology = context.getString(R.string.battery_technology_summary);
