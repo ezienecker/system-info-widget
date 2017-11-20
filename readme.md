@@ -24,6 +24,9 @@ Zum starten der App muss nichts besonderes beachtet werden.
 
 ## Release History
 
+* v3.2.8
+    * Sicherheitslücke ([Fragment Injection](https://securityintelligence.com/new-vulnerability-android-framework-fragment-injection/)) behoben
+    * Bugs behoben, Typos beseitigt
 * v3.2.7/v3.2.7v2
     * Fehler behoben wobei es beim Zugriff auf den Externen-Speicher zu Problemen kam
     * Build Gradle Version angehoben
@@ -67,10 +70,10 @@ Zum starten der App muss nichts besonderes beachtet werden.
 
 **Kategorie hinzufügen**
 
-    * Kategorie-Klasse unter 'com.manuzid.systeminfowidget.category' anlegen, diese muss von der Klasse: 'com.manuzid.systeminfowidget.category.AbstractCategory' erben
-    * Diese muss folgende Kriterien erfüllen
-        * ein neues Icon in den entsprechenden Farben
-        * ein IntentFilter der auch in der AndroidManifest bekannt gegeben werden muss (in der Klasse eine Konstante)
-        * ein RequestCode
-        * in der array.xml muss 'config_categories' und 'config_categories_keys' entsprechend erweitert werden
-    * In der 'ConfigPreferencesActivity' muss das Set 'categorySelection' mit der Konstante aus der neuen Kategorie-Klasse erweitert werden
+* Kategorie-Klasse unter 'com.manuzid.systeminfowidget.category' anlegen, diese muss von der Klasse: 'com.manuzid.systeminfowidget.category.AbstractCategory' erben
+* Diese muss folgende Kriterien erfüllen
+    * ein neues Icon in den entsprechenden Farben
+    * ein IntentFilter der auch in der AndroidManifest bekannt gegeben werden muss (in der Klasse eine Konstante)
+    * ein RequestCode
+    * in der array.xml muss 'config_categories' und 'config_categories_keys' entsprechend erweitert werden
+* In der 'ConfigPreferencesActivity' muss das Set 'categorySelection' mit der Konstante aus der neuen Kategorie-Klasse erweitert werden
