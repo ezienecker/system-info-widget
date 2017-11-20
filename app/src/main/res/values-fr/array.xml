@@ -8,9 +8,21 @@
         <item>lilas</item>
         <item>noir</item>
     </string-array>
+    <string-array name="config_color_style_keys">
+        <item>color_blue</item>
+        <item>color_green</item>
+        <item>color_red</item>
+        <item>color_orange</item>
+        <item>color_lila</item>
+        <item>color_black</item>
+    </string-array>
     <string-array name="config_temperature_style">
         <item>Celsius degrés (°C)</item>
         <item>Fahrenheit (°F)</item>
+    </string-array>
+    <string-array name="config_temperature_style_keys">
+        <item>celsius</item>
+        <item>fahrenheit</item>
     </string-array>
     <string-array name="config_categories">
         <item>Sélection de l\'information générale</item>
@@ -21,17 +33,13 @@
         <item>batterie</item>
         <item>réseau</item>
     </string-array>
-    <string-array name="config_color_style_keys">
-        <item>color_blue</item>
-        <item>color_green</item>
-        <item>color_red</item>
-        <item>color_orange</item>
-        <item>color_lila</item>
-        <item>color_black</item>
-    </string-array>
-    <string-array name="config_temperature_style_keys">
-        <item>celsius</item>
-        <item>fahrenheit</item>
+    <string-array name="config_categories_default">
+        <item>general</item>
+        <item>advanced</item>
+        <item>display</item>
+        <item>camera</item>
+        <item>storage</item>
+        <item>battery</item>
     </string-array>
     <string-array name="config_categories_keys">
         <item>general</item>
