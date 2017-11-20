@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.HashMap;

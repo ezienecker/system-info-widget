@@ -26,7 +26,7 @@ import com.manuzid.systeminfowidget.R;
 public class PrivacyPolicyActivity extends Activity {
     private static final String DESTINATION_URL = "http://systeminfowidget.manuzid.de/privacy.html";
 
-    WebView webView;
+    private WebView webView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

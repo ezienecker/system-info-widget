@@ -164,6 +164,11 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
             return null;
 
         try {
+            if (manager == null) {
+                Log.e(TAG, "Es konnte auf die Kamera nicht zugegriffen werden.");
+                return null;
+            }
+
             String[] cameraIds = manager.getCameraIdList();
 
             CameraCharacteristics characteristics

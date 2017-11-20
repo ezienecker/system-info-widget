@@ -27,7 +27,7 @@ public class ConnectivityUtil {
      */
     private static NetworkInfo getNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo();
+        return cm == null ? null : cm.getActiveNetworkInfo();
     }
 
     /**
@@ -62,6 +62,9 @@ public class ConnectivityUtil {
     public static String getNetworkClass(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager)
                 context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (mTelephonyManager == null)
+            return context.getString(R.string.general_unknow);
+
         int networkType = mTelephonyManager.getNetworkType();
         switch (networkType) {
             case TelephonyManager.NETWORK_TYPE_GPRS:
@@ -98,7 +101,7 @@ public class ConnectivityUtil {
     @Nullable
     public static String getWifiName(Context context) {
         WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (manager.isWifiEnabled()) {
+        if (manager != null && manager.isWifiEnabled()) {
             WifiInfo wifiInfo = manager.getConnectionInfo();
             if (wifiInfo != null) {
                 NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
@@ -120,6 +123,9 @@ public class ConnectivityUtil {
     public static String getWifiSignalStrength(Context context) {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         int numberOfLevels = 5;
+        if (wifiManager == null)
+            return context.getString(R.string.general_unknow);
+
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int level = WifiManager.calculateSignalLevel(wifiInfo.getRssi(), numberOfLevels);
 
