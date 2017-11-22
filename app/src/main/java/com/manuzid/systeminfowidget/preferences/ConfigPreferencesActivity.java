@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.kobakei.ratethisapp.RateThisApp;
 import com.manuzid.systeminfowidget.R;
+import com.manuzid.systeminfowidget.StringUtils;
 import com.manuzid.systeminfowidget.SystemInfoMainProvider;
 
 import java.util.ArrayList;
@@ -103,13 +104,15 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
             }
 
             Preference rateLink = findPreference(getResources().getString(R.string.settings_key_rate_bow));
-            rateLink.setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + mContext.getPackageName())));
+            rateLink.setIntent(new Intent(Intent.ACTION_VIEW, getLinkToApp()));
 
             sendReport = findPreference(getResources().getString(R.string.settings_key_feedback));
             sendReport.setOnPreferenceClickListener(this);
 
             Preference marketLink = findPreference(getResources().getString(R.string.settings_key_market));
-            marketLink.setIntent(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=ManuZiD")));
+            marketLink.setIntent(new Intent(Intent.ACTION_VIEW, getMarketLink()));
+            if (isAmazonStore())
+                marketLink.setTitle(R.string.config_general_more_apps_amazon);
 
             tellFriend = findPreference(getResources().getString(R.string.settings_key_forward));
             tellFriend.setOnPreferenceClickListener(this);
@@ -151,6 +154,32 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
             RateThisApp.showRateDialogIfNeeded(this.getActivity());
         }
 
+        private Uri getLinkToApp() {
+            if (isAmazonStore()) {
+                return Uri.parse("amzn://apps/android?p=" + mContext.getPackageName());
+            } else {
+                return Uri.parse("http://play.google.com/store/apps/details?id=" + mContext.getPackageName());
+            }
+        }
+
+        /**
+         * Informationen zum Amazon-Link Aufbau: https://developer.amazon.com/de/docs/in-app-purchasing/iap-deep-linking-to-the-amazon-client.html
+         *
+         * @return Link zum Store von wo aus die App installiert wurde
+         */
+        private Uri getMarketLink() {
+            if (isAmazonStore()) {
+                return Uri.parse("amzn://apps/android?p=" + mContext.getPackageName() + "&showAll=1");
+            } else {
+                return Uri.parse("https://play.google.com/store/apps/developer?id=ManuZiD");
+            }
+        }
+
+        private boolean isAmazonStore() {
+            final String installerPackageName = mContext.getPackageManager().getInstallerPackageName(mContext.getPackageName());
+            return StringUtils.isNotBlank(installerPackageName) && installerPackageName.contains("com.amazon.");
+        }
+
         @Override
         public boolean onPreferenceClick(Preference preference) {
             if (preference.equals(tellFriend)) {
@@ -161,7 +190,7 @@ public class ConfigPreferencesActivity extends PreferenceActivity {
                         "&body=" +
                         getResources().getString(R.string.support_text) +
                         "\n" +
-                        "http://play.google.com/store/apps/details?id=" + getActivity().getPackageName();
+                        getLinkToApp();
                 String uriString = tellFriendStr.replace(" ", "%20");
 
                 startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO, Uri.parse(uriString)),
