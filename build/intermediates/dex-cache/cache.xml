@@ -3,6 +3,16 @@
 
     <item
         is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/2851e5c516bb53de95f05a07639de0e7/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/76292025e3063a815f7c4715d0c6eda1/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="17"
@@ -23,13 +33,13 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/de96ce9b0de627c45078e173d5bc014b/jars/classes.jar"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/cfad83405f9a551f580fff7089bddfab/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="17"
         optimize="true"
         revision="26.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/6.jar" />
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/4.jar" />
     </item>
     <item
         is-multidex="false"
@@ -40,6 +50,116 @@
         revision="26.0.2"
         sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
         <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/2cec22c4af86154a19d29ceab4ef4ab7/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/17b5444389c823f794646b088c911a65/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/236ebd4d7d76bd4093973bc6fae368f4/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9afbdabcc8322ce16be7ac0729db7977/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/4c8caf197fa4640a3f059284e7733eb1/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/24660a2503410881b7e9733d2a581372/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/cf4c5933b9b71123dfc8de7174200804/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/e714b484115d65a271eb8ca856de03e6/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/3508f6c34ecfa9f7083fa8ab9e0ed10c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f64ef790fc8a907c6ee03b09a8921332/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/de96ce9b0de627c45078e173d5bc014b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/6.jar" />
     </item>
     <item
         is-multidex="false"
@@ -83,26 +203,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/236ebd4d7d76bd4093973bc6fae368f4/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="17"
-        optimize="true"
-        revision="26.0.2"
-        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/9afbdabcc8322ce16be7ac0729db7977/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="17"
-        optimize="true"
-        revision="26.0.2"
-        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/13.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/emanuelzienecker/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations-java5/15.0/7011b4551a8451906759b05814c58b9eb829ea9b/annotations-java5-15.0.jar"
         jumboMode="false"
         min-sdk-version="17"
@@ -123,23 +223,33 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/3508f6c34ecfa9f7083fa8ab9e0ed10c/jars/classes.jar"
-        jumboMode="false"
-        min-sdk-version="17"
-        optimize="true"
-        revision="26.0.2"
-        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
-        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f64ef790fc8a907c6ee03b09a8921332/jars/classes.jar"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/cb9d76cdf27ade03cff898fb620b5ef5/jars/classes.jar"
         jumboMode="false"
         min-sdk-version="17"
         optimize="true"
         revision="26.0.2"
         sha1="508f50705b4fde51a16259f29c854201a3044516">
         <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/ratethisapp-1.2.0.aar/9b1b5179c7c6f4d1035e12c867142836/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="680a7f9951d205d710bb1b119011fa03ddf7a914">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/emanuelzienecker/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/fe1f8f159bfcb95a8a275a43813f2892/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="17"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="/Users/emanuelzienecker/AndroidStudioProjects/SystemInfoWidget/app/build/intermediates/transforms/preDex/release/5.jar" />
     </item>
     <item
         is-multidex="false"
