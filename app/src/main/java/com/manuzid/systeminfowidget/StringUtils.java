@@ -60,4 +60,8 @@ public final class StringUtils {
         }
         return buf.toString();
     }
+
+    public static boolean isNotBlank(final CharSequence cs) {
+        return !isBlank(cs);
+    }
 }
