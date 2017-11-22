@@ -24,6 +24,10 @@ Zum starten der App muss nichts besonderes beachtet werden.
 
 ## Release History
 
+* v3.2.9
+    * Support für den Amazon App Store geschaffen
+    * StringUtils.isNotBlank hinzugefügt
+    * Kleinere Spellings behoben
 * v3.2.8
     * Sicherheitslücke ([Fragment Injection](https://securityintelligence.com/new-vulnerability-android-framework-fragment-injection/)) behoben
     * Bugs behoben, Typos beseitigt
