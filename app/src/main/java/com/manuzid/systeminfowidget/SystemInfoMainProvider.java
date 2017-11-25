@@ -175,6 +175,18 @@ public class SystemInfoMainProvider extends AppWidgetProvider {
             resetCategory();
             final AbstractCategory mFakeCategory = observerMap.get(NETWORK);
             updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
+        } else {
+            /*
+             * Wenn der Benutzer die ConfigPreferencesActivity beendet (richtig beendet) dann sind
+             * die Actions zwar noch vorhanden aber das Widget kann nicht mehr darauf reagieren.
+             * Wenn dieser Fall eintritt läuft in diesen else-Zweig dann wird das Widget wie ein neues
+             * behandelt.
+             */
+            // 1 Initialisieren der Kategorien
+            initObserverMap(context);
+
+            // 2 Widget entsprechend zurücksetzen und initialisieren
+            updateAppWidget(context, handleRemoteViews(context, colorScheme, null, appWidgetId));
         }
     }
 
