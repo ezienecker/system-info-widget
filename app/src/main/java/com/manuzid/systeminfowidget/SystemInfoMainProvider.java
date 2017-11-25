@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -170,17 +171,19 @@ public class SystemInfoMainProvider extends AppWidgetProvider {
             resetCategory();
             final AbstractCategory mFakeCategory = observerMap.get(DISPLAY);
             updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
-        } else if (hasNetworkChange(intentAction)) {
+        } else if (hasNetworkChangeAndNetworkViewIsActive(intentAction)) {
             // Kategorie muss manipuliert werden weil sonst die entsprechende Ansicht nur zurückgesetzt wird.
             resetCategory();
             final AbstractCategory mFakeCategory = observerMap.get(NETWORK);
             updateAppWidget(context, handleRemoteViews(context, colorScheme, mFakeCategory, appWidgetId));
-        } else {
+        } else if (!hasNetworkChange(intentAction)){
             /*
              * Wenn der Benutzer die ConfigPreferencesActivity beendet (richtig beendet) dann sind
              * die Actions zwar noch vorhanden aber das Widget kann nicht mehr darauf reagieren.
              * Wenn dieser Fall eintritt läuft in diesen else-Zweig dann wird das Widget wie ein neues
              * behandelt.
+             *
+             * Zusatz: Net.wifi.RSSI_CHANGED darf hier nicht beachtet werden:
              */
             // 1 Initialisieren der Kategorien
             initObserverMap(context);
@@ -197,6 +200,12 @@ public class SystemInfoMainProvider extends AppWidgetProvider {
         category = NONE;
     }
 
+    private boolean hasNetworkChange(String intentAction) {
+        return "android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
+                "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
+                "android.net.wifi.STATE_CHANGE".equals(intentAction);
+    }
+
     /**
      * Wurde das W-Lan an/abgestellt oder hat sich das Signal verschlechtert oder verbessert und
      * ist die Network-View aktiv.
@@ -204,10 +213,8 @@ public class SystemInfoMainProvider extends AppWidgetProvider {
      * @param intentAction Intent-Action die geprüft wird
      * @return true wenn Condition eintritt andernfalls false
      */
-    private boolean hasNetworkChange(String intentAction) {
-        return ("android.net.wifi.supplicant.CONNECTION_CHANGE".equals(intentAction) ||
-                "android.net.wifi.RSSI_CHANGED".equals(intentAction) ||
-                "android.net.wifi.STATE_CHANGE".equals(intentAction)) && category.equals(NETWORK);
+    private boolean hasNetworkChangeAndNetworkViewIsActive(String intentAction) {
+        return hasNetworkChange(intentAction) && category.equals(NETWORK);
     }
 
     /**
