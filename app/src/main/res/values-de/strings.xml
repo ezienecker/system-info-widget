@@ -9,7 +9,6 @@
     <string name="general_brand">Brand</string>
     <string name="general_serialnumber">Seriennummer</string>
     <string name="general_device_id">Build-Nummer</string>
-    <string name="general_timezone">Zeitzone</string>
     <string name="general_unknow">Unbekannt</string>
 <!-- More-View -->
     <string name="more_os_sdk_codename">OS Name</string>
@@ -18,8 +17,7 @@
     <string name="more_bootloader">Bootloader</string>
     <string name="more_cpu_i">CPU-ABI I</string>
     <string name="more_used_ram">RAM (In Verwendung)</string>
-    <string name="more_hardware">Hardware</string>
-<!-- Display-View -->
+    <!-- Display-View -->
     <string name="display_height">Höhe</string>
     <string name="display_width">Breite</string>
     <string name="display_dps">Dichte (DPI)</string>
@@ -34,16 +32,12 @@
     <string name="display_display_scale">Display Skalierung</string>
     <string name="display_display_size">Display Größe</string>
     <string name="display_display_size_summary">inches</string>
-    <string name="display_orientation">Natürliche Ausrichtung</string>
-    <string name="display_orientation_landscape">Landscape</string>
-    <string name="display_orientation_portrait">Portrait</string>
-<!-- Camera-View -->
+    <!-- Camera-View -->
     <string name="camera_manufacturer">Bildformat</string>
     <string name="camera_model">Vorschauformat</string>
     <string name="camera_product">Bildgröße</string>
     <string name="camera_brand">Vorschaugröße</string>
     <string name="camera_serialnumber">Unterst. Bildgröße(n)</string>
-    <string name="camera_supported_formats">Unterst. Bildformate</string>
     <string name="camera_front_camera">Front Kamera</string>
     <string name="camera_face_cam_available">Verfügbar</string>
     <string name="camera_face_cam_not_available">Nicht Verfügbar</string>
@@ -64,13 +58,6 @@
     <string name="battery_technology">Bauart</string>
     <string name="battery_voltage">Spannung</string>
     <string name="battery_temp">Temperatur</string>
-    <string name="battery_battery_health">Akku Zustand</string>
-    <string name="battery_health_cold">Kalt</string>
-    <string name="battery_health_dead">Tot</string>
-    <string name="battery_health_good">Gut</string>
-    <string name="battery_health_overheat">Übertemperatur</string>
-    <string name="battery_health_over_voltage">Überspannung</string>
-    <string name="battery_health_unspecified_failure">nicht spezifizierter Defekt</string>
     <string name="battery_connected">Verbunden</string>
     <string name="battery_connected_usb">USB</string>
     <string name="battery_connected_battery">Akku</string>
