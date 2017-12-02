@@ -1,6 +1,6 @@
 <resources>
     <style name="SystemInfoCustomTextViewStyle" parent="@android:style/TextAppearance.Widget.TextView">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">14.5sp</item>
         <item name="android:textColor">#ffffffff</item>
     </style>
 </resources>
