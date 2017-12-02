@@ -24,6 +24,10 @@ Zum starten der App muss nichts besonderes beachtet werden.
 
 ## Release History
 
+* v3.2.10
+    * Fehler behoben wenn man den Einstellungsbereich mittels Home/Beenden Button verlässt dass das Widget nicht mehr reagiert hatte
+    * Layout anpassungen für die verschiedenen Display-Auflösungen
+    * Kategorien die siebte Eigenschaft/Information entzogen
 * v3.2.9
     * Support für den Amazon App Store geschaffen
     * StringUtils.isNotBlank hinzugefügt
@@ -54,9 +58,9 @@ Zum starten der App muss nichts besonderes beachtet werden.
     * Aktualisierung des Widgets weiter verfeinert, es reagiert nun auf weitere Events
 * v3.0.1
     * Min SDK-Version von 13 auf 17 angehoben
-    * Deprecated Code, in der "More" Kategroie behandelt 
+    * Deprecated Code, in der "More" Kategroie behandelt
     * Information ausgetauscht, CPU2 entfernt und dafür RAM-Speicher hinzugenommen
-    * Deprecated Code, in der "Memory" Kategroie behandelt 
+    * Deprecated Code, in der "Memory" Kategroie behandelt
 * v3.0.0
     * Überarbeiten der Software-Architektur, sauberes Design
     * Kategorien dahingehend erweitert das nun der App dynamisch weitere Kategorien hinzugefügt werden können
