@@ -5,4 +5,8 @@
         <item name="android:minHeight">16dip</item>
         <item name="android:maxHeight">16dip</item>
     </style>
+    <style name="SystemInfoCustomTextViewStyle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#ffffffff</item>
+    </style>
 </resources>
