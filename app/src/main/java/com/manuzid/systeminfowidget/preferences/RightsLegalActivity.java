@@ -22,6 +22,6 @@ public class RightsLegalActivity extends Activity {
         int year = Calendar.getInstance().get(Calendar.YEAR);
 
         TextView legalNotice = findViewById(R.id.config_legal_privat);
-        legalNotice.setText(String.format(getString(R.string.config_entries_rights_legal_privat), year));
+        legalNotice.setText(getString(R.string.config_entries_rights_legal_privat, year));
     }
 }

@@ -2,7 +2,6 @@ package com.manuzid.systeminfowidget.category;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
@@ -12,8 +11,6 @@ import android.view.WindowManager;
 
 import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
@@ -66,17 +63,28 @@ public class DisplayCategory extends AbstractCategory {
 
     @Override
     Informationen getInformationen(Context context) {
-        Display display = ((WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        return new Informationen.Builder()
-                .first(context.getString(R.string.display_display_size), getDeviceSize(context, display))
-                .second(context.getString(R.string.display_height), String.valueOf(getDisplayHeight(display)))
-                .third(context.getString(R.string.display_width), String.valueOf(getDisplayWidth(display)))
-                .fourth(context.getString(R.string.display_dps), getScreenDps(context.getResources().getDisplayMetrics(), context))
-                .fifth(context.getString(R.string.display_fps), String.valueOf(display.getRefreshRate()))
-                .sixth(context.getString(R.string.display_display_scale), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
-                .seventh(context.getString(R.string.display_orientation),
-                        getScreenOrientation(context.getResources().getConfiguration().orientation, context))
-                .build();
+        final WindowManager windowManager = (WindowManager) context.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager == null) {
+            return new Informationen.Builder()
+                    .first(context.getString(R.string.battery_capacitance), context.getString(R.string.general_unknow))
+                    .second(context.getString(R.string.battery_state), context.getString(R.string.general_unknow))
+                    .third(context.getString(R.string.battery_technology), context.getString(R.string.general_unknow))
+                    .fourth(context.getString(R.string.battery_voltage), context.getString(R.string.general_unknow))
+                    .fifth(context.getString(R.string.battery_temp), context.getString(R.string.general_unknow))
+                    .sixth(context.getString(R.string.battery_connected), context.getString(R.string.general_unknow))
+                    .build();
+        }
+        else {
+            Display display = windowManager.getDefaultDisplay();
+            return new Informationen.Builder()
+                    .first(context.getString(R.string.display_display_size), getDeviceSize(context, display))
+                    .second(context.getString(R.string.display_height), String.valueOf(getDisplayHeight(display)))
+                    .third(context.getString(R.string.display_width), String.valueOf(getDisplayWidth(display)))
+                    .fourth(context.getString(R.string.display_dps), getScreenDps(context.getResources().getDisplayMetrics(), context))
+                    .fifth(context.getString(R.string.display_fps), String.valueOf(display.getRefreshRate()))
+                    .sixth(context.getString(R.string.display_display_scale), String.valueOf(context.getResources().getDisplayMetrics().scaledDensity))
+                    .build();
+        }
     }
 
     @SuppressLint("FloatMath")
@@ -129,17 +137,6 @@ public class DisplayCategory extends AbstractCategory {
                 return context.getString(R.string.display_dps_xxhdpi);
             default:
                 return context.getString(R.string.display_dps_default);
-        }
-    }
-
-    @NonNull
-    private String getScreenOrientation(final int orientation, final Context context) {
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            return context.getString(R.string.display_orientation_landscape);
-        } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            return context.getString(R.string.display_orientation_portrait);
-        } else {
-            return context.getString(R.string.general_unknow);
         }
     }
 }

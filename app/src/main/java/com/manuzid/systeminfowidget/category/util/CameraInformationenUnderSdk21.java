@@ -34,7 +34,6 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
         String pictureSize = context.getString(R.string.general_unknow);
         String previewPictureSize = context.getString(R.string.general_unknow);
         String supportedPictureSizes = context.getString(R.string.general_unknow);
-        String supportedPictureFormats = context.getString(R.string.general_unknow);
         String faceCam = context.getString(R.string.general_unknow);
 
         if (camera != null) {
@@ -46,7 +45,6 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
                     previewFormat = getPreviewFormat(context);
                     previewPictureSize = getPreviewSize();
                     supportedPictureSizes = getSupportedSizes();
-                    supportedPictureFormats = getSupportedFormats(context);
                     faceCam = isFaceCamAvailable(context);
                 } catch (Exception e) {
                     Log.e(LOG_TAG,
@@ -61,8 +59,7 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
                 .third(context.getString(R.string.camera_model), previewFormat)
                 .fourth(context.getString(R.string.camera_brand), previewPictureSize)
                 .fifth(context.getString(R.string.camera_serialnumber), supportedPictureSizes)
-                .sixth(context.getString(R.string.camera_supported_formats), supportedPictureFormats)
-                .seventh(context.getString(R.string.camera_front_camera), faceCam)
+                .sixth(context.getString(R.string.camera_front_camera), faceCam)
                 .build();
 
         closeCamera();
@@ -93,11 +90,6 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
     @Override
     String getSupportedSizes() {
         return getPreviewSizes(camera.getParameters().getSupportedPictureSizes());
-    }
-
-    @Override
-    String getSupportedFormats(Context context) {
-        return getPreviewFormats(camera.getParameters().getSupportedPreviewFormats(), context);
     }
 
     @NonNull
@@ -132,19 +124,6 @@ public class CameraInformationenUnderSdk21 extends AbstractCameraSupport {
             sb.append(", ");
         }
         sb.replace(sb.length() - 2, sb.length(), "");
-        return sb.toString();
-    }
-
-    @NonNull
-    private String getPreviewFormats(final List<Integer> supportedPictureForList, final Context context) {
-        StringBuilder sb = new StringBuilder();
-        if (supportedPictureForList != null) {
-            for (Integer formats : supportedPictureForList) {
-                sb.append(getPictureFormatForUI(formats, context));
-                sb.append(", ");
-            }
-            sb.replace(sb.length() - 2, sb.length(), "");
-        }
         return sb.toString();
     }
 

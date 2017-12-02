@@ -16,7 +16,6 @@ public abstract class AbstractCameraSupport {
     abstract String getPreviewFormat(Context context);
     abstract String getPreviewSize();
     abstract String getSupportedSizes();
-    abstract String getSupportedFormats(Context context);
 
     String isFaceCamAvailable(Context context) {
         try {

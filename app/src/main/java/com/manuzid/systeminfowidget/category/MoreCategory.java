@@ -71,7 +71,6 @@ public class MoreCategory extends AbstractCategory {
                     .fourth(context.getString(R.string.more_bootloader), Build.BOOTLOADER)
                     .fifth(context.getString(R.string.more_cpu_i), getCpuAbi())
                     .sixth(context.getString(R.string.more_used_ram), getTotalRam())
-                    .seventh(context.getString(R.string.more_hardware), Build.HARDWARE)
                     .build();
         }
 

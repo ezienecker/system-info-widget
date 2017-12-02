@@ -9,7 +9,6 @@ import com.manuzid.systeminfowidget.preferences.ConfigPreferencesActivity;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * Zeigt die Allgemeinen Informationen über das Gerät an.
@@ -66,7 +65,6 @@ public class GeneralCategory extends AbstractCategory {
                     .fourth(context.getString(R.string.general_brand), android.os.Build.BRAND)
                     .fifth(context.getString(R.string.general_serialnumber), android.os.Build.SERIAL)
                     .sixth(context.getString(R.string.general_device_id), android.os.Build.ID)
-                    .seventh(context.getString(R.string.general_timezone), TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT))
                     .build();
         }
 

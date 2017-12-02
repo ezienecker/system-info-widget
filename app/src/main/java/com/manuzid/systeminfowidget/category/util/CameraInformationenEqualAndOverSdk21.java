@@ -17,11 +17,9 @@ import com.manuzid.systeminfowidget.R;
 import com.manuzid.systeminfowidget.StringUtils;
 import com.manuzid.systeminfowidget.category.Informationen;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import static com.manuzid.systeminfowidget.Constants.LOG_TAG;
 
@@ -75,44 +73,6 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
     }
 
     @Override
-    String getSupportedFormats(Context context) {
-        List<String> outputFormats = new ArrayList<>();
-        for(Integer outputFormat : map.getOutputFormats()) {
-
-            switch (outputFormat) {
-                case ImageFormat.JPEG:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_jpeg));
-                    break;
-                case ImageFormat.NV16:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_nv));
-                    break;
-                case ImageFormat.NV21:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_nv_second));
-                    break;
-                case ImageFormat.RGB_565:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_rgb));
-                    break;
-                case ImageFormat.YUY2:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_yuy));
-                    break;
-                case ImageFormat.YV12:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_yv));
-                    break;
-                case ImageFormat.YUV_420_888:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_yuv));
-                    break;
-                case ImageFormat.PRIVATE:
-                    outputFormats.add(context.getString(R.string.camera_picture_format_private));
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return StringUtils.join(outputFormats.toArray(), ", ", 0, outputFormats.size());
-    }
-
-    @Override
     public Informationen getInformationen(Context context) {
         map = retrieveCameraInformationMap(context);
 
@@ -121,7 +81,6 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
         String pictureSize = context.getString(R.string.general_unknow);
         String previewPictureSize = context.getString(R.string.general_unknow);
         String supportedPictureSizes = context.getString(R.string.general_unknow);
-        String supportedPictureFormats = context.getString(R.string.general_unknow);
         String faceCam = context.getString(R.string.general_unknow);
 
         if (map != null) {
@@ -132,7 +91,6 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
                 previewFormat = getPreviewFormat(context);
                 previewPictureSize = getPreviewSize();
                 supportedPictureSizes = getSupportedSizes();
-                supportedPictureFormats = getSupportedFormats(context);
                 faceCam = isFaceCamAvailable(context);
             } catch (Exception e) {
                 Log.e(LOG_TAG,
@@ -147,8 +105,7 @@ public class CameraInformationenEqualAndOverSdk21 extends AbstractCameraSupport 
                 .third(context.getString(R.string.camera_model), previewFormat)
                 .fourth(context.getString(R.string.camera_brand), previewPictureSize)
                 .fifth(context.getString(R.string.camera_serialnumber), supportedPictureSizes)
-                .sixth(context.getString(R.string.camera_supported_formats), supportedPictureFormats)
-                .seventh(context.getString(R.string.camera_front_camera), faceCam)
+                .sixth(context.getString(R.string.camera_front_camera), faceCam)
                 .build();
 
     }

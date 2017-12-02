@@ -69,13 +69,11 @@ public class BatteryCategory extends AbstractCategory {
                     .fourth(context.getString(R.string.battery_voltage), context.getString(R.string.general_unknow))
                     .fifth(context.getString(R.string.battery_temp), context.getString(R.string.general_unknow))
                     .sixth(context.getString(R.string.battery_connected), context.getString(R.string.general_unknow))
-                    .seventh(context.getString(R.string.battery_battery_health), context.getString(R.string.general_unknow))
                     .build();
         } else {
 
             int status = mIntent.getIntExtra(BatteryManager.EXTRA_STATUS, BatteryManager.BATTERY_STATUS_UNKNOWN);
             int extra = mIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
-            int health = mIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, BatteryManager.BATTERY_HEALTH_UNKNOWN);
             int temp = mIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
 
             String technology;
@@ -93,7 +91,6 @@ public class BatteryCategory extends AbstractCategory {
                     .fourth(context.getString(R.string.battery_voltage), mIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) + " mV")
                     .fifth(context.getString(R.string.battery_temp), getBatteryTemp(temp, context))
                     .sixth(context.getString(R.string.battery_connected), getConnectedState(context, extra))
-                    .seventh(context.getString(R.string.battery_battery_health), getBatteryHealthForUi(health, context))
                     .build();
         }
     }
@@ -142,25 +139,6 @@ public class BatteryCategory extends AbstractCategory {
         }
 
         return batteryTemp;
-    }
-
-    private String getBatteryHealthForUi(final int health, final Context context) {
-        switch (health) {
-            case BatteryManager.BATTERY_HEALTH_COLD:
-                return context.getString(R.string.battery_health_cold);
-            case BatteryManager.BATTERY_HEALTH_DEAD:
-                return context.getString(R.string.battery_health_dead);
-            case BatteryManager.BATTERY_HEALTH_GOOD:
-                return context.getString(R.string.battery_health_good);
-            case BatteryManager.BATTERY_HEALTH_OVERHEAT:
-                return context.getString(R.string.battery_health_overheat);
-            case BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE:
-                return context.getString(R.string.battery_health_over_voltage);
-            case BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE:
-                return context.getString(R.string.battery_health_unspecified_failure);
-            default:
-                return context.getString(R.string.general_unknow);
-        }
     }
 
 }

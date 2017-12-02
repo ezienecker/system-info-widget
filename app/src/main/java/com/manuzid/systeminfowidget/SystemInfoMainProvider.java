@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -368,8 +367,6 @@ public class SystemInfoMainProvider extends AppWidgetProvider {
         remoteViews.setViewVisibility(R.id.txtSupportedPictureSizes, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.lblSixth, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.txtSixth, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.lblSeventh, infoElementVisibility);
-        remoteViews.setViewVisibility(R.id.txtSeventh, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.device_memory_percent, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.usb_memory_percent, infoElementVisibility);
         remoteViews.setViewVisibility(R.id.device_memory_progress_bar, infoElementVisibility);

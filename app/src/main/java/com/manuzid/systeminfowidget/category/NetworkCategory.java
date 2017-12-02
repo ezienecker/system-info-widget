@@ -79,8 +79,8 @@ public class NetworkCategory extends AbstractCategory {
                 .third(context.getString(R.string.network_mobile_connection_type), mobileType)
                 .fourth(context.getString(R.string.network_wlan), "")
                 .fifth(context.getString(R.string.network_wlan_name), wifiName)
-                .sixth(context.getString(R.string.network_wlan_state), wifiConnectionState)
-                .seventh(context.getString(R.string.network_wlan_signal_strength), wifiConnectionStrength)
+                .sixth(context.getString(R.string.network_wlan_state) + "/" + context.getString(R.string.network_wlan_signal_strength),
+                        wifiConnectionState + "/" + wifiConnectionStrength)
                 .build();
     }
 
