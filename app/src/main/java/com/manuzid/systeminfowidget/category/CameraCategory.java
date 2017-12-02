@@ -111,9 +111,6 @@ public class CameraCategory extends AbstractCategory {
         remoteView.setTextViewText(R.id.lblSixth, informationen.sixthLabel);
         remoteView.setTextViewText(R.id.txtSixth, informationen.sixthValue);
 
-        remoteView.setTextViewText(R.id.lblSeventh, informationen.seventhLabel);
-        remoteView.setTextViewText(R.id.txtSeventh, informationen.seventhValue);
-
         remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
         remoteView.setViewVisibility(R.id.usb_memory_percent, View.GONE);
         remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.GONE);

@@ -116,9 +116,6 @@ public class MemoryCategory extends AbstractCategory {
         remoteView.setTextViewText(R.id.lblSixth, "");
         remoteView.setTextViewText(R.id.txtSixth, "");
 
-        remoteView.setTextViewText(R.id.lblSeventh, "");
-        remoteView.setTextViewText(R.id.txtSeventh, "");
-
         remoteView.setViewVisibility(R.id.device_memory_progress_bar, View.VISIBLE);
         remoteView.setInt(R.id.device_memory_progress_bar, "setProgress", deviceMemory);
 

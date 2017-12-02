@@ -135,9 +135,6 @@ public abstract class AbstractCategory {
         remoteView.setTextViewText(R.id.lblSixth, informationen.sixthLabel);
         remoteView.setTextViewText(R.id.txtSixth, informationen.sixthValue);
 
-        remoteView.setTextViewText(R.id.lblSeventh, informationen.seventhLabel);
-        remoteView.setTextViewText(R.id.txtSeventh, informationen.seventhValue);
-
         remoteView.setTextViewText(R.id.txtSupportedPictureSizes, "");
 
         remoteView.setViewVisibility(R.id.device_memory_percent, View.GONE);
