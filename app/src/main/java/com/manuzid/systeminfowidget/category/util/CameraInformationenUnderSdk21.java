@@ -3,7 +3,7 @@ package com.manuzid.systeminfowidget.category.util;
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.manuzid.systeminfowidget.R;

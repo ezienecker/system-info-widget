@@ -3,7 +3,7 @@ package com.manuzid.systeminfowidget.category;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Point;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;

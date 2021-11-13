@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
