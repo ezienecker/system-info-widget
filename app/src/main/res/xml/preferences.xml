@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory android:title="@string/config_general_app_config" >
         <MultiSelectListPreference
-            android:key="manuzid-category-selection"
+            android:key="manuzid_category_selection"
             android:title="@string/config_category_title"
             android:summary="@string/config_category_summary" />
         <ListPreference
@@ -22,28 +22,28 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_about_title" >
         <Preference
-            android:key="@string/settings_key_sys_version"
+            android:key="system_info_widget_version"
             android:title="@string/config_entries_about" />
         <Preference
-            android:key="@string/settings_key_rate_bow"
+            android:key="rate_app"
             android:summary="@string/config_general_rate_summary"
             android:title="@string/config_general_rate" />
         <Preference
-            android:key="@string/settings_key_forward"
+            android:key="recommend"
             android:summary="@string/config_general_friend_summary"
-            android:title="@string/config_general_friend" />
+            android:title="@string/settings_general_friend" />
         <Preference
-            android:key="@string/settings_key_feedback"
+            android:key="feedback"
             android:summary="@string/config_general_send_feedback_summary"
             android:title="@string/config_general_send_feedback" />
         <Preference
-            android:key="@string/settings_key_market"
+            android:key="market"
             android:summary="@string/config_general_more_apps_summary"
             android:title="@string/config_general_more_apps" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_entries_rights_title" >
         <Preference
-            android:key="@string/settings_key_rights"
+            android:key="rights_legal"
             android:title="@string/config_entries_rights_legal_title" />
         <Preference
             android:key="privacy_policy_settings"
