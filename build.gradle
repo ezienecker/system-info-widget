@@ -2,21 +2,25 @@
 
 allprojects {
     repositories {
-        jcenter()
-        maven {
-            url "https://maven.google.com"
-        }
+        mavenLocal()
+        mavenCentral()
         google()
     }
 }
 
 buildscript {
+    ext.kotlin_version = '1.6.0'
+    ext.koin_version = '3.1.4'
+
     repositories {
-        jcenter()
+        mavenLocal()
+        mavenCentral()
         google()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.0.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
