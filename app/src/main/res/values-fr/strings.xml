@@ -57,7 +57,7 @@
     <string name="battery_state_not_charging">Ne pas charger</string>
     <string name="battery_technology">modèle</string>
     <string name="battery_voltage">tension</string>
-    <string name="battery_temp">température</string>
+    <string name="battery_temperature">température</string>
     <string name="battery_connected">liés</string>
     <string name="battery_connected_usb">USB</string>
     <string name="battery_connected_battery">accu</string>
@@ -95,7 +95,7 @@
     <string name="config_entries_about_app_summary_fail">Version: indisponible</string>
     <string name="config_general_rate">Taux SystemInfo Widget</string>
     <string name="config_general_rate_summary">Nous vitesse à la Android Market</string>
-    <string name="config_general_friend">recommander</string>
+    <string name="settings_general_friend">recommander</string>
     <string name="config_general_friend_summary">Recommandez-nous</string>
     <string name="config_general_send_feedback">Vos commentaires</string>
     <string name="config_general_send_feedback_summary">Donnez-nous vos commentaires</string>
@@ -121,7 +121,7 @@
 	<string name="rate_dialog_remind_later">ensuite</string>
 	<string name="rate_dialog_no_thanks">Non merci</string>
 	<string name="rate_dialog_text">Si vous aimez utiliser System Info Widget, s\'il vous plaît prendre un moment pour évaluer ce. Merci pour votre soutien!</string>
-    <string name="config_temp_celsius_default">celsius</string>
+    <string name="settings_temp_celsius_default">celsius</string>
     <string name="rate_dialog_ok">évaluer</string>
     <string name="config_entries_privacy_policy">Vos informations personnelles</string>
     <string name="no_internet_title">Pas d\'internet</string>
