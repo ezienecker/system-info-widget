@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory android:title="@string/config_general_app_config" >
-        <MultiSelectListPreference
-            android:key="manuzid_category_selection"
-            android:title="@string/config_category_title"
-            android:summary="@string/config_category_summary" />
-        <ListPreference
-            android:key="color_scheme"
-            android:title="@string/config_color_style"
-            android:defaultValue="@string/config_color_style_default"
-            android:entries="@array/config_color_style"
-            android:entryValues="@array/config_color_style_keys"
-            android:summary="@string/config_color_style_summary" />
         <ListPreference
             android:key="temp_format"
             android:title="@string/config_temp_title"

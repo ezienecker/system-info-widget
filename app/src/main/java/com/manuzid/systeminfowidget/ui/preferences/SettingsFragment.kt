@@ -7,37 +7,18 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import androidx.preference.MultiSelectListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.manuzid.systeminfowidget.R
-import com.manuzid.systeminfowidget.R.array.config_categories
-import com.manuzid.systeminfowidget.data.interactors.impl.BatteryCategory.Companion.BATTERY
-import com.manuzid.systeminfowidget.data.interactors.impl.CameraCategory.Companion.CAMERA
-import com.manuzid.systeminfowidget.data.interactors.impl.DisplayCategory.Companion.DISPLAY
-import com.manuzid.systeminfowidget.data.interactors.impl.GeneralInformationCategory.Companion.GENERAL
-import com.manuzid.systeminfowidget.data.interactors.impl.MoreInformationCategory.Companion.MORE
-import com.manuzid.systeminfowidget.data.interactors.impl.NetworkCategory.Companion.NETWORK
-import java.util.*
 
 /**
  * Created by Emanuel Zienecker on 15.11.21.
  * Copyright (c) 2021 Emanuel Zienecker. All rights reserved.
  */
 class SettingsFragment : PreferenceFragmentCompat() {
-
-    private val categories = listOf(
-        GENERAL,
-        MORE,
-        DISPLAY,
-        CAMERA,
-        BATTERY,
-        NETWORK
-    ).sorted().toTypedArray()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -47,16 +28,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             getAppVersion(activityFragment.packageName, activityFragment.packageManager)
 
         checkCameraAccess(activityFragment.baseContext)
-
-        findPreference<MultiSelectListPreference>("manuzid_category_selection")?.apply {
-            setEntries(config_categories)
-            entryValues = categories
-            setOnPreferenceChangeListener { preference, newValue ->
-                checkCategorySelection(activityFragment, preference, newValue)
-
-                false
-            }
-        }
 
         findPreference<Preference>("system_info_widget_version")?.apply {
             summary = String.format(
@@ -97,25 +68,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("privacy_policy_settings")?.apply {
             intent =
                 Intent(Intent.ACTION_VIEW, null, activity, PrivacyPolicyActivity::class.java)
-        }
-    }
-
-    private fun checkCategorySelection(
-        activityFragment: FragmentActivity,
-        preference: Preference?,
-        newValue: Any?
-    ) {
-        if (preference?.key != "manuzid_category_selection") {
-            return
-        }
-
-        val selectedValues = newValue as HashSet<*>
-        if (selectedValues.size != 6) {
-            Toast.makeText(
-                activityFragment.applicationContext,
-                activityFragment.applicationContext.getString(R.string.config_category_choice_wrong),
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 
