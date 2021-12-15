@@ -1,12 +1,5 @@
 <resources>
 
-    <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
-        <item name="android:indeterminateOnly">false</item>
-        <item name="android:progressDrawable">@drawable/custom_progress_bar_horizontal</item>
-        <item name="android:minHeight">16dip</item>
-        <item name="android:maxHeight">16dip</item>
-    </style>
-
     <style name="SystemInfoCustomTextViewStyle" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">#ffffffff</item>
