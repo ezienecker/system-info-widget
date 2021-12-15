@@ -7,7 +7,7 @@
     <string name="general_model">modèle</string>
     <string name="general_product">produit</string>
     <string name="general_brand">marque</string>
-    <string name="general_serialnumber">numéro de série</string>
+    <string name="general_fingerprint">Empreinte digitale</string>
     <string name="general_device_id">Numéro de build</string>
     <string name="general_unknow">inconnu</string>
 <!-- More-View -->
@@ -33,11 +33,11 @@
     <string name="display_display_size">Display gabarit</string>
     <string name="display_display_size_summary">inches</string>
     <!-- Camera-View -->
-    <string name="camera_manufacturer">format image</string>
-    <string name="camera_model">format avant-première</string>
-    <string name="camera_product">taille de le image</string>
-    <string name="camera_brand">bande-annonce de le image</string>
-    <string name="camera_serialnumber">soutenu taille de le img</string>
+    <string name="camera_picture_format">format image</string>
+    <string name="camera_preview_format">format avant-première</string>
+    <string name="camera_picture_size">taille de le image</string>
+    <string name="camera_preview_size">bande-annonce de le image</string>
+    <string name="camera_supported_sizes">soutenu taille de le img</string>
     <string name="camera_front_camera">caméra frontale</string>
     <string name="camera_face_cam_available">disponibles</string>
     <string name="camera_face_cam_not_available">indisponible</string>
@@ -71,8 +71,8 @@
     <string name="network_wlan_name">Nom du réseau</string>
     <string name="network_wlan_state">Statut</string>
     <string name="network_wlan_signal_strength">Force du Signal</string>
-    <string name="network_wlan_connection_state_connected">Connecté</string>
-    <string name="network_wlan_connection_state_disconnected">déconnecté</string>
+    <string name="network_connected">Connecté</string>
+    <string name="network_disconnected">déconnecté</string>
     <string name="network_wlan_connection_type_gprs">GPRS</string>
     <string name="network_wlan_connection_type_edge">EDGE</string>
     <string name="network_wlan_connection_type_2g">2G</string>

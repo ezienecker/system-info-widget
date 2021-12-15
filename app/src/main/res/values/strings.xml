@@ -2,15 +2,15 @@
     <string name="app_name">SystemInfoWidget</string>
     <string name="menu_settings">Settings</string>
     <string name="image_content_description">imagedisc</string>
-<!-- General-View -->
+    <!-- General-View -->
     <string name="general_manufacturer">Manufacturer</string>
     <string name="general_model">Model</string>
     <string name="general_product">Product</string>
     <string name="general_brand">Brand</string>
-    <string name="general_serialnumber">Serial Number</string>
+    <string name="general_fingerprint">Fingerprint</string>
     <string name="general_device_id">Build Number</string>
     <string name="general_unknow">Unknow</string>
-<!-- More-View -->
+    <!-- More-View -->
     <string name="more_os_sdk_codename">OS Name</string>
     <string name="more_os_sdk_version">OS/SDK Version</string>
     <string name="more_board">Board</string>
@@ -33,11 +33,11 @@
     <string name="display_display_size">Display Size</string>
     <string name="display_display_size_summary">inches</string>
     <!-- Camera-View -->
-    <string name="camera_manufacturer">Picture Format</string>
-    <string name="camera_model">Preview Format</string>
-    <string name="camera_product">Picture Size</string>
-    <string name="camera_brand">Preview Size</string>
-    <string name="camera_serialnumber">Supported Picture Size</string>
+    <string name="camera_picture_format">Picture Format</string>
+    <string name="camera_preview_format">Preview Format</string>
+    <string name="camera_picture_size">Picture Size</string>
+    <string name="camera_preview_size">Preview Size</string>
+    <string name="camera_supported_sizes">Supported Picture Size</string>
     <string name="camera_front_camera">Front Camera</string>
     <string name="camera_face_cam_available">Available</string>
     <string name="camera_face_cam_not_available">Not Available</string>
@@ -54,7 +54,7 @@
     <string name="memory_usb_sd_memory">USB/SD-Storage</string>
     <string name="memory_used">Used:</string>
     <string name="memory_not_available">Not Available</string>
-<!-- Battery-View -->
+    <!-- Battery-View -->
     <string name="battery_capacitance">Capacitance</string>
     <string name="battery_state">State</string>
     <string name="battery_state_charging">Charging</string>
@@ -69,7 +69,7 @@
     <string name="battery_connected_battery">Battery</string>
     <string name="battery_connected_ac">AC</string>
     <string name="battery_technology_summary">Li-ion</string>
-<!-- Network-View -->
+    <!-- Network-View -->
     <string name="network_mobile">Mobile Data</string>
     <string name="network_mobile_state">State</string>
     <string name="network_mobile_connection_type">Connection Type</string>
@@ -77,8 +77,8 @@
     <string name="network_wlan_name">Network name</string>
     <string name="network_wlan_state">State</string>
     <string name="network_wlan_signal_strength">Signal strength</string>
-    <string name="network_wlan_connection_state_connected">Connected</string>
-    <string name="network_wlan_connection_state_disconnected">Disconnected</string>
+    <string name="network_connected">Connected</string>
+    <string name="network_disconnected">Disconnected</string>
     <string name="network_wlan_connection_type_gprs">GPRS</string>
     <string name="network_wlan_connection_type_edge">EDGE</string>
     <string name="network_wlan_connection_type_2g">2G</string>
@@ -88,7 +88,7 @@
     <string name="network_wlan_connection_strength_fair">Fair</string>
     <string name="network_wlan_connection_strength_good">Good</string>
     <string name="network_wlan_connection_strength_excellent">Excellent</string>
-<!-- Config-View -->
+    <!-- Config-View -->
     <string name="config_general_app_config">APP-SETTINGS</string>
     <string name="config_temp_title">Temperature</string>
     <string name="config_temp_summary">Temperature Display</string>
@@ -122,19 +122,19 @@
     <string name="settings_key_feedback" translatable="false">feedback_setting</string>
     <string name="settings_key_rights" translatable="false">rights_setting</string>
     <string name="settings_key_market" translatable="false">market_setting</string>
-<!-- Feedback-View -->
-	<string name="feedback_app_version">SystemInfo Version:</string>
-	<string name="feedback_os_version">Android Version:</string>
-	<string name="feedback_device_name">Device name:</string>
-	<string name="feedback_problem_disc">Problem description:</string>
-	<string name="feedback_mail_subject">Contact Developer</string>
-<!-- Support-View -->
-	<string name="support_subject">Take a look at the SystemInfo Widget</string>
-	<string name="support_text">Hey, try the SystemInfo-Widget:</string>
-<!-- Rate-Dialog -->
-	<string name="rate_dialog_remind_later">Remind me later</string>
-	<string name="rate_dialog_no_thanks">No, Thanks</string>
-	<string name="rate_dialog_text">If you enjoy using SystemInfoWidget, please take a moment to rate it. Thanks for your support!</string>
+    <!-- Feedback-View -->
+    <string name="feedback_app_version">SystemInfo Version:</string>
+    <string name="feedback_os_version">Android Version:</string>
+    <string name="feedback_device_name">Device name:</string>
+    <string name="feedback_problem_disc">Problem description:</string>
+    <string name="feedback_mail_subject">Contact Developer</string>
+    <!-- Support-View -->
+    <string name="support_subject">Take a look at the SystemInfo Widget</string>
+    <string name="support_text">Hey, try the SystemInfo-Widget:</string>
+    <!-- Rate-Dialog -->
+    <string name="rate_dialog_remind_later">Remind me later</string>
+    <string name="rate_dialog_no_thanks">No, Thanks</string>
+    <string name="rate_dialog_text">If you enjoy using SystemInfoWidget, please take a moment to rate it. Thanks for your support!</string>
     <string name="rate_dialog_ok">Rate Now</string>
     <string name="config_entries_privacy_policy">Privacy Policy</string>
     <string name="no_internet_title">No Internet</string>
@@ -142,4 +142,6 @@
     <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"http://systeminfowidget.manuzid.de\",\n  }\n}]</string>
     <string name="config_general_more_apps_amazon" translatable="false">Amazon Appstore</string>
     <string name="app_widget_description">TODO</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

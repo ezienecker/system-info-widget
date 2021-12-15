@@ -7,7 +7,7 @@
     <string name="general_model">Modell</string>
     <string name="general_product">Produkt</string>
     <string name="general_brand">Brand</string>
-    <string name="general_serialnumber">Seriennummer</string>
+    <string name="general_fingerprint">Fingerabdruck</string>
     <string name="general_device_id">Build-Nummer</string>
     <string name="general_unknow">Unbekannt</string>
 <!-- More-View -->
@@ -33,11 +33,11 @@
     <string name="display_display_size">Display Größe</string>
     <string name="display_display_size_summary">inches</string>
     <!-- Camera-View -->
-    <string name="camera_manufacturer">Bildformat</string>
-    <string name="camera_model">Vorschauformat</string>
-    <string name="camera_product">Bildgröße</string>
-    <string name="camera_brand">Vorschaugröße</string>
-    <string name="camera_serialnumber">Unterst. Bildgröße(n)</string>
+    <string name="camera_picture_format">Bildformat</string>
+    <string name="camera_preview_format">Vorschauformat</string>
+    <string name="camera_picture_size">Bildgröße</string>
+    <string name="camera_preview_size">Vorschaugröße</string>
+    <string name="camera_supported_sizes">Unterst. Bildgröße(n)</string>
     <string name="camera_front_camera">Front Kamera</string>
     <string name="camera_face_cam_available">Verfügbar</string>
     <string name="camera_face_cam_not_available">Nicht Verfügbar</string>
@@ -71,8 +71,8 @@
     <string name="network_wlan_name">Netzwerkname</string>
     <string name="network_wlan_state">Status</string>
     <string name="network_wlan_signal_strength">Signalstärke</string>
-    <string name="network_wlan_connection_state_connected">Verbunden</string>
-    <string name="network_wlan_connection_state_disconnected">Getrennt</string>
+    <string name="network_connected">Verbunden</string>
+    <string name="network_disconnected">Getrennt</string>
     <string name="network_wlan_connection_type_gprs">GPRS</string>
     <string name="network_wlan_connection_type_edge">EDGE</string>
     <string name="network_wlan_connection_type_2g">2G</string>

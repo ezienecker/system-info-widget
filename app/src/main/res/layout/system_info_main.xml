@@ -1,18 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sys_info_relative_widget"
+    android:id="@+id/system_info_card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/sys_info_linear_widget"
+        android:id="@+id/system_info_button_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="6.0" >
 
         <Button
-            android:id="@+id/btnFirst"
+            android:id="@+id/btn_general"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
@@ -20,265 +20,163 @@
             android:background="@drawable/general_btn" />
 
         <Button
-            android:id="@+id/btnSecond"
+            android:id="@+id/btn_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/general_btn" />
+            android:background="@drawable/more_btn" />
 
         <Button
-            android:id="@+id/btnThird"
+            android:id="@+id/btn_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/general_btn" />
+            android:background="@drawable/display_btn" />
 
         <Button
-            android:id="@+id/btnFourth"
+            android:id="@+id/btn_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/general_btn" />
+            android:background="@drawable/camera_btn" />
 
         <Button
-            android:id="@+id/btnFifth"
+            android:id="@+id/btn_memory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/general_btn" />
+            android:background="@drawable/network_btn" />
 
         <Button
-            android:id="@+id/btnSixth"
+            android:id="@+id/btn_battery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/general_btn" />
+            android:background="@drawable/battery_btn" />
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/relative_general"
+        android:id="@+id/system_info_widget_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/relative_background_blue"
-        android:visibility="visible" >
+        android:background="@drawable/relative_background_blue">
 
         <TextView
-            android:id="@+id/lblFirstInfo"
+            android:id="@+id/widget_first_label"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:text="@string/general_manufacturer"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_manufacturer" />
 
         <TextView
-            android:id="@+id/txtFirstInfo"
+            android:id="@+id/widget_first_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_unknow" />
 
         <TextView
-            android:id="@+id/lblSecondInfo"
+            android:id="@+id/widget_second_label"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblFirstInfo"
+            android:layout_below="@+id/widget_first_label"
             android:layout_marginStart="3dp"
-            android:text="@string/general_model"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_model" />
 
         <TextView
-            android:id="@+id/txtSecondInfo"
+            android:id="@+id/widget_second_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtFirstInfo"
+            android:layout_below="@+id/widget_first_information"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
-
-        <ProgressBar
-            android:id="@+id/device_memory_progress_bar"
-            style="@style/CustomProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtSecondInfo"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="3dp"
-            android:visibility="gone" />
+            android:text="@string/general_unknow" />
 
         <TextView
-            android:id="@+id/device_memory_percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/device_memory_progress_bar"
-            android:text="@string/general_unknow"
+            android:id="@+id/widget_third_label"
             style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/lblThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblSecondInfo"
+            android:layout_below="@+id/widget_second_label"
             android:layout_marginStart="3dp"
-            android:text="@string/general_product"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_product" />
 
         <TextView
-            android:id="@+id/txtThird"
+            android:id="@+id/widget_third_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtSecondInfo"
+            android:layout_below="@+id/widget_second_information"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_unknow" />
 
         <TextView
-            android:id="@+id/lblFourth"
+            android:id="@+id/widget_fourth_label"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblThird"
+            android:layout_below="@+id/widget_third_label"
             android:layout_marginStart="3dp"
-            android:text="@string/general_brand"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_brand" />
 
         <TextView
-            android:id="@+id/txtFourth"
+            android:id="@+id/widget_fourth_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtThird"
+            android:layout_below="@+id/widget_third_information"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_unknow" />
 
         <TextView
-            android:id="@+id/lblFifth"
+            android:id="@+id/widget_fifth_label"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblFourth"
+            android:layout_below="@+id/widget_fourth_label"
             android:layout_marginStart="3dp"
-            android:text="@string/general_serialnumber"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_fingerprint" />
 
         <TextView
-            android:id="@+id/txtFifth"
+            android:id="@+id/widget_fifth_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtFourth"
+            android:layout_below="@+id/widget_fourth_information"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
-
-        <ProgressBar
-            android:id="@+id/usb_memory_progress_bar"
-            style="@style/CustomProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtFifth"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="3dp"
-            android:visibility="gone" />
+            android:text="@string/general_unknow" />
 
         <TextView
-            android:id="@+id/usb_memory_percent"
+            android:id="@+id/widget_sixth_label"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/usb_memory_progress_bar"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/txtSupportedPictureSizes"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtFourth"
-            android:layout_marginEnd="3dp"
-            android:duplicateParentState="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollbars="vertical"
-            android:scrollHorizontally="true"
-            android:maxLines="1"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone">
-
-            <requestFocus
-                android:duplicateParentState="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
-        </TextView>
-
-        <TextView
-            android:id="@+id/lblSixth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblFifth"
+            android:layout_below="@+id/widget_fifth_label"
             android:layout_marginStart="3dp"
-            android:text="@string/general_device_id"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
+            android:text="@string/general_device_id" />
 
         <TextView
-            android:id="@+id/txtSixth"
+            android:id="@+id/widget_sixth_information"
+            style="@style/SystemInfoCustomTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtFifth"
+            android:layout_below="@+id/widget_fifth_information"
             android:layout_marginEnd="3dp"
-            android:text="@string/general_unknow"
-            style="@style/SystemInfoCustomTextViewStyle"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/imgRestore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblFirstInfo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/image_content_description"
-            android:src="@drawable/sys_info_default_img" />
-
-        <TextView
-            android:id="@+id/txtConfigClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgRestore"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:text="@string/config_config_click"
-            style="@style/SystemInfoCustomTextViewStyle" />
+            android:text="@string/general_unknow" />
 
     </RelativeLayout>
-
 </LinearLayout>
