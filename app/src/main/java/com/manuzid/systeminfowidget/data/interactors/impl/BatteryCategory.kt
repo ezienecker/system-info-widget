@@ -13,10 +13,6 @@ import com.manuzid.systeminfowidget.di.module.BatteryService
 class BatteryCategory(private val context: Context, private val batteryService: BatteryService) :
     AbstractCategory() {
 
-    override fun getRequestCode(): Int = 5
-
-    override fun getRequestAction(): String = BATTERY
-
     override fun getInformationen(): Information = Information(
         context.getString(R.string.battery_capacitance), batteryService.getCapacity(),
         context.getString(R.string.battery_state), batteryService.getStatus(),
@@ -25,8 +21,4 @@ class BatteryCategory(private val context: Context, private val batteryService: 
         context.getString(R.string.battery_temperature), batteryService.getTemperature(),
         context.getString(R.string.battery_connected), batteryService.getConnectedState()
     )
-
-    companion object {
-        const val BATTERY = INTENT_FILTER_PREFIX + "BATTERY_WIDGET"
-    }
 }

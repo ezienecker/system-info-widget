@@ -13,10 +13,6 @@ import com.manuzid.systeminfowidget.di.module.NetworkService
 class NetworkCategory(private val context: Context, private val networkService: NetworkService) :
     AbstractCategory() {
 
-    override fun getRequestCode(): Int = 7
-
-    override fun getRequestAction(): String = NETWORK
-
     override fun getInformationen(): Information = Information(
         context.getString(R.string.network_mobile), "",
         context.getString(R.string.network_mobile_state), networkService.getMobileConnectionState(),
@@ -26,8 +22,4 @@ class NetworkCategory(private val context: Context, private val networkService: 
         context.getString(R.string.network_wlan_state) + "/" + context.getString(R.string.network_wlan_signal_strength),
         networkService.getWiFiConnectionState() + "/" + networkService.getWiFiConnectionStrength()
     )
-
-    companion object {
-        const val NETWORK = INTENT_FILTER_PREFIX + "NETWORK_WIDGET"
-    }
 }

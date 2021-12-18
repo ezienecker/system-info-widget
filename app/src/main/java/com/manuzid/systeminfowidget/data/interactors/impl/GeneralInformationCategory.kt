@@ -15,10 +15,6 @@ class GeneralInformationCategory(
     private val generalInformationService: GeneralInformationService
 ) : AbstractCategory() {
 
-    override fun getRequestCode(): Int = 0
-
-    override fun getRequestAction(): String = GENERAL
-
     override fun getInformationen(): Information = Information(
         context.getString(R.string.general_manufacturer), generalInformationService.getManufacturer(),
         context.getString(R.string.general_model), generalInformationService.getModel(),
@@ -27,8 +23,4 @@ class GeneralInformationCategory(
         context.getString(R.string.general_fingerprint), generalInformationService.getFingerprint(),
         context.getString(R.string.general_device_id), generalInformationService.getDeviceId()
     )
-
-    companion object {
-        const val GENERAL = INTENT_FILTER_PREFIX + "GENERAL_WIDGET"
-    }
 }

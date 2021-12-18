@@ -16,10 +16,6 @@ class MoreInformationCategory(
 ) :
     AbstractCategory() {
 
-    override fun getRequestCode(): Int = 1
-
-    override fun getRequestAction(): String = MORE
-
     override fun getInformationen(): Information = Information(
         context.getString(R.string.more_os_sdk_version), moreInformationService.getSDKVersion(),
         context.getString(R.string.more_os_sdk_codename), moreInformationService.getSDKCodename(),
@@ -28,8 +24,4 @@ class MoreInformationCategory(
         context.getString(R.string.more_cpu_i), moreInformationService.getCPU(),
         context.getString(R.string.more_used_ram), moreInformationService.getUsedRAM()
     )
-
-    companion object {
-        const val MORE = INTENT_FILTER_PREFIX + "MORE_WIDGET"
-    }
 }

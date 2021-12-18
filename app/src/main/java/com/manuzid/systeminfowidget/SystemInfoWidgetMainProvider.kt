@@ -6,8 +6,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.util.Log
 import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.data.interactors.impl.*
 import com.manuzid.systeminfowidget.ui.preferences.SettingsActivity
@@ -63,23 +61,11 @@ class SystemInfoWidgetMainProvider : AppWidgetProvider(), KoinComponent {
         super.onReceive(context, intent)
 
         val remoteView = when (intent!!.action) {
-            BatteryCategory.BATTERY -> {
+            PREVIOUS -> {
                 batteryCategory.getRemoteView(context!!)
             }
-            CameraCategory.CAMERA -> {
+            NEXT -> {
                 cameraCategory.getRemoteView(context!!)
-            }
-            DisplayCategory.DISPLAY -> {
-                displayCategory.getRemoteView(context!!)
-            }
-            GeneralInformationCategory.GENERAL -> {
-                generalInformationCategory.getRemoteView(context!!)
-            }
-            MoreInformationCategory.MORE -> {
-                moreInformationCategory.getRemoteView(context!!)
-            }
-            NetworkCategory.NETWORK -> {
-                networkCategory.getRemoteView(context!!)
             }
             else -> {
                 networkCategory.getRemoteView(context!!)
@@ -99,45 +85,25 @@ class SystemInfoWidgetMainProvider : AppWidgetProvider(), KoinComponent {
             appWidgetManager: AppWidgetManager,
             appWidgetId: Int
     ) {
-        val generalCategoryPendingIntent = getPendingIntent(
+        val previousCategoryPendingIntent = getPendingIntent(
                 context, 0,
-                SystemInfoWidgetMainProvider::class.java, GeneralInformationCategory.GENERAL
+                SystemInfoWidgetMainProvider::class.java, PREVIOUS
         )
-        val moreCategoryPendingIntent = getPendingIntent(
+        val nextCategoryPendingIntent = getPendingIntent(
                 context, 1,
-                SystemInfoWidgetMainProvider::class.java, MoreInformationCategory.MORE
-        )
-        val displayCategoryPendingIntent = getPendingIntent(
-                context, 2,
-                SystemInfoWidgetMainProvider::class.java, DisplayCategory.DISPLAY
-        )
-        val cameraCategoryPendingIntent = getPendingIntent(
-                context, 3,
-                SystemInfoWidgetMainProvider::class.java, CameraCategory.CAMERA
-        )
-        val batteryCategoryPendingIntent = getPendingIntent(
-                context, 4,
-                SystemInfoWidgetMainProvider::class.java, BatteryCategory.BATTERY
-        )
-        val networkCategoryPendingIntent = getPendingIntent(
-                context, 5,
-                SystemInfoWidgetMainProvider::class.java, NetworkCategory.NETWORK
+                SystemInfoWidgetMainProvider::class.java, NEXT
         )
 
         val views: RemoteViews = RemoteViews(
                 context.packageName,
-                R.layout.system_info_main
+                R.layout.system_info_widget_main
         ).apply {
             setOnClickPendingIntent(
-                    R.id.system_info_widget_container,
+                    R.id.widget_settings,
                     getPendingConfigurationPreferencesIntent(context)
             )
-            setOnClickPendingIntent(R.id.btn_general, generalCategoryPendingIntent)
-            setOnClickPendingIntent(R.id.btn_more, moreCategoryPendingIntent)
-            setOnClickPendingIntent(R.id.btn_display, displayCategoryPendingIntent)
-            setOnClickPendingIntent(R.id.btn_camera, cameraCategoryPendingIntent)
-            setOnClickPendingIntent(R.id.btn_memory, networkCategoryPendingIntent)
-            setOnClickPendingIntent(R.id.btn_battery, batteryCategoryPendingIntent)
+            setOnClickPendingIntent(R.id.widget_previous_category, nextCategoryPendingIntent)
+            setOnClickPendingIntent(R.id.widget_next_category, previousCategoryPendingIntent)
         }
 
         appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -164,12 +130,8 @@ class SystemInfoWidgetMainProvider : AppWidgetProvider(), KoinComponent {
             )
 
     companion object {
-        private val THIRD_PARTY_INTENT_FILTER = IntentFilter().apply {
-            addAction(Intent.ACTION_BATTERY_CHANGED)
-            addAction(Intent.ACTION_BATTERY_OKAY)
-            addAction(Intent.ACTION_BATTERY_LOW)
-            addAction(Intent.ACTION_POWER_CONNECTED)
-            addAction(Intent.ACTION_POWER_DISCONNECTED)
-        }
+        const val PREVIOUS = "PREVIOUS"
+        const val NEXT = "NEXT"
     }
+
 }

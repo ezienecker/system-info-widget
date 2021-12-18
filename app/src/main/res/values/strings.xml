@@ -140,5 +140,4 @@
     <string name="config_general_more_apps_amazon" translatable="false">Amazon Appstore</string>
     <string name="app_widget_description">TODO</string>
     <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
 </resources>

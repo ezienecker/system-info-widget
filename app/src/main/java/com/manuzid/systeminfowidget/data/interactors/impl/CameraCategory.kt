@@ -13,10 +13,6 @@ import com.manuzid.systeminfowidget.di.module.CameraService
 class CameraCategory(private val context: Context, private val cameraService: CameraService) :
     AbstractCategory() {
 
-    override fun getRequestCode(): Int = 3
-
-    override fun getRequestAction(): String = CAMERA
-
     override fun getInformationen(): Information = Information(
         context.getString(R.string.camera_picture_format), cameraService.getPictureFormat(),
         context.getString(R.string.camera_picture_size), cameraService.getPictureSize(),
@@ -25,8 +21,4 @@ class CameraCategory(private val context: Context, private val cameraService: Ca
         context.getString(R.string.camera_supported_sizes), cameraService.getSupportedSizes(),
         context.getString(R.string.camera_front_camera), cameraService.isFaceCamAvailable()
     )
-
-    companion object {
-        const val CAMERA = INTENT_FILTER_PREFIX + "CAMERA_WIDGET"
-    }
 }
