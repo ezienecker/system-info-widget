@@ -1,10 +1,25 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.AppCompat.Light.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+    <!-- Base application theme. -->
+    <style name="Theme.Systeminfowidget" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Systeminfowidget.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
         <item name="appWidgetRadius">8dp</item>
         <item name="appWidgetPadding">4dp</item>
         <item name="appWidgetInnerRadius">4dp</item>
     </style>
 
-    <style name="Theme.AppCompat.Light.AppWidgetContainer" parent="Theme.AppCompat.Light.AppWidgetContainerParent" />
+    <style name="Theme.Systeminfowidget.AppWidgetContainer" parent="Theme.Systeminfowidget.AppWidgetContainerParent" />
 </resources>

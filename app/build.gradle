@@ -29,6 +29,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
+    implementation 'com.google.android.material:material:1.4.0'
 }
 
 repositories {
