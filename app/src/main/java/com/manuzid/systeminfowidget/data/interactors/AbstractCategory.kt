@@ -33,7 +33,6 @@ abstract class AbstractCategory {
 
     companion object {
         const val INTENT_FILTER_PREFIX = "com.manuzid.systeminfowidget."
-        const val DEFAULT = INTENT_FILTER_PREFIX + "NONE"
     }
 
 }

@@ -40,5 +40,12 @@ class SettingsActivity : AppCompatActivity() {
 
     companion object {
         const val TEMPERATURE_FORMAT = "temperature_format"
+        const val COLOR_SCHEME = "color_scheme"
+
+        const val COLOR_BLUE = "color_blue"
+        const val COLOR_RED = "color_red"
+        const val COLOR_ORANGE = "color_orange"
+        const val COLOR_GREEN = "color_green"
+        const val COLOR_WHITE = "color_white"
     }
 }

@@ -1,6 +1,7 @@
 package com.manuzid.systeminfowidget.data.interactors.impl
 
 import android.content.Context
+import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.R
 import com.manuzid.systeminfowidget.data.interactors.AbstractCategory
 import com.manuzid.systeminfowidget.data.models.Information
@@ -22,4 +23,14 @@ class NetworkCategory(private val context: Context, private val networkService: 
         context.getString(R.string.network_wlan_state) + "/" + context.getString(R.string.network_wlan_signal_strength),
         networkService.getWiFiConnectionState() + "/" + networkService.getWiFiConnectionStrength()
     )
+
+    override fun getRemoteView(context: Context): RemoteViews {
+        return super.getRemoteView(context).apply {
+            setTextViewText(R.id.widget_header, "Network")
+        }
+    }
+
+    companion object {
+        const val NETWORK = INTENT_FILTER_PREFIX + "NETWORK_WIDGET"
+    }
 }

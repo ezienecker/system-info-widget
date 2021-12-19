@@ -1,6 +1,7 @@
 package com.manuzid.systeminfowidget.data.interactors.impl
 
 import android.content.Context
+import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.R
 import com.manuzid.systeminfowidget.data.interactors.AbstractCategory
 import com.manuzid.systeminfowidget.data.models.Information
@@ -21,4 +22,14 @@ class DisplayCategory(private val context: Context, private val displayService: 
         context.getString(R.string.display_fps), displayService.getFps(),
         context.getString(R.string.display_display_scale), displayService.getDisplayScale()
     )
+
+    override fun getRemoteView(context: Context): RemoteViews {
+        return super.getRemoteView(context).apply {
+            setTextViewText(R.id.widget_header, "Display")
+        }
+    }
+
+    companion object {
+        const val DISPLAY = INTENT_FILTER_PREFIX + "DISPLAY_WIDGET"
+    }
 }

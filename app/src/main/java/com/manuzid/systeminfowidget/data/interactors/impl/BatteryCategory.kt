@@ -1,6 +1,7 @@
 package com.manuzid.systeminfowidget.data.interactors.impl
 
 import android.content.Context
+import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.R
 import com.manuzid.systeminfowidget.data.interactors.AbstractCategory
 import com.manuzid.systeminfowidget.data.models.Information
@@ -21,4 +22,14 @@ class BatteryCategory(private val context: Context, private val batteryService: 
         context.getString(R.string.battery_temperature), batteryService.getTemperature(),
         context.getString(R.string.battery_connected), batteryService.getConnectedState()
     )
+
+    override fun getRemoteView(context: Context): RemoteViews {
+        return super.getRemoteView(context).apply {
+            setTextViewText(R.id.widget_header, "Battery")
+        }
+    }
+
+    companion object {
+        const val BATTERY = INTENT_FILTER_PREFIX + "BATTERY_WIDGET"
+    }
 }

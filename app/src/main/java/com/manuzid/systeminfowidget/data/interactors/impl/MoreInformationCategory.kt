@@ -1,6 +1,7 @@
 package com.manuzid.systeminfowidget.data.interactors.impl
 
 import android.content.Context
+import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.R
 import com.manuzid.systeminfowidget.data.interactors.AbstractCategory
 import com.manuzid.systeminfowidget.data.models.Information
@@ -24,4 +25,14 @@ class MoreInformationCategory(
         context.getString(R.string.more_cpu_i), moreInformationService.getCPU(),
         context.getString(R.string.more_used_ram), moreInformationService.getUsedRAM()
     )
+
+    override fun getRemoteView(context: Context): RemoteViews {
+        return super.getRemoteView(context).apply {
+            setTextViewText(R.id.widget_header, "Advanced")
+        }
+    }
+
+    companion object {
+        const val MORE = INTENT_FILTER_PREFIX + "MORE_WIDGET"
+    }
 }

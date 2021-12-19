@@ -1,6 +1,7 @@
 package com.manuzid.systeminfowidget.data.interactors.impl
 
 import android.content.Context
+import android.widget.RemoteViews
 import com.manuzid.systeminfowidget.R
 import com.manuzid.systeminfowidget.data.interactors.AbstractCategory
 import com.manuzid.systeminfowidget.data.models.Information
@@ -21,4 +22,14 @@ class CameraCategory(private val context: Context, private val cameraService: Ca
         context.getString(R.string.camera_supported_sizes), cameraService.getSupportedSizes(),
         context.getString(R.string.camera_front_camera), cameraService.isFaceCamAvailable()
     )
+
+    override fun getRemoteView(context: Context): RemoteViews {
+        return super.getRemoteView(context).apply {
+            setTextViewText(R.id.widget_header, "Camera")
+        }
+    }
+
+    companion object {
+        const val CAMERA = INTENT_FILTER_PREFIX + "CAMERA_WIDGET"
+    }
 }
