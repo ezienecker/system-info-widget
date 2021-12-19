@@ -16,7 +16,7 @@ val appModule = module {
     single<CameraService> { CameraServiceImpl(get()) }
     single { CameraCategory(get(), get()) }
 
-    single<DisplayService> {
+    single {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             DisplayServiceFromApi30Impl(get())
         } else {

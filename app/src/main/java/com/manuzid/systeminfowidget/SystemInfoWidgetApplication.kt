@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.manuzid.systeminfowidget
 
 import android.app.Application

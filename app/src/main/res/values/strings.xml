@@ -1,7 +1,5 @@
 <resources>
     <string name="appwidget_text">SystemInfoWidget</string>
-    <string name="menu_settings">Settings</string>
-    <string name="image_content_description">imagedisc</string>
     <!-- General-View -->
     <string name="general_manufacturer">Manufacturer</string>
     <string name="general_model">Model</string>
@@ -42,18 +40,7 @@
     <string name="camera_face_cam_available">Available</string>
     <string name="camera_face_cam_not_available">Not Available</string>
     <string name="camera_picture_format_jpeg" translatable="false">JPEG</string>
-    <string name="camera_picture_format_nv" translatable="false">NV16</string>
-    <string name="camera_picture_format_nv_second" translatable="false">NV21</string>
-    <string name="camera_picture_format_rgb" translatable="false">RGB_565</string>
-    <string name="camera_picture_format_yuy" translatable="false">YUY2</string>
-    <string name="camera_picture_format_yv" translatable="false">YV12</string>
     <!-- Memory-View -->
-    <string name="memory_header_memory">Storage-Medium</string>
-    <string name="memory_header_values">Total/Free/Used</string>
-    <string name="memory_device_memory">Device Storage</string>
-    <string name="memory_usb_sd_memory">USB/SD-Storage</string>
-    <string name="memory_used">Used:</string>
-    <string name="memory_not_available">Not Available</string>
     <!-- Battery-View -->
     <string name="battery_capacitance">Capacitance</string>
     <string name="battery_state">State</string>
@@ -68,7 +55,6 @@
     <string name="battery_connected_usb">USB</string>
     <string name="battery_connected_battery">Battery</string>
     <string name="battery_connected_ac">AC</string>
-    <string name="battery_technology_summary">Li-ion</string>
     <!-- Network-View -->
     <string name="network_mobile">Mobile Data</string>
     <string name="network_mobile_state">State</string>
@@ -99,7 +85,6 @@
     <string name="config_about_title">ABOUT</string>
     <string name="config_entries_about">Current SystemInfo Widget-Version</string>
     <string name="config_entries_about_app_summary">Version: %s</string>
-    <string name="config_entries_about_app_summary_fail">Version: Not Available</string>
     <string name="config_general_rate">Rate SystemInfo Widget</string>
     <string name="config_general_rate_summary">Rate us at the store</string>
     <string name="settings_general_friend">Recommend</string>
@@ -111,17 +96,7 @@
     <string name="config_entries_rights_title">LEGAL NOTICES</string>
     <string name="config_entries_rights_legal_title">Bequest</string>
     <string name="config_entries_rights_legal_privat" formatted="false" translatable="false">Legal Notices:\n© 2013&#8211;%d Emanuel Zienecker. All rights reserved.</string>
-    <string name="config_config_click">\"Click\" for Settings-Menu</string>
     <string name="config_save_changes">Update Widget</string>
-    <string name="config_category_title">Category</string>
-    <string name="config_category_summary">Category Choice</string>
-    <string name="config_category_choice_wrong">Choose exactly six entries</string>
-    <string name="settings_key_sys_version" translatable="false">bow_version_setting</string>
-    <string name="settings_key_rate_bow" translatable="false">rate_bow_setting</string>
-    <string name="settings_key_forward" translatable="false">forward_setting</string>
-    <string name="settings_key_feedback" translatable="false">feedback_setting</string>
-    <string name="settings_key_rights" translatable="false">rights_setting</string>
-    <string name="settings_key_market" translatable="false">market_setting</string>
     <!-- Feedback-View -->
     <string name="feedback_app_version">SystemInfo Version:</string>
     <string name="feedback_os_version">Android Version:</string>
@@ -132,14 +107,7 @@
     <string name="support_subject">Take a look at the SystemInfo Widget</string>
     <string name="support_text">Hey, try the SystemInfo-Widget:</string>
     <!-- Rate-Dialog -->
-    <string name="rate_dialog_remind_later">Remind me later</string>
-    <string name="rate_dialog_no_thanks">No, Thanks</string>
-    <string name="rate_dialog_text">If you enjoy using SystemInfoWidget, please take a moment to rate it. Thanks for your support!</string>
-    <string name="rate_dialog_ok">Rate Now</string>
     <string name="config_entries_privacy_policy">Privacy Policy</string>
-    <string name="no_internet_title">No Internet</string>
-    <string name="no_internet_message">There is no internet connection</string>
     <string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"http://systeminfowidget.manuzid.de\",\n  }\n}]</string>
-    <string name="config_general_more_apps_amazon" translatable="false">Amazon Appstore</string>
     <string name="control_description" translatable="false">Control buttons for widget navigation</string>
 </resources>
