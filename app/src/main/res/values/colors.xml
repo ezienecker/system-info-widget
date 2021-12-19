@@ -11,4 +11,9 @@
     <color name="light_blue_200">#FF81D4FA</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
+
+    <color name="widget_blue">#396BCD</color>
+    <color name="widget_red">#D05A4E</color>
+    <color name="widget_orange">#D79B0D</color>
+    <color name="widget_green">#6BB770</color>
 </resources>

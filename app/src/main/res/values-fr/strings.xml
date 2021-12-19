@@ -84,6 +84,8 @@
     <string name="network_wlan_connection_strength_excellent">Excellent</string>
 <!-- Config-View -->
     <string name="config_general_app_config">APP-PARAMÈTRES</string>
+    <string name="config_color_style">Couleur-Scheme</string>
+    <string name="config_color_style_summary">Color-Schema Choice</string>
     <string name="config_temp_title">température</string>
     <string name="config_temp_summary">température indication</string>
     <string name="config_about_title">AU SUJET DE</string>

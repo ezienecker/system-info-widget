@@ -8,4 +8,18 @@
         <item>celsius</item>
         <item>fahrenheit</item>
     </string-array>
+    <string-array name="config_color_style">
+        <item>Blau</item>
+        <item>Grün</item>
+        <item>Rot</item>
+        <item>Orange</item>
+        <item>White</item>
+    </string-array>
+    <string-array name="config_color_style_keys">
+        <item>color_blue</item>
+        <item>color_green</item>
+        <item>color_red</item>
+        <item>color_orange</item>
+        <item>color_white</item>
+    </string-array>
 </resources>
