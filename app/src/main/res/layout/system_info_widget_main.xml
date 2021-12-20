@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/widget_fourth_label"
         android:layout_marginStart="8dp"
-        android:text="@string/general_fingerprint" />
+        android:text="@string/general_bootloader" />
 
     <TextView
         android:id="@+id/widget_fifth_information"

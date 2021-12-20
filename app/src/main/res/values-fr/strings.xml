@@ -5,14 +5,14 @@
     <string name="general_model">modèle</string>
     <string name="general_product">produit</string>
     <string name="general_brand">marque</string>
-    <string name="general_fingerprint">Empreinte digitale</string>
+    <string name="general_bootloader">Chargeur de démarrage</string>
     <string name="general_device_id">Numéro de build</string>
     <string name="general_unknow">inconnu</string>
-<!-- More-View -->
+    <!-- More-View -->
     <string name="more_os_sdk_codename">OS nom</string>
-    <string name="more_os_sdk_version">OS/SDK version</string>
+    <string name="more_os_version">OS version</string>
+    <string name="more_sdk_version">SDK version</string>
     <string name="more_board">Board</string>
-    <string name="more_bootloader">Bootloader</string>
     <string name="more_cpu_i">CPU-ABI I</string>
     <string name="more_used_ram">RAM en cours d\'utilisation</string>
     <!-- Display-View -->

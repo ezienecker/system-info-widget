@@ -5,14 +5,14 @@
     <string name="general_model">Model</string>
     <string name="general_product">Product</string>
     <string name="general_brand">Brand</string>
-    <string name="general_fingerprint">Fingerprint</string>
+    <string name="general_bootloader">Bootloader</string>
     <string name="general_device_id">Build Number</string>
     <string name="general_unknow">Unknow</string>
     <!-- More-View -->
     <string name="more_os_sdk_codename">OS Name</string>
-    <string name="more_os_sdk_version">OS/SDK Version</string>
+    <string name="more_os_version">OS Version</string>
+    <string name="more_sdk_version">SDK Version</string>
     <string name="more_board">Board</string>
-    <string name="more_bootloader">Bootloader</string>
     <string name="more_cpu_i">CPU-ABI I</string>
     <string name="more_used_ram">RAM in use</string>
     <!-- Display-View -->
