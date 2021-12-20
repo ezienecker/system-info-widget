@@ -63,15 +63,10 @@ class CameraServiceImpl(override val context: Context) : CameraService {
 
     override fun getPreviewSize(): String = getPictureSize()
 
-    override fun getSupportedSizes(): String {
-        val supportedFormats = StringBuilder()
-        for (outputFormat in map!!.outputFormats) {
-            val outputSizes = map!!.getOutputSizes(outputFormat)
-            //supportedFormats.append(StringUtils.join(outputSizes, ", ", 0, outputSizes.size))
-        }
-
-        return supportedFormats.toString()
-    }
+    override fun getSupportedSizes(): String =
+        map?.let { map ->
+            return map.outputFormats.size.toString()
+        } ?: "0"
 
     private fun initCameraCharacteristics(): StreamConfigurationMap? {
         val permissionCheck = ContextCompat.checkSelfPermission(
