@@ -17,4 +17,4 @@ such as the arrival of Kotlin, a new programming language.
 I think you can write more transparent and expressive code with Kotlin. 
 I took this as an opportunity to give my first app a complete makeover.
 
-![SystemInfo-Widget-Details](systeminfo-widget-details.png)
+![SystemInfo-Widget-Details](systeminfo-widget-details.jpg)
