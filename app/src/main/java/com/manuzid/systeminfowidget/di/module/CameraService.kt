@@ -17,7 +17,6 @@ import java.util.*
  * Copyright (c) 2021 Emanuel Zienecker. All rights reserved.
  */
 interface CameraService {
-    val context: Context
 
     fun getPictureFormat(): String
 
@@ -29,20 +28,15 @@ interface CameraService {
 
     fun getSupportedSizes(): String
 
-    fun isFaceCamAvailable(): String =
-        if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
-            context.getString(R.string.camera_face_cam_available)
-        } else {
-            context.getString(R.string.camera_face_cam_not_available)
-        }
+    fun isFaceCamAvailable(): String
 
 }
 
-class CameraServiceImpl(override val context: Context) : CameraService {
+class CameraServiceImpl(val context: Context) : CameraService {
 
     private val unknownInformation = context.getString(R.string.general_unknow)
     private val manager: CameraManager? =
-        context.getSystemService(Context.CAMERA_SERVICE) as CameraManager?
+            context.getSystemService(Context.CAMERA_SERVICE) as CameraManager?
     private var map: StreamConfigurationMap?
 
     init {
@@ -54,7 +48,7 @@ class CameraServiceImpl(override val context: Context) : CameraService {
     override fun getPictureSize(): String {
         return map?.let { map ->
             return getPictureSize(
-                map.getOutputSizes(ImageFormat.JPEG).sortedWith(sizeByAreaComparator).first()
+                    map.getOutputSizes(ImageFormat.JPEG).sortedWith(sizeByAreaComparator).first()
             )
         } ?: return unknownInformation
     }
@@ -64,14 +58,21 @@ class CameraServiceImpl(override val context: Context) : CameraService {
     override fun getPreviewSize(): String = getPictureSize()
 
     override fun getSupportedSizes(): String =
-        map?.let { map ->
-            return map.outputFormats.size.toString()
-        } ?: "0"
+            map?.let { map ->
+                return map.outputFormats.size.toString()
+            } ?: "0"
+
+    override fun isFaceCamAvailable(): String =
+            if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
+                context.getString(R.string.camera_face_cam_available)
+            } else {
+                context.getString(R.string.camera_face_cam_not_available)
+            }
 
     private fun initCameraCharacteristics(): StreamConfigurationMap? {
         val permissionCheck = ContextCompat.checkSelfPermission(
-            context,
-            Manifest.permission.CAMERA
+                context,
+                Manifest.permission.CAMERA
         )
 
         if (permissionCheck == PackageManager.PERMISSION_DENIED) {

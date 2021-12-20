@@ -21,7 +21,7 @@ class GeneralInformationCategory(
         context.getString(R.string.general_model), generalInformationService.getModel(),
         context.getString(R.string.general_product), generalInformationService.getProduct(),
         context.getString(R.string.general_brand), generalInformationService.getBrand(),
-        context.getString(R.string.general_fingerprint), "generalInformationService.getFingerprint()",
+        context.getString(R.string.general_bootloader), generalInformationService.getBootloader(),
         context.getString(R.string.general_device_id), generalInformationService.getDeviceId()
     )
 

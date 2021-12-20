@@ -29,7 +29,7 @@ val appModule = module {
     single<GeneralInformationService> { GeneralInformationServiceImpl() }
     single { GeneralInformationCategory(get(), get()) }
 
-    single<MoreInformationService> { MoreInformationServiceImpl() }
+    single<MoreInformationService> { MoreInformationServiceImpl(get()) }
     single { MoreInformationCategory(get(), get()) }
 
     single<NetworkService> { NetworkServiceImpl(get()) }

@@ -18,10 +18,10 @@ class MoreInformationCategory(
     AbstractCategory() {
 
     override fun getInformationen(): Information = Information(
-        context.getString(R.string.more_os_sdk_version), moreInformationService.getSDKVersion(),
+        context.getString(R.string.more_os_version), moreInformationService.getReleaseVersion(),
         context.getString(R.string.more_os_sdk_codename), moreInformationService.getSDKCodename(),
+        context.getString(R.string.more_sdk_version), moreInformationService.getSDKVersion(),
         context.getString(R.string.more_board), moreInformationService.getBoard(),
-        context.getString(R.string.more_bootloader), moreInformationService.getBootloader(),
         context.getString(R.string.more_cpu_i), moreInformationService.getCPU(),
         context.getString(R.string.more_used_ram), moreInformationService.getUsedRAM()
     )

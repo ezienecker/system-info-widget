@@ -13,7 +13,7 @@ interface GeneralInformationService {
 
     fun getBrand(): String
 
-    fun getFingerprint(): String
+    fun getBootloader(): String
 
     fun getDeviceId(): String
 }
@@ -27,7 +27,7 @@ class GeneralInformationServiceImpl : GeneralInformationService {
 
     override fun getBrand(): String = android.os.Build.BRAND
 
-    override fun getFingerprint(): String = android.os.Build.FINGERPRINT
+    override fun getBootloader(): String = android.os.Build.BOOTLOADER
 
     override fun getDeviceId(): String = android.os.Build.ID
 }
